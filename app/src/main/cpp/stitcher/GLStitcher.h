@@ -26,8 +26,6 @@ private:
 	void InitShader();
 	bool Initialize();
 	void Release();
-	virtual void Display();
-	virtual void Reshape(int width, int height);
 	void InitDrawOrder();
 	int ReadParameters(const char *filename, FishEyeStitcherParam_t& param);
 	int InitParams();

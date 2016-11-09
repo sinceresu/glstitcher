@@ -152,7 +152,6 @@ void GLStitcher::InitGlut(const char * title)
 		//glutHideWindow();
 
 		esContext.userData = this;
-		esRegisterDrawFunc(&esContext, Draw);
 }
 
 const static char *szFrontCameraMapFile = "./maps/projectionTableSphereA_mapTable.dat";
