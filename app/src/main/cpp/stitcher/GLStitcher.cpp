@@ -74,7 +74,7 @@ void GLStitcher::InitDrawOrder()
 
 }
 
-int GLStitcher::WarpImage(VideoFrame_t * pSrcImgs, VideoFrame_t * pDstImg)
+int GLStitcher::StitchImage(VideoFrame_t *pSrcImgs, VideoFrame_t *pDstImg)
 {
 	if (!m_bInitialized) {
 		Initialize();

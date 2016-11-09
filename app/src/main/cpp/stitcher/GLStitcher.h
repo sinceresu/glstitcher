@@ -1,6 +1,6 @@
 #pragma once
 #include "types.h"
-#include "ImageWarper.h"
+#include "ImageStitcher.h"
 
 #include "esutil.h"
 
@@ -14,12 +14,12 @@ class MapPointsBuilder;
 class MaskMaker;
 class ColorCorrector;
 
-class GLStitcher: public ImageWarper
+class GLStitcher: public ImageStitcher
 {
 public:
 	GLStitcher();
 	~GLStitcher();
-	virtual int WarpImage(VideoFrame_t *pSrcImgs, VideoFrame_t *pDstImg);
+	virtual int StitchImage(VideoFrame_t *pSrcImgs, VideoFrame_t *pDstImg);
 private:
 	void InitGlut(const char * title = 0);
 	bool InitGlModel();
