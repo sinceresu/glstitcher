@@ -123,37 +123,7 @@ void GLStitcher::InitDrawOrder()
 
 
 }
-void WinLoop(ESContext *esContext)
-{
-	MSG msg = { 0 };
-	int done = 0;
-	DWORD lastTime = GetTickCount();
 
-	while (!done) {
-		int gotMsg = (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE) != 0);
-		DWORD curTime = GetTickCount();
-		float deltaTime = (float)(curTime - lastTime) / 1000.0f;
-		lastTime = curTime;
-
-		if (gotMsg) {
-			if (msg.message == WM_QUIT) {
-				done = 1;
-			}
-			else {
-				TranslateMessage(&msg);
-				DispatchMessage(&msg);
-			}
-		}
-		else {
-			SendMessage(esContext->eglNativeWindow, WM_PAINT, 0, 0);
-		}
-
-		// Call update function if registered
-		if (esContext->updateFunc != NULL) {
-			esContext->updateFunc(esContext, deltaTime);
-		}
-	}
-}
 
 int GLStitcher::StitchImage(VideoFrame_t * pSrcImgs, VideoFrame_t * pDstImg)
 {
