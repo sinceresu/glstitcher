@@ -1,12 +1,15 @@
 #pragma once
 #include "types.h"
 #include "ImageStitcher.h"
-
+//#define USE_GL3W
+//#include <vermilion.h>
+//#include "vapp.h"
 #include "esutil.h"
 
 #include <vector>
 #include <memory>
 
+class ParamReader;
 
 class VertexBuilder;
 class TexMapBuilder;
@@ -20,14 +23,18 @@ public:
 	GLStitcher();
 	~GLStitcher();
 	virtual int StitchImage(VideoFrame_t *pSrcImgs, VideoFrame_t *pDstImg);
+
 private:
+	static void Draw(ESContext *esContext);
+
 	void InitGlut(const char * title = 0);
 	bool InitGlModel();
 	void InitShader();
 	bool Initialize();
 	void Release();
+	virtual void Display();
+	virtual void Reshape(int width, int height);
 	void InitDrawOrder();
-	int ReadParameters(const char *filename, FishEyeStitcherParam_t& param);
 	int InitParams();
 
 	GLuint       m_hVertShader;  // Vertex shader handle

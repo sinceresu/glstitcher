@@ -3,13 +3,21 @@
 #include "GLStitcher.h"
 #include "vutils.h"
 #include <string>
+#include "ParamReader.h"
 #include "VertexBuilder.h"
 #include "MapPointsBuilder.h"
 #include "MaskMaker.h"
 #include "TexMapBuilder.h"
 #include "ColorCorrector.h"
 
+//#define TEST_DATA
 
+
+void GLStitcher::Draw(ESContext * esContext)
+{
+	GLStitcher* myself = (GLStitcher*)esContext->userData;
+	myself->Display();
+}
 
 GLStitcher::GLStitcher() :
 	m_pImageParameter(std::make_shared<ImageParameters>()),
@@ -30,6 +38,48 @@ GLStitcher::GLStitcher() :
 GLStitcher::~GLStitcher()
 {
 	Release();
+}
+
+void GLStitcher::Display()
+{
+	float adjust_coeff = m_pColorCorrector->CalcAdjustCoeff(&m_pSrcImgs[0], &m_pSrcImgs[1]);
+	glClear(GL_COLOR_BUFFER_BIT);
+	glDisable(GL_CULL_FACE);
+	glUseProgram(base_prog);
+
+	glUniform1f(adjust_loc, adjust_coeff);
+
+	glBindVertexArray(vao);
+
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, front_tex);
+	glTexSubImage2D(GL_TEXTURE_2D,
+		0,
+		0, 0,
+		m_srcImageFormat.frame_width, m_srcImageFormat.frame_height,
+		GL_RGB, GL_UNSIGNED_BYTE,
+		m_pSrcImgs[0].planes[0]);
+
+
+	glActiveTexture(GL_TEXTURE1);
+	glBindTexture(GL_TEXTURE_2D, back_tex);
+	glTexSubImage2D(GL_TEXTURE_2D,
+		0,
+		0, 0,
+		m_srcImageFormat.frame_width, m_srcImageFormat.frame_height,
+		GL_RGB, GL_UNSIGNED_BYTE,
+		m_pSrcImgs[1].planes[0]);
+
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_elementBuffer);
+	glDrawElements(GL_TRIANGLE_STRIP, m_pVertexBuilder->GetElementNum(), GL_UNSIGNED_SHORT, NULL);
+
+}
+
+void GLStitcher::Reshape(int width, int height)
+{
+	glViewport(0, 0, width, height);
+
+	//aspect = float(height) / float(width);
 }
 
 void GLStitcher::InitDrawOrder()
@@ -73,8 +123,39 @@ void GLStitcher::InitDrawOrder()
 
 
 }
+void WinLoop(ESContext *esContext)
+{
+	MSG msg = { 0 };
+	int done = 0;
+	DWORD lastTime = GetTickCount();
 
-int GLStitcher::StitchImage(VideoFrame_t *pSrcImgs, VideoFrame_t *pDstImg)
+	while (!done) {
+		int gotMsg = (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE) != 0);
+		DWORD curTime = GetTickCount();
+		float deltaTime = (float)(curTime - lastTime) / 1000.0f;
+		lastTime = curTime;
+
+		if (gotMsg) {
+			if (msg.message == WM_QUIT) {
+				done = 1;
+			}
+			else {
+				TranslateMessage(&msg);
+				DispatchMessage(&msg);
+			}
+		}
+		else {
+			SendMessage(esContext->eglNativeWindow, WM_PAINT, 0, 0);
+		}
+
+		// Call update function if registered
+		if (esContext->updateFunc != NULL) {
+			esContext->updateFunc(esContext, deltaTime);
+		}
+	}
+}
+
+int GLStitcher::StitchImage(VideoFrame_t * pSrcImgs, VideoFrame_t * pDstImg)
 {
 	if (!m_bInitialized) {
 		Initialize();
@@ -152,6 +233,7 @@ void GLStitcher::InitGlut(const char * title)
 		//glutHideWindow();
 
 		esContext.userData = this;
+		esRegisterDrawFunc(&esContext, Draw);
 }
 
 const static char *szFrontCameraMapFile = "./maps/projectionTableSphereA_mapTable.dat";
@@ -366,7 +448,7 @@ bool GLStitcher::Initialize()
 
 	InitGlModel();
 
-	InitGlut("GLStitcher test");
+	InitGlut("GLWarper test");
 
 	//gl3wInit();
 
@@ -513,122 +595,16 @@ void GLStitcher::Release()
 }
 
 
-int GLStitcher::ReadParameters(const char *filename, FishEyeStitcherParam_t& param)
-{
-	FILE *fp = NULL;
-	char caBuf[1024];
-	int k, intTmp, bufLen, radiusBufLen;
-	double dbTmp;
-
-	bufLen = 1024;
-	radiusBufLen = 10;
-
-	fp = fopen(filename, "r+t");
-	if (fp == NULL) {
-		return -1;
-	}
-
-	// #Parametesrs of img1
-	fgets(caBuf, bufLen, fp);
-	fscanf(fp, "\n");
-
-	for (k = 0; k < 6; k++) {
-		fscanf(fp, "%lf", &dbTmp);
-	}
-	fscanf(fp, "\n");
-
-	// #Parametesrs of img2
-	fgets(caBuf, bufLen, fp);
-	fscanf(fp, "\n");
-
-	for (k = 0; k < 6; k++) {
-		fscanf(fp, "%lf", &dbTmp);
-	}
-	fscanf(fp, "\n");
-
-	// #Max angle
-	fgets(caBuf, 14, fp);
-	fscanf(fp, "%lf", &dbTmp);
-	fscanf(fp, "\n\n");
-
-	// #Target image size
-	fgets(caBuf, bufLen, fp);
-	fscanf(fp, "%d", &param.target_height);
-	fscanf(fp, "%d", &param.target_width);
-	fscanf(fp, "\n\n");
-
-	// #Sparse sheet size
-	fgets(caBuf, bufLen, fp);
-	fscanf(fp, "%d", &param.table_height);
-	fscanf(fp, "%d", &param.table_width);
-	fscanf(fp, "\n\n");
-
-	// #Sparse sheet steps
-	fgets(caBuf, bufLen, fp);
-	fscanf(fp, "%d", &param.warp_step_x);
-	fscanf(fp, "%d", &param.warp_step_y);
-	fscanf(fp, "\n\n");
-
-	// #Source image size
-	fgets(caBuf, bufLen, fp);
-	fscanf(fp, "%d", &param.tabel_offset_front);
-	fscanf(fp, "%d", &param.tabel_offset_behind);
-	fscanf(fp, "\n\n");
-
-	// #Radius 
-	fgets(caBuf, radiusBufLen, fp);
-	fscanf(fp, "%d", &intTmp);
-	fscanf(fp, "\n\n");
-
-	// #First ROIRegion
-	fgets(caBuf, bufLen, fp);
-	fscanf(fp, "%d", &param.first_region_left);
-	fscanf(fp, "%d", &param.first_region_width);
-	fscanf(fp, "\n\n");
-
-	// #First ROITableSize
-	fgets(caBuf, bufLen, fp);
-	fscanf(fp, "%d", &param.first_table_width);
-	fscanf(fp, "%d", &param.first_table_height);
-	fscanf(fp, "\n\n");
-
-	// #Second ROIRegion 1
-	fgets(caBuf, bufLen, fp);
-	fscanf(fp, "%d", &param.second_region_left1);
-	fscanf(fp, "%d", &param.second_region_width1);
-	fscanf(fp, "\n\n");
-
-	// #First ROITableSize
-	fgets(caBuf, bufLen, fp);
-	fscanf(fp, "%d", &param.second_table_width1);
-	fscanf(fp, "%d", &param.second_table_height1);
-	fscanf(fp, "\n\n");
-
-	// #Second ROIRegion 2
-	fgets(caBuf, bufLen, fp);
-	fscanf(fp, "%d", &param.second_region_left2);
-	fscanf(fp, "%d", &param.second_region_width2);
-	fscanf(fp, "\n\n");
-
-	// #First ROITableSize
-	fgets(caBuf, bufLen, fp);
-	fscanf(fp, "%d", &param.second_table_width2);
-	fscanf(fp, "%d", &param.second_table_height2);
-
-
-	fclose(fp);
-
-	return 0;
-}
-
 int GLStitcher::InitParams()
 {
 	m_pImageParameter->scale = 256;
 	FishEyeStitcherParam_t config;
 	//string configFile = m_stitchedVideoSize == VIDEOSIZE_3840X1920 ? "./config/config_1920p.ini" : "./config/config_960p.ini";
-	std::string configFile = "./config/config_1920p.ini";
-	if (0 != ReadParameters(configFile.c_str(), config))
+	std::string configFile = "./config/stitch_param.xml";
+	if (0 != ParamReader::ReadParameters(configFile.c_str(), config))
 		return -1;
+	//if (0 != ReadParameters(configFile.c_str(), config))
+	//	return -1;
 
 	m_pImageParameter->mapImageWidth = config.target_width;
 	m_pImageParameter->mapImageHeight = config.target_height;
@@ -648,12 +624,12 @@ int GLStitcher::InitParams()
 	//m_pImageParameter->sparseproImgH = m_pImageParameter->proImageH / m_pImageParameter->proStep_Y + 1;
 	//if (mod2)
 	//	m_pImageParameter->sparseproImgH++;
-	m_pImageParameter->sparseproImgH = config.table_height;
+	//m_pImageParameter->sparseproImgH = config.table_height;
 
 	//m_pImageParameter->sparseproImgW = m_pImageParameter->proImageW / m_pImageParameter->proStep_X + 1;
 	//if (mod1)
 	//	m_pImageParameter->sparseproImgW++;
-	m_pImageParameter->sparseproImgW = config.table_width;
+	//m_pImageParameter->sparseproImgW = config.table_width;
 
 	m_pImageParameter->first_region = { config.first_region_left, 0, config.first_region_width, m_pImageParameter->mapImageHeight,
 		config.first_table_width, config.first_table_height };
