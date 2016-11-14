@@ -1,7 +1,6 @@
 #ifndef __VUTILS_H__
 #define __VUTILS_H__
 
-#define BUFFER_OFFSET(x)  ((const void*) (x))
 
 //void vglAttachShaderSource(GLuint prog, GLenum type, const char * source)
 //{

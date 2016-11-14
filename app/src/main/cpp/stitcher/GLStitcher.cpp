@@ -1,7 +1,6 @@
 #include "stdafx.h"
 
 #include "GLStitcher.h"
-#include "vutils.h"
 #include <string>
 #include "ParamReader.h"
 #include "VertexBuilder.h"
@@ -13,6 +12,7 @@
 
 //#define TEST_DATA
 using namespace ogles_gpgpu;
+#define BUFFER_OFFSET(x)  ((const void*) (x))
 
 
 GLStitcher::GLStitcher() :
@@ -165,7 +165,7 @@ void GLStitcher::InitGlut(const char * title)
 const static char *szFrontCameraMapFile = "/maps/projectionTableSphereA_mapTable.dat";
 const static char *szBehindCameraMapFile = "/maps/projectionTableSphereB_mapTable.dat";
 
-bool GLStitcher::InitGlModel()
+bool GLStitcher::InitMembers()
 {
 	m_pVertexBuilder->SetSrcImageFormat(m_srcImageFormat);
 	m_pVertexBuilder->SetDstImageFormat(m_dstImageFormat);
@@ -287,8 +287,8 @@ bool GLStitcher::InitGlModel()
 	return true;
 }
 
-void GLStitcher::InitShader()
-{
+	void GLStitcher::InitShader()
+	{
 	char vShaderStr[] =
 		"#version 300 es                            \n"
 		"\n"
@@ -371,20 +371,8 @@ void GLStitcher::InitShader()
 
 }
 
-bool GLStitcher::Initialize()
+void GLStitcher::InitGLModel()
 {
-	InitParams();
-
-	InitGlModel();
-
-	InitGlut("GLWarper test");
-
-	//gl3wInit();
-
-
-	//base_prog = glCreateProgram();
-	InitShader();
-
 	glGenBuffers(1, &quad_vbo);
 	glBindBuffer(GL_ARRAY_BUFFER, quad_vbo);
 
@@ -392,12 +380,12 @@ bool GLStitcher::Initialize()
 	const std::vector<GLfloat>& front_texcoords = m_pFrontTexMapBuilder->GetTexCoords();
 	const std::vector<GLfloat>& back_texcoords = m_pBackTexMapBuilder->GetTexCoords();
 
-	glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(GLfloat) + 
-		front_texcoords.size() * sizeof(GLfloat) + 
+	glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(GLfloat) +
+		front_texcoords.size() * sizeof(GLfloat) +
 		back_texcoords.size() * sizeof(GLfloat), NULL, GL_STATIC_DRAW);
 	glBufferSubData(GL_ARRAY_BUFFER, 0, vertices.size() * sizeof(GLfloat), vertices.data());
 	glBufferSubData(GL_ARRAY_BUFFER, vertices.size() * sizeof(GLfloat), front_texcoords.size() * sizeof(GLfloat), front_texcoords.data());
-	glBufferSubData(GL_ARRAY_BUFFER, vertices.size() * sizeof(GLfloat) + front_texcoords.size() * sizeof(GLfloat), 
+	glBufferSubData(GL_ARRAY_BUFFER, vertices.size() * sizeof(GLfloat) + front_texcoords.size() * sizeof(GLfloat),
 		back_texcoords.size() * sizeof(GLfloat), back_texcoords.data());
 
 	glGenVertexArrays(1, &vao);
@@ -409,7 +397,7 @@ bool GLStitcher::Initialize()
 	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(sizeof(plane_vertices)));
 #else
 	glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(vertices.size() * sizeof(GLfloat)));
-	glVertexAttribPointer(2, 4, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(vertices.size() * sizeof(GLfloat) + 
+	glVertexAttribPointer(2, 4, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(vertices.size() * sizeof(GLfloat) +
 		front_texcoords.size() * sizeof(GLfloat)));
 #endif // TEST_DATA
 
@@ -427,10 +415,17 @@ bool GLStitcher::Initialize()
 		(const GLvoid*)m_pVertexBuilder->GetElements().data(), GL_STATIC_DRAW);
 
 
+}
+
+
+void GLStitcher::InitTexture()
+{
+
+
 	glGenTextures(1, &front_tex);
 	glBindTexture(GL_TEXTURE_2D, front_tex);
 	glTexStorage2D(GL_TEXTURE_2D, 1, GL_RGBA8,
-		m_srcImageFormat.frame_width, m_srcImageFormat.frame_height
+				   m_srcImageFormat.frame_width, m_srcImageFormat.frame_height
 	);
 
 	//static const GLint swizzles[] = { GL_RED, GL_GREEN, GL_BLUE, GL_ONE };
@@ -449,7 +444,7 @@ bool GLStitcher::Initialize()
 
 	glBindTexture(GL_TEXTURE_2D, back_tex);
 	glTexStorage2D(GL_TEXTURE_2D, 1, GL_RGBA8,
-		m_srcImageFormat.frame_width, m_srcImageFormat.frame_height
+				   m_srcImageFormat.frame_width, m_srcImageFormat.frame_height
 	);
 
 	//static const GLint swizzles[] = { GL_RED, GL_GREEN, GL_BLUE, GL_ONE };
@@ -485,7 +480,22 @@ bool GLStitcher::Initialize()
 
 	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_hTexture, 0);
 
+}
+
+bool GLStitcher::Initialize()
+{
+	InitParams();
+
+	InitMembers();
+
+	InitGlut("GLWarper test");
+
+	InitShader();
+
+	InitGLModel();
+
 	//glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, m_depthRenderbuffer);
+	InitTexture();
 
 	glClear(GL_COLOR_BUFFER_BIT);
 
@@ -542,25 +552,8 @@ int GLStitcher::InitParams()
 
 	/////////////////////////////////////////
 
-	//int seam_width_half = 80;
-
-
-
 	m_pImageParameter->proStep_X = config.warp_step_x;
 	m_pImageParameter->proStep_Y = config.warp_step_y;
-
-	//int mod1 = m_pImageParameter->proImageW%m_pImageParameter->proStep_X;
-	//int mod2 = m_pImageParameter->proImageH%m_pImageParameter->proStep_Y;
-
-	//m_pImageParameter->sparseproImgH = m_pImageParameter->proImageH / m_pImageParameter->proStep_Y + 1;
-	//if (mod2)
-	//	m_pImageParameter->sparseproImgH++;
-	//m_pImageParameter->sparseproImgH = config.table_height;
-
-	//m_pImageParameter->sparseproImgW = m_pImageParameter->proImageW / m_pImageParameter->proStep_X + 1;
-	//if (mod1)
-	//	m_pImageParameter->sparseproImgW++;
-	//m_pImageParameter->sparseproImgW = config.table_width;
 
 	m_pImageParameter->first_region = { config.first_region_left, 0, config.first_region_width, m_pImageParameter->mapImageHeight,
 		config.first_table_width, config.first_table_height };

@@ -27,10 +27,12 @@ public:
 	int SetWorkDirectory(const char* szDir);
 
 private:
-	void InitGlut(const char * title = 0);
-	bool InitGlModel();
-	void InitShader();
 	bool Initialize();
+	void InitGlut(const char * title = 0);
+	bool InitMembers();
+	void InitShader();
+	void InitGLModel();
+	void InitTexture();
 	void Release();
 	void InitDrawOrder();
 	int InitParams();
