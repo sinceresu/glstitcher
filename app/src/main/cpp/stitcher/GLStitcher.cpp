@@ -9,15 +9,11 @@
 #include "MaskMaker.h"
 #include "TexMapBuilder.h"
 #include "ColorCorrector.h"
+#include "../platform/android/egl.h"
 
 //#define TEST_DATA
+using namespace ogles_gpgpu;
 
-
-void GLStitcher::Draw(ESContext * esContext)
-{
-	GLStitcher* myself = (GLStitcher*)esContext->userData;
-	myself->Display();
-}
 
 GLStitcher::GLStitcher() :
 	m_pImageParameter(std::make_shared<ImageParameters>()),
@@ -27,7 +23,8 @@ GLStitcher::GLStitcher() :
 	m_pMaskMaker(std::make_shared<MaskMaker>()),
 	m_pColorCorrector(std::make_shared<ColorCorrector>()),
 	m_pFrontTexMapBuilder(std::make_shared<TexMapBuilder>()),
-	m_pBackTexMapBuilder(std::make_shared<TexMapBuilder>())
+	m_pBackTexMapBuilder(std::make_shared<TexMapBuilder>()),
+    m_strWorkDirectory(".")
 
 {
 	m_nMapTableWidth = 5;
@@ -40,47 +37,13 @@ GLStitcher::~GLStitcher()
 	Release();
 }
 
-void GLStitcher::Display()
+int GLStitcher::SetWorkDirectory(const char* szDir)
 {
-	float adjust_coeff = m_pColorCorrector->CalcAdjustCoeff(&m_pSrcImgs[0], &m_pSrcImgs[1]);
-	glClear(GL_COLOR_BUFFER_BIT);
-	glDisable(GL_CULL_FACE);
-	glUseProgram(base_prog);
-
-	glUniform1f(adjust_loc, adjust_coeff);
-
-	glBindVertexArray(vao);
-
-	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, front_tex);
-	glTexSubImage2D(GL_TEXTURE_2D,
-		0,
-		0, 0,
-		m_srcImageFormat.frame_width, m_srcImageFormat.frame_height,
-		GL_RGB, GL_UNSIGNED_BYTE,
-		m_pSrcImgs[0].planes[0]);
-
-
-	glActiveTexture(GL_TEXTURE1);
-	glBindTexture(GL_TEXTURE_2D, back_tex);
-	glTexSubImage2D(GL_TEXTURE_2D,
-		0,
-		0, 0,
-		m_srcImageFormat.frame_width, m_srcImageFormat.frame_height,
-		GL_RGB, GL_UNSIGNED_BYTE,
-		m_pSrcImgs[1].planes[0]);
-
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_elementBuffer);
-	glDrawElements(GL_TRIANGLE_STRIP, m_pVertexBuilder->GetElementNum(), GL_UNSIGNED_SHORT, NULL);
-
+	m_strWorkDirectory = szDir;
+    return 0;
 }
 
-void GLStitcher::Reshape(int width, int height)
-{
-	glViewport(0, 0, width, height);
 
-	//aspect = float(height) / float(width);
-}
 
 void GLStitcher::InitDrawOrder()
 {
@@ -124,7 +87,6 @@ void GLStitcher::InitDrawOrder()
 
 }
 
-
 int GLStitcher::StitchImage(VideoFrame_t * pSrcImgs, VideoFrame_t * pDstImg)
 {
 	if (!m_bInitialized) {
@@ -153,7 +115,7 @@ int GLStitcher::StitchImage(VideoFrame_t * pSrcImgs, VideoFrame_t * pDstImg)
 			0,
 			0, 0,
 			m_srcImageFormat.frame_width, m_srcImageFormat.frame_height,
-			GL_RGB, GL_UNSIGNED_BYTE,
+			GL_RGBA, GL_UNSIGNED_BYTE,
 			m_pSrcImgs[0].planes[0]);
 
 
@@ -163,7 +125,7 @@ int GLStitcher::StitchImage(VideoFrame_t * pSrcImgs, VideoFrame_t * pDstImg)
 			0,
 			0, 0,
 			m_srcImageFormat.frame_width, m_srcImageFormat.frame_height,
-			GL_RGB, GL_UNSIGNED_BYTE,
+			GL_RGBA, GL_UNSIGNED_BYTE,
 			m_pSrcImgs[1].planes[0]);
 
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_elementBuffer);
@@ -192,22 +154,16 @@ void GLStitcher::InitGlut(const char * title)
 		// glutInitContextVersion(4, 3);
 		memset(&esContext, 0, sizeof(ESContext));
 
-		esCreateWindow(&esContext, "Simple Texture 2D", 320, 160, ES_WINDOW_RGB);
-
-		//glutInitWindowSize(16, 16);
-		//glutInitWindowPosition(140, 140);
-		//glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE);
-		//glutInit(&one, &name);
-
-		//glutCreateWindow(title ? title : "OpenGL Application");
-		//glutHideWindow();
+//		esCreateWindow(&esContext, "Simple Texture 2D", 320, 160, ES_WINDOW_RGB);
+		EGL::setup();
+		EGL::createPBufferSurface(m_srcImageFormat.frame_width, m_srcImageFormat.frame_height);
+		EGL::activate();
 
 		esContext.userData = this;
-		esRegisterDrawFunc(&esContext, Draw);
 }
 
-const static char *szFrontCameraMapFile = "./maps/projectionTableSphereA_mapTable.dat";
-const static char *szBehindCameraMapFile = "./maps/projectionTableSphereB_mapTable.dat";
+const static char *szFrontCameraMapFile = "/maps/projectionTableSphereA_mapTable.dat";
+const static char *szBehindCameraMapFile = "/maps/projectionTableSphereB_mapTable.dat";
 
 bool GLStitcher::InitGlModel()
 {
@@ -235,7 +191,9 @@ bool GLStitcher::InitGlModel()
 	};
 
 	m_pFrontMapPointsBuilder->SetParameter(front_map_points_builder_param);
-	m_pFrontMapPointsBuilder->SetMapFile(szFrontCameraMapFile);
+
+    std::string map_file_path = m_strWorkDirectory + std::string(szFrontCameraMapFile);
+    m_pFrontMapPointsBuilder->SetMapFile(map_file_path.c_str());
 	m_pFrontMapPointsBuilder->BuildMatchPoints();
 
 
@@ -252,7 +210,8 @@ bool GLStitcher::InitGlModel()
 		}
 	};
 	m_pBackMapPointsBuilder->SetParameter(back_map_points_builder_param);
-	m_pBackMapPointsBuilder->SetMapFile(szBehindCameraMapFile);
+    map_file_path = m_strWorkDirectory + std::string(szBehindCameraMapFile);
+	m_pBackMapPointsBuilder->SetMapFile(map_file_path.c_str());
 	m_pBackMapPointsBuilder->BuildMatchPoints();
 
 
@@ -470,7 +429,7 @@ bool GLStitcher::Initialize()
 
 	glGenTextures(1, &front_tex);
 	glBindTexture(GL_TEXTURE_2D, front_tex);
-	glTexStorage2D(GL_TEXTURE_2D, 1, GL_RGB8, 
+	glTexStorage2D(GL_TEXTURE_2D, 1, GL_RGBA8,
 		m_srcImageFormat.frame_width, m_srcImageFormat.frame_height
 	);
 
@@ -489,7 +448,7 @@ bool GLStitcher::Initialize()
 	glGenTextures(1, &back_tex);
 
 	glBindTexture(GL_TEXTURE_2D, back_tex);
-	glTexStorage2D(GL_TEXTURE_2D, 1, GL_RGB8,
+	glTexStorage2D(GL_TEXTURE_2D, 1, GL_RGBA8,
 		m_srcImageFormat.frame_width, m_srcImageFormat.frame_height
 	);
 
@@ -570,9 +529,11 @@ int GLStitcher::InitParams()
 	m_pImageParameter->scale = 256;
 	FishEyeStitcherParam_t config;
 	//string configFile = m_stitchedVideoSize == VIDEOSIZE_3840X1920 ? "./config/config_1920p.ini" : "./config/config_960p.ini";
-	std::string configFile = "./config/stitch_param.xml";
+	std::string configFile = m_strWorkDirectory + std::string("/config/stitch_param.xml");
+
 	if (0 != ParamReader::ReadParameters(configFile.c_str(), config))
 		return -1;
+
 	//if (0 != ReadParameters(configFile.c_str(), config))
 	//	return -1;
 

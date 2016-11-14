@@ -22,18 +22,16 @@ class GLStitcher: public ImageStitcher
 public:
 	GLStitcher();
 	~GLStitcher();
+
 	virtual int StitchImage(VideoFrame_t *pSrcImgs, VideoFrame_t *pDstImg);
+	int SetWorkDirectory(const char* szDir);
 
 private:
-	static void Draw(ESContext *esContext);
-
 	void InitGlut(const char * title = 0);
 	bool InitGlModel();
 	void InitShader();
 	bool Initialize();
 	void Release();
-	virtual void Display();
-	virtual void Reshape(int width, int height);
 	void InitDrawOrder();
 	int InitParams();
 
@@ -79,6 +77,8 @@ private:
 	std::shared_ptr<ColorCorrector> m_pColorCorrector;
 	VideoFrame_t * m_pSrcImgs;
 	ESContext esContext;
+	std::string m_strWorkDirectory;
+
 
 };
 

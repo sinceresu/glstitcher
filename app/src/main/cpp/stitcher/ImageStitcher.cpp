@@ -22,8 +22,4 @@ void ImageStitcher::SetDstImageFormat(const ImageFormat_t & imageFormat)
 	m_dstImageFormat = imageFormat;
 	m_bInitialized = false;
 }
-void ImageStitcher::SetMapFilePath(const char * szMapFilePath)
-{
-	m_strMapFilePath = szMapFilePath;
-	m_bInitialized = false;
-}
+

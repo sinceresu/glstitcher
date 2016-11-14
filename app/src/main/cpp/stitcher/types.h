@@ -134,8 +134,8 @@ typedef struct AVPacket_t
 		, payload(NULL)
 		, payload_size(0)
 		, dts(0)
-		, flags(0)
 		, pts(0)
+		, flags(0)
 	{
 		payload = buf;
 	}
@@ -208,8 +208,8 @@ typedef struct ImageParameters
 	int proStep_X;
 	int proStep_Y;
 
-	int sparseproImgW;
-	int sparseproImgH;
+	//int sparseproImgW;
+	//int sparseproImgH;
 
 	int panoImageW;
 	int panoImageH;
@@ -221,21 +221,19 @@ typedef struct ImageParameters
 } ImageParameters;
 
 typedef struct FloatMapPoint
-{//ӳ���ṹ��Ϊ���澫�ȣ�����X128��
+{//maptable , float precision
 	float x;
 	float y;
 } FloatMapPoint;
 
 typedef struct FixMapPoint
-{//ӳ���ṹ��Ϊ���澫�ȣ�����X128��
+{//maptable , int precision
 	int x;
 	int y;
 } FixMapPoint;
 
 typedef struct AdjustFloatMapPoint : public FloatMapPoint
-{//ӳ���ṹ��Ϊ���澫�ȣ�����X128��
- //float x;
- //float y;
+{
 	float l;  //< luminance adjust
 } AdjustFloatMapPoint;
 #endif

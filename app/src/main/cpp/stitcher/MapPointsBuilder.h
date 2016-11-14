@@ -3,7 +3,6 @@
 #include <vector>
 #include <string>
 
-
 typedef struct MapPointsBuilderParam_t {
 	int image_width;
 	int image_height;

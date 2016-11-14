@@ -90,5 +90,6 @@ int ParamReader::ReadCameraParameters(const XMLElement * pRoot, FishEyeStitcherP
 
 
 	}
+	return 0;
 }
 

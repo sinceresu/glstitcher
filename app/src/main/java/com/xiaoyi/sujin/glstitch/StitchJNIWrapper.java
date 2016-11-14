@@ -36,7 +36,7 @@ public class StitchJNIWrapper {
      * Initialize ogles_gpgpu. Call this function at first to use ogles_gpgpu.
      * @param usePlatformOptimizations try to enable platform optimizations
      */
-    public native void init(boolean usePlatformOptimizations);
+    public native void init(String curDirectory);
 
     /**
      * Prepare ogles_gpgpu for incoming images of size <inW> x <inH>. Do this
@@ -45,15 +45,18 @@ public class StitchJNIWrapper {
      *
      * @param inW input frame width
      * @param inH input frame height
-     * @param prepareDataInput set to true if you later want to copy data to ogles_gpgpu
-     *						   by using setInputPixels(). set to false if you submit
-     *						   input data by texture via setInputTexture().
-     */
+      */
     public native void prepareInput(int inW, int inH);
 
-
+    /**
+     * Prepare ogles_gpgpu for outcoming images of size <outW> x <outH>. Do this
+     * each time you change the output image size (and of course at the beginning
+     * for the initial output image size).
+     *
+     * @param outW output frame width
+     * @param outH output frame height
+     */
     public native void prepareOutput(int outW, int outH);
-
 
     /**
      * Cleanup the ogles_gpgpu resources. Call this only once when you quit using ogles_gpgpu.
@@ -63,27 +66,15 @@ public class StitchJNIWrapper {
     /**
      * Set the raw input pixel data as ARGB integer array. The size of this array
      * must equal <inW> * <inH> (set via <prepare()>).
-     * 
-     * @param pixels    pixel data with ARGB integers
-     */
-    public native void setInputPixels(int[] pixels);
-
-
-    /**
      * Executes the GPGPU processing tasks.
-     */
-    public native void process();
-
-    /**
-     * Return the input pixel data as ARGB ByteBuffer. The size of this byte buffer
-     * equals output frame width * output frame height * 4 (4 channel ARGB data).
-     * 
-     * Note: The returned ByteBuffer is only a reference to the actual image data
-     * on the native side! It is only valid until the next call to this function!
-     * 
+     *
+     * @param pixels    pixel data with ARGB integers
      * @return reference to pixel data as ByteBuffer valid unit next call to this function
-     */
-    public native ByteBuffer getOutputPixels();
+      */
+    public native ByteBuffer process(int[] frontPixels, int[] backPixels);
+
+
+
 
 
 }
