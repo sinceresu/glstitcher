@@ -5,8 +5,41 @@
 #include "../StitchJNIWrapper.h"
 #include "types.h"
 #include "GLStitcher.h"
-#include <memory>
 
+void RGB2YUVRevert(unsigned char *yuvBuf, unsigned char *rgbBuf, int w, int h, int stride)
+{
+    int i, j;
+    int r,g,b,y,u,v;
+    unsigned char *pYuvBuf = yuvBuf + stride * (h - 1);
+    //uint8_t * line = img + stride * (h - 1);
+    int fy;
+
+    for (int i = 0; i<h; i++) {
+        for (int j = 0; j < 4 * w; j += 4) {
+            y = pYuvBuf[j];
+            u = pYuvBuf[j + 1];
+            v = pYuvBuf[j + 2];
+
+            y -= 16;
+            u -= 128;
+            v -= 128;
+
+            fy = 1192*y;
+
+            r = ((fy           + 1634*v + 512)>>10);
+            g = ((fy - 401*u - 833*v + 512)>>10);
+            b = ((fy + 2065*u + 512)>>10);
+
+            rgbBuf[j + 2] = (b>255) ? 255 : ((b<0) ? 0 : b);
+            rgbBuf[j + 1] = (g>255) ? 255 : ((g<0) ? 0 : g);
+            rgbBuf[j] = (r>255) ? 255 : ((r<0) ? 0 : r);
+            rgbBuf[j + 3] = 255;
+         }
+        pYuvBuf -= stride;
+        rgbBuf += stride;
+        //	fwrite(img+(stride*(h-i-1)),3,w,f);
+    }
+}
 int RGB2YUV(unsigned char *rgbBuf, unsigned char *yuvBuf, int buf_block)
 {
     // rgbBuf's data order is interleaved
@@ -40,13 +73,13 @@ int YUV2RGB(unsigned char *yuvBuf, unsigned char *rgbBuf, int buf_block)
 
     int fy;
 
-    unsigned char *pyBuf = yuvBuf;
+    unsigned char *prgbBuf = rgbBuf ;
 
     for(i = 0, j = 0; i < buf_block; i+=4, j+=4)
     {
-        y = pyBuf[i];
-        u = pyBuf[i + 1];
-        v = pyBuf[i + 2];
+        y = yuvBuf[i];
+        u = yuvBuf[i + 1];
+        v = yuvBuf[i + 2];
 
         y -= 16;
         u -= 128;
@@ -165,7 +198,9 @@ JNIEXPORT jobject JNICALL Java_com_xiaoyi_sujin_glstitch_StitchJNIWrapper_proces
 
     stitcher->StitchImage(src_frame, &dst_frame);
 
-    YUV2RGB(dst_frame.planes[0], outputPxBufData, output_format.frame_width * output_format.frame_height * 4);
+//    YUV2RGB(dst_frame.planes[0], outputPxBufData, output_format.frame_width * output_format.frame_height * 4);
+    RGB2YUVRevert(dst_frame.planes[0], outputPxBufData, output_format.frame_width, output_format.frame_height,
+                  output_format.frame_width  * 4);
 
     return outputPxBuf;
 
