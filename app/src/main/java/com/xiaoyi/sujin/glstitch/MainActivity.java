@@ -40,11 +40,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ByteBuffer outputPixels;	// output pixel data as ARGB bytes values
     private static String storagePath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + "/stitch/";
 
-    // Used to load the 'native-lib' library on application startup.
-    static {
-        System.loadLibrary("stitch-lib");
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,14 +53,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         initTestImagesMap();
 
         startBtn.setOnClickListener(this);
-
-        String outputStr = stringFromJNI();
-
     }
+
     @Override
     public void onClick(View v) {
-        init("/stitch");
-        stitchWrapper = new StitchJNIWrapper();
+         stitchWrapper = new StitchJNIWrapper();
 
         stitchWrapper.init(storagePath);
 
@@ -131,13 +123,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         outputPixels = stitchWrapper.process(inputFrontPixels, inputBackPixels);
 
     }
-    /**
-     * A native method that is implemented by the 'native-lib' native library,
-     * which is packaged with this application.
-     */
-    public native String stringFromJNI();
 
-    public native void init(String curDirectory);
 
 }
 
