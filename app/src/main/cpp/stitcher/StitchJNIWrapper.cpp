@@ -94,11 +94,12 @@ void ogCleanupHelper(JNIEnv *env) {
     }
 }
 
+extern "C"
 JNIEXPORT void JNICALL Java_com_xiaoyi_sujin_glstitch_StitchJNIWrapper_init
         (JNIEnv * env, jobject, jstring curDirectory)
 {
     stitcher = std::make_shared<GLStitcher>();
-    const char* strDir = env->GetStringUTFChars(curDirectory, false);
+    const char* strDir = env->GetStringUTFChars(curDirectory, NULL);
     stitcher->SetWorkDirectory(strDir);
     env->ReleaseStringUTFChars(curDirectory, strDir);
 }

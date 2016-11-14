@@ -4,7 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 import java.nio.ByteBuffer;
-
+import android.os.Environment;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private int[] inputFrontPixels;			// pixel data of <frontImgBm> as ARGB int values
     private int[] inputBackPixels;			// pixel data of <frontImgBm> as ARGB int values
     private ByteBuffer outputPixels;	// output pixel data as ARGB bytes values
+    private static String storagePath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + "/stitch/";
 
     // Used to load the 'native-lib' library on application startup.
     static {
@@ -63,9 +64,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
     @Override
     public void onClick(View v) {
+        init("/stitch");
         stitchWrapper = new StitchJNIWrapper();
 
-        stitchWrapper.init("/stitch");
+        stitchWrapper.init(storagePath);
 
         loadAndDisplayTestImage();
 
@@ -134,4 +136,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      * which is packaged with this application.
      */
     public native String stringFromJNI();
+
+    public native void init(String curDirectory);
+
 }
+
+

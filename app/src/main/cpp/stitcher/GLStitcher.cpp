@@ -156,7 +156,7 @@ void GLStitcher::InitGlut(const char * title)
 
 //		esCreateWindow(&esContext, "Simple Texture 2D", 320, 160, ES_WINDOW_RGB);
 		EGL::setup();
-		EGL::createPBufferSurface(m_srcImageFormat.frame_width, m_srcImageFormat.frame_height);
+		EGL::createPBufferSurface(m_dstImageFormat.frame_width, m_dstImageFormat.frame_height);
 		EGL::activate();
 
 		esContext.userData = this;
@@ -529,7 +529,7 @@ int GLStitcher::InitParams()
 	m_pImageParameter->scale = 256;
 	FishEyeStitcherParam_t config;
 	//string configFile = m_stitchedVideoSize == VIDEOSIZE_3840X1920 ? "./config/config_1920p.ini" : "./config/config_960p.ini";
-	std::string configFile = m_strWorkDirectory + std::string("/config/stitch_param.xml");
+	std::string configFile = m_strWorkDirectory + std::string("config/stitch_param.xml");
 
 	if (0 != ParamReader::ReadParameters(configFile.c_str(), config))
 		return -1;

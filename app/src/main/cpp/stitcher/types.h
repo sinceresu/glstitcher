@@ -168,12 +168,8 @@ typedef struct Period_t
 typedef struct FishEyeStitcherParam_t {
 	int target_width;
 	int target_height;
-	int table_width;
-	int table_height;
 	int warp_step_x;
 	int warp_step_y;
-	int tabel_offset_front;
-	int tabel_offset_behind;
 	int first_region_left;
 	int first_region_width;
 	int first_table_width;
