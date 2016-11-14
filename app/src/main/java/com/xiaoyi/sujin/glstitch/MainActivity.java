@@ -57,12 +57,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-         stitchWrapper = new StitchJNIWrapper();
+        setTitle("Stitching...");
+        stitchWrapper = new StitchJNIWrapper();
 
         stitchWrapper.init(storagePath);
 
         loadAndDisplayTestImage();
 
+        int processTime = stitchWrapper.getProcessTime();
+        String title = "stitched 200 images, took " + processTime + " milliseconds";
+        setTitle(title);
     }
 
     private void loadAndDisplayTestImage() {

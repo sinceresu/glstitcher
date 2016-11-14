@@ -145,6 +145,7 @@ int GLStitcher::StitchImage(VideoFrame_t * pSrcImgs, VideoFrame_t * pDstImg)
 
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
+
 	return 0;
 }
 

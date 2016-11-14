@@ -63,6 +63,8 @@ JNIEXPORT void JNICALL Java_com_xiaoyi_sujin_glstitch_StitchJNIWrapper_cleanup
 JNIEXPORT jobject JNICALL Java_com_xiaoyi_sujin_glstitch_StitchJNIWrapper_process
   (JNIEnv *, jobject, jintArray, jintArray);
 
+JNIEXPORT int JNICALL Java_com_xiaoyi_sujin_glstitch_StitchJNIWrapper_getProcessTime
+        (JNIEnv *env, jobject);
 #ifdef __cplusplus
 }
 #endif

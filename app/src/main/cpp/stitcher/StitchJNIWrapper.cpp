@@ -5,6 +5,7 @@
 #include "../StitchJNIWrapper.h"
 #include "types.h"
 #include "GLStitcher.h"
+#include <time.h>
 
 void RGB2YUVRevert(unsigned char *yuvBuf, unsigned char *rgbBuf, int w, int h, int stride)
 {
@@ -113,7 +114,7 @@ static bool isInitiated = false;
 std::vector<uint8_t> front_buffer;
 std::vector<uint8_t> back_buffer;
 std::vector<uint8_t> stitched_buffer;
-
+static clock_t process_time;
 /**
  * Cleanup helper. Will release the output pixel buffer.
  */
@@ -173,6 +174,7 @@ JNIEXPORT void JNICALL Java_com_xiaoyi_sujin_glstitch_StitchJNIWrapper_prepareOu
 }
 
 
+static const int TEST_TIME  = 200;
 
 JNIEXPORT jobject JNICALL Java_com_xiaoyi_sujin_glstitch_StitchJNIWrapper_process
         (JNIEnv *env, jobject, jintArray frontPixels, jintArray backPixels)
@@ -198,6 +200,13 @@ JNIEXPORT jobject JNICALL Java_com_xiaoyi_sujin_glstitch_StitchJNIWrapper_proces
 
     stitcher->StitchImage(src_frame, &dst_frame);
 
+    clock_t start_time = clock();
+    for (int i = 0; i < TEST_TIME; i++) {
+        stitcher->StitchImage(src_frame, &dst_frame);
+    }
+    process_time = clock() - start_time;
+    int milliDivide = CLOCKS_PER_SEC / 1000;
+    process_time = process_time / milliDivide;
 //    YUV2RGB(dst_frame.planes[0], outputPxBufData, output_format.frame_width * output_format.frame_height * 4);
     RGB2YUVRevert(dst_frame.planes[0], outputPxBufData, output_format.frame_width, output_format.frame_height,
                   output_format.frame_width  * 4);
@@ -210,5 +219,11 @@ JNIEXPORT void JNICALL Java_com_xiaoyi_sujin_glstitch_StitchJNIWrapper_cleanup
         (JNIEnv *env, jobject)
 {
     ogCleanupHelper(env);
+}
 
+
+JNIEXPORT int JNICALL Java_com_xiaoyi_sujin_glstitch_StitchJNIWrapper_getProcessTime
+        (JNIEnv *env, jobject)
+{
+    return process_time;
 }

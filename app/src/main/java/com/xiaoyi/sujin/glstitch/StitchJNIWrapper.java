@@ -73,6 +73,7 @@ public class StitchJNIWrapper {
       */
     public native ByteBuffer process(int[] frontPixels, int[] backPixels);
 
+	public native int getProcessTime();
 
 
 
