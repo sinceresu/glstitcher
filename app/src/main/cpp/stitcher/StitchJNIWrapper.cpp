@@ -47,7 +47,7 @@ int RGB2YUV(unsigned char *rgbBuf, unsigned char *yuvBuf, int buf_block)
     int i, j;
     int r,g,b,y,u,v;
     unsigned char *pyBuf = yuvBuf;
-    for (i = 0, j = 0; i < buf_block; i += 4, j += 4) {
+    for (i = 0, j = 0; i < buf_block; i += 4, j += 3) {
         b = rgbBuf[i];
         g = rgbBuf[i + 1];
         r = rgbBuf[i + 2];
@@ -59,7 +59,7 @@ int RGB2YUV(unsigned char *rgbBuf, unsigned char *yuvBuf, int buf_block)
         pyBuf[j] = (y>255) ? 255 : ((y<0) ? 0 : y);
         pyBuf[j + 1] = (u>255) ? 255 : ((u<0) ? 0 : u);
         pyBuf[j + 2] = (v>255) ? 255 : ((v<0) ? 0 : v);
-        pyBuf[j + 3] = 255;
+//        pyBuf[j + 3] = 255;
     }
     return 0;
 }
@@ -143,8 +143,8 @@ JNIEXPORT void JNICALL Java_com_xiaoyi_sujin_glstitch_StitchJNIWrapper_prepareIn
     input_format.frame_height = height;
     stitcher->SetSrcImageFormat(input_format);
 
-    front_buffer.resize(input_format.frame_width*input_format.frame_height * 4);
-    back_buffer.resize(input_format.frame_width*input_format.frame_height * 4);
+    front_buffer.resize(input_format.frame_width*input_format.frame_height * 3);
+    back_buffer.resize(input_format.frame_width*input_format.frame_height * 3);
 
 }
 
@@ -189,9 +189,9 @@ JNIEXPORT jobject JNICALL Java_com_xiaoyi_sujin_glstitch_StitchJNIWrapper_proces
 
     VideoFrame_t src_frame[2];
     src_frame[0].planes[0] = front_buffer.data();
-    src_frame[0].strides[0] = input_format.frame_width * 4;
+    src_frame[0].strides[0] = input_format.frame_width * 3;
     src_frame[1].planes[0] = back_buffer.data();
-    src_frame[1].strides[0] = input_format.frame_width * 4;
+    src_frame[1].strides[0] = input_format.frame_width * 3;
 
     VideoFrame_t dst_frame;
     dst_frame.planes[0] = stitched_buffer.data();

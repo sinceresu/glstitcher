@@ -2,7 +2,7 @@ package com.xiaoyi.sujin.glstitch;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.TextView;
+
 import java.nio.ByteBuffer;
 import android.os.Environment;
 import android.graphics.Bitmap;
@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         backImgBm.getPixels(inputBackPixels, 0, inputW, 0, 0, inputW, inputH);
 
         // prepare ogles_gpgpu for the input image of size <inputW>x<inputH>
-        prepareOG();
+        stitchImage();
 
         Bitmap processedBm = Bitmap.createBitmap(
                 outputW,
@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     /**
      * Prepare ogles_gpgpu for the incoming image size
      */
-    private void prepareOG() {
+    private void stitchImage() {
         // prepare for the input image size
         stitchWrapper.prepareInput(inputW, inputH);
         stitchWrapper.prepareOutput(outputW, outputH);

@@ -115,7 +115,7 @@ int GLStitcher::StitchImage(VideoFrame_t * pSrcImgs, VideoFrame_t * pDstImg)
 			0,
 			0, 0,
 			m_srcImageFormat.frame_width, m_srcImageFormat.frame_height,
-			GL_RGBA, GL_UNSIGNED_BYTE,
+			GL_RGB, GL_UNSIGNED_BYTE,
 			m_pSrcImgs[0].planes[0]);
 
 
@@ -125,7 +125,7 @@ int GLStitcher::StitchImage(VideoFrame_t * pSrcImgs, VideoFrame_t * pDstImg)
 			0,
 			0, 0,
 			m_srcImageFormat.frame_width, m_srcImageFormat.frame_height,
-			GL_RGBA, GL_UNSIGNED_BYTE,
+			GL_RGB, GL_UNSIGNED_BYTE,
 			m_pSrcImgs[1].planes[0]);
 
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_elementBuffer);
@@ -424,7 +424,7 @@ void GLStitcher::InitTexture()
 
 	glGenTextures(1, &front_tex);
 	glBindTexture(GL_TEXTURE_2D, front_tex);
-	glTexStorage2D(GL_TEXTURE_2D, 1, GL_RGBA8,
+	glTexStorage2D(GL_TEXTURE_2D, 1, GL_RGB8,
 				   m_srcImageFormat.frame_width, m_srcImageFormat.frame_height
 	);
 
@@ -443,7 +443,7 @@ void GLStitcher::InitTexture()
 	glGenTextures(1, &back_tex);
 
 	glBindTexture(GL_TEXTURE_2D, back_tex);
-	glTexStorage2D(GL_TEXTURE_2D, 1, GL_RGBA8,
+	glTexStorage2D(GL_TEXTURE_2D, 1, GL_RGB8,
 				   m_srcImageFormat.frame_width, m_srcImageFormat.frame_height
 	);
 
