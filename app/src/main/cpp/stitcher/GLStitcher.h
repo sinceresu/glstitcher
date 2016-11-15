@@ -16,6 +16,7 @@ class TexMapBuilder;
 class MapPointsBuilder;
 class MaskMaker;
 class ColorCorrector;
+class MemTransfer;
 
 class GLStitcher: public ImageStitcher
 {
@@ -64,6 +65,9 @@ private:
 	std::shared_ptr<TexMapBuilder> m_pFrontTexMapBuilder;
 	std::shared_ptr<TexMapBuilder> m_pBackTexMapBuilder;
 	std::shared_ptr<ColorCorrector> m_pColorCorrector;
+	std::shared_ptr<MemTransfer> m_pMemTransfer;
+
+
 	VideoFrame_t * m_pSrcImgs;
 	ESContext esContext;
 	std::string m_strWorkDirectory;

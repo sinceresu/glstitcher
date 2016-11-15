@@ -22,8 +22,8 @@ MemTransfer::~MemTransfer() {
     releaseOutput();
 }
 
-bool MemTransfer::prepareInput(int inTexW, int inTexH, GLenum inputPxFormat, void *inputDataPtr) {
-    assert(initialized && inTexW > 0 && inTexH > 0);
+bool MemTransfer::prepareInput(int inTexW, int inTexH) {
+    assert(inTexW > 0 && inTexH > 0);
 
     if (inputW == inTexW && inputH == inTexH) {
         return true; // no change
@@ -81,7 +81,7 @@ bool MemTransfer::prepareInput(int inTexW, int inTexH, GLenum inputPxFormat, voi
 }
 
 bool MemTransfer::prepareOutput(int outTexW, int outTexH) {
-    assert(initialized && outTexW > 0 && outTexH > 0);
+    assert(outTexW > 0 && outTexH > 0);
 
     if (outputW == outTexW && outputH == outTexH) {
         return true; // no change

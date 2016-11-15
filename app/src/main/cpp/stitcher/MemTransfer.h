@@ -7,6 +7,7 @@
 #include "esutil.h"
 
 class MemTransfer {
+public:
     /**
     * Constructor
     */
@@ -19,7 +20,7 @@ class MemTransfer {
     /**
      * Prepare for input frames of size <inTexW>x<inTexH>. Return a texture id for the input frames.
      */
-    virtual bool prepareInput(int inTexW, int inTexH, GLenum inputPxFormat = GL_RGBA, void *inputDataPtr = NULL);
+    virtual bool prepareInput(int inTexW, int inTexH);
 
     /**
      * Prepare for output frames of size <outTexW>x<outTexH>. Return a texture id for the output frames.
@@ -47,11 +48,7 @@ class MemTransfer {
      */
     virtual void fromGPU(unsigned char *buf);
 
-    /**
-     * Try to initialize platform optimizations. Returns true on success, else false.
-     * Is only fully implemented in platform-specialized classes of MemTransfer.
-     */
-    static bool initPlatformOptimizations();
+
 protected:
     bool initialized;       // is initialized?
 

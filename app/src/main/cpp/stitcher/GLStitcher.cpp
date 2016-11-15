@@ -8,6 +8,9 @@
 #include "MaskMaker.h"
 #include "TexMapBuilder.h"
 #include "ColorCorrector.h"
+#include "MemTransfer.h"
+#include "MemTransferFactory.h"
+
 #include "../platform/android/egl.h"
 
 //#define TEST_DATA
@@ -27,7 +30,7 @@ GLStitcher::GLStitcher() :
     m_strWorkDirectory(".")
 
 {
-
+	m_pMemTransfer = MemTransferFactory::createInstance();
 }
 
 
@@ -67,7 +70,14 @@ int GLStitcher::StitchImage(VideoFrame_t * pSrcImgs, VideoFrame_t * pDstImg)
 
 		glBindVertexArray(vao);
 
-		glActiveTexture(GL_TEXTURE0);
+		m_pMemTransfer->toGPU(m_pSrcImgs[0].planes[0], m_pSrcImgs[1].planes[0]);
+
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_elementBuffer);
+		glDrawElements(GL_TRIANGLE_STRIP, m_pVertexBuilder->GetElementNum(), GL_UNSIGNED_SHORT, NULL);
+
+		m_pMemTransfer->fromGPU(pDstImg->planes[0]);
+
+/*		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, front_tex);
 		glTexSubImage2D(GL_TEXTURE_2D,
 			0,
@@ -96,7 +106,7 @@ int GLStitcher::StitchImage(VideoFrame_t * pSrcImgs, VideoFrame_t * pDstImg)
 		if (result != GL_NO_ERROR) {
 			result = result;
 
-		}
+		}*/
 	}
 
 
@@ -379,65 +389,15 @@ void GLStitcher::InitGLModel()
 
 void GLStitcher::InitTexture()
 {
-
-
-	glGenTextures(1, &front_tex);
-	glBindTexture(GL_TEXTURE_2D, front_tex);
-	glTexStorage2D(GL_TEXTURE_2D, 1, GL_RGB8,
-				   m_srcImageFormat.frame_width, m_srcImageFormat.frame_height
-	);
-
-	//static const GLint swizzles[] = { GL_RED, GL_GREEN, GL_BLUE, GL_ONE };
-	//glTexParameteriv(GL_TEXTURE_2D, GL_TEXTURE_SWIZZLE_RGBA, swizzles);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-
-	//const GLfloat black[] = { 0.0f, 0.0f, 0.0f, 1.0f };
-	//glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, black);
-
-	glGenerateMipmap(GL_TEXTURE_2D);
-
-	glGenTextures(1, &back_tex);
-
-	glBindTexture(GL_TEXTURE_2D, back_tex);
-	glTexStorage2D(GL_TEXTURE_2D, 1, GL_RGB8,
-				   m_srcImageFormat.frame_width, m_srcImageFormat.frame_height
-	);
-
-	//static const GLint swizzles[] = { GL_RED, GL_GREEN, GL_BLUE, GL_ONE };
-	//glTexParameteriv(GL_TEXTURE_2D, GL_TEXTURE_SWIZZLE_RGBA, swizzles);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-
-	//glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, black);
-
-	glGenerateMipmap(GL_TEXTURE_2D);
-
+	if (true != m_pMemTransfer->prepareInput(m_srcImageFormat.frame_width, m_srcImageFormat.frame_height))
+		return;
 
 	glGenFramebuffers(1, &m_hFBO);
 	glBindFramebuffer(GL_FRAMEBUFFER, m_hFBO);
 
-	glGenTextures(1, &m_hTexture);
+	if (true != m_pMemTransfer->prepareOutput(m_dstImageFormat.frame_width, m_dstImageFormat.frame_height))
+		return;
 
-	glBindTexture(GL_TEXTURE_2D, m_hTexture);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_dstImageFormat.frame_width, m_dstImageFormat.frame_height, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
-
-	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-
-
-	//glGenRenderbuffers(1, &m_depthRenderbuffer);
-	//glBindRenderbuffer(GL_RENDERBUFFER, m_depthRenderbuffer);
-	//glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT24, m_dstImageFormat.frame_width, m_dstImageFormat.frame_height);
-
-
-	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_hTexture, 0);
 
 }
 
@@ -478,14 +438,14 @@ void GLStitcher::Release()
 	glDeleteFramebuffers(1, &m_hFBO);
 
 	// Delete the textures
-	glDeleteTextures(1, &m_hTexture);
+//	glDeleteTextures(1, &m_hTexture);
 
 
 	// Delete program and shader objects
 	glUseProgram(0);
 	glDeleteProgram(base_prog);
-	glDeleteTextures(1, &front_tex);
-	glDeleteTextures(1, &back_tex);
+//	glDeleteTextures(1, &front_tex);
+//	glDeleteTextures(1, &back_tex);
 	glDeleteVertexArrays(1, &vao);
 	
 	m_bInitialized = false;
