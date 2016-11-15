@@ -27,8 +27,7 @@ GLStitcher::GLStitcher() :
     m_strWorkDirectory(".")
 
 {
-	m_nMapTableWidth = 5;
-	m_nMapTableHeight = 2;
+
 }
 
 
@@ -45,47 +44,6 @@ int GLStitcher::SetWorkDirectory(const char* szDir)
 
 
 
-void GLStitcher::InitDrawOrder()
-{
-	//const static int index_width = m_nMapTableWidth * 2;
-	//index_height = m_nMapTableHeight - 1;
-
-	//count.resize(index_height);
-	//indices.resize((index_height)* index_width);
-	//first.resize(index_height);
-	//for (int i = 0; i < index_height; i++) {
-	//	count[i] = index_width;
-	//	first[i] = &indices[i*index_width];
-	//	for (int j = 0; j < m_nMapTableWidth; j++) {
-	//		indices[i*index_width + j * 2] = m_nMapTableWidth * i + j;
-	//		indices[i*index_width + j * 2 + 1] = m_nMapTableWidth * i + j + m_nMapTableWidth;
-	//	}
-
-	//};
-	const static int index_width = m_nMapTableWidth * 2;
-	const static int  index_height = (m_nMapTableHeight - 1);
-	m_elementCount = index_height;
-
-	count.resize(m_elementCount);
-	indices.resize(m_elementCount * index_width);
-	first.resize(m_elementCount);
-
-	count[0] = index_width;
-	first[0] = &indices[0];
-
-	indices[0] = 0;
-	indices[1] = 5;
-	indices[2] = 1;
-	indices[3] = 6;
-	indices[4] = 2;
-	indices[5] = 7;
-	indices[6] = 3;
-	indices[7] = 8;
-	indices[8] = 4;
-	indices[9] = 9;
-
-
-}
 
 int GLStitcher::StitchImage(VideoFrame_t * pSrcImgs, VideoFrame_t * pDstImg)
 {
@@ -500,11 +458,10 @@ bool GLStitcher::Initialize()
 
 	glClear(GL_COLOR_BUFFER_BIT);
 
-	InitDrawOrder();
+//	InitDrawOrder();
 
 	glViewport(0, 0, m_dstImageFormat.frame_width, m_dstImageFormat.frame_height);
 
-	m_FrameCount = 0;
 
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 

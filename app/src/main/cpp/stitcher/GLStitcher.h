@@ -34,18 +34,13 @@ private:
 	void InitGLModel();
 	void InitTexture();
 	void Release();
-	void InitDrawOrder();
+
 	int InitParams();
 
-	GLuint       m_hVertShader;  // Vertex shader handle
-	GLuint       m_hFragShader;  // Fragment shader handle
 	GLuint       m_hTexture;  // Texture handles
 
 
 	GLuint       m_hFBO;      // Handles for Frame Buffer Objects
-	unsigned int m_FrameCount;
-	unsigned int m_FramesPerSecond;
-	unsigned int m_CurrentFBO;
 
 	// Shader programs and their uniform locations
 	GLuint base_prog;
@@ -59,15 +54,7 @@ private:
 	GLuint back_tex;
 
 
-	std::vector<GLfloat> m_vertices;
-	std::vector<GLfloat> m_texcoords;
-	std::vector<GLfloat> m_indices;
-	int m_nMapTableWidth;
-	int m_nMapTableHeight;
-	std::vector<GLint> count;
-	std::vector<GLushort> indices;
 	std::vector<const GLvoid *> first;
-	int m_elementCount;
 
 	std::shared_ptr<ImageParameters> m_pImageParameter;
 	std::shared_ptr<VertexBuilder> m_pVertexBuilder;
