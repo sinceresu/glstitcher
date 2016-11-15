@@ -38,9 +38,6 @@ private:
 
 	int InitParams();
 
-	GLuint       m_hTexture;  // Texture handles
-
-
 	GLuint       m_hFBO;      // Handles for Frame Buffer Objects
 
 	// Shader programs and their uniform locations
@@ -50,9 +47,6 @@ private:
 
 	GLuint quad_vbo;
 	GLuint m_elementBuffer;
-
-	GLuint front_tex;
-	GLuint back_tex;
 
 
 	std::vector<const GLvoid *> first;
@@ -68,7 +62,6 @@ private:
 	std::shared_ptr<MemTransfer> m_pMemTransfer;
 
 
-	VideoFrame_t * m_pSrcImgs;
 	ESContext esContext;
 	std::string m_strWorkDirectory;
 

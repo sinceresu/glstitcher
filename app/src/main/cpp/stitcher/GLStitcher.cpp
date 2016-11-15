@@ -53,7 +53,6 @@ int GLStitcher::StitchImage(VideoFrame_t * pSrcImgs, VideoFrame_t * pDstImg)
 	if (!m_bInitialized) {
 		Initialize();
 	}
-	m_pSrcImgs = pSrcImgs;
 	//WinLoop(&esContext);
 	//return 0;
 	//for (;;) 
@@ -61,7 +60,7 @@ int GLStitcher::StitchImage(VideoFrame_t * pSrcImgs, VideoFrame_t * pDstImg)
 	//glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, 0, 0);
 	glBindFramebuffer(GL_FRAMEBUFFER, m_hFBO);
 	if (glCheckFramebufferStatus(GL_FRAMEBUFFER) == GL_FRAMEBUFFER_COMPLETE) {
-		float adjust_coeff = m_pColorCorrector->CalcAdjustCoeff(&m_pSrcImgs[0], &m_pSrcImgs[1]);
+		float adjust_coeff = m_pColorCorrector->CalcAdjustCoeff(&pSrcImgs[0], &pSrcImgs[1]);
 		glClear(GL_COLOR_BUFFER_BIT);
 		glDisable(GL_CULL_FACE);
 		glUseProgram(base_prog);
@@ -70,43 +69,13 @@ int GLStitcher::StitchImage(VideoFrame_t * pSrcImgs, VideoFrame_t * pDstImg)
 
 		glBindVertexArray(vao);
 
-		m_pMemTransfer->toGPU(m_pSrcImgs[0].planes[0], m_pSrcImgs[1].planes[0]);
+		m_pMemTransfer->toGPU(pSrcImgs[0].planes[0], pSrcImgs[1].planes[0]);
 
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_elementBuffer);
 		glDrawElements(GL_TRIANGLE_STRIP, m_pVertexBuilder->GetElementNum(), GL_UNSIGNED_SHORT, NULL);
 
 		m_pMemTransfer->fromGPU(pDstImg->planes[0]);
 
-/*		glActiveTexture(GL_TEXTURE0);
-		glBindTexture(GL_TEXTURE_2D, front_tex);
-		glTexSubImage2D(GL_TEXTURE_2D,
-			0,
-			0, 0,
-			m_srcImageFormat.frame_width, m_srcImageFormat.frame_height,
-			GL_RGB, GL_UNSIGNED_BYTE,
-			m_pSrcImgs[0].planes[0]);
-
-
-		glActiveTexture(GL_TEXTURE1);
-		glBindTexture(GL_TEXTURE_2D, back_tex);
-		glTexSubImage2D(GL_TEXTURE_2D,
-			0,
-			0, 0,
-			m_srcImageFormat.frame_width, m_srcImageFormat.frame_height,
-			GL_RGB, GL_UNSIGNED_BYTE,
-			m_pSrcImgs[1].planes[0]);
-
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_elementBuffer);
-		glDrawElements(GL_TRIANGLE_STRIP, m_pVertexBuilder->GetElementNum(), GL_UNSIGNED_SHORT, NULL);
-
-		//glGetTexImage(GL_TEXTURE_2D, 0, GL_RGB, GL_UNSIGNED_BYTE, output_image);
-		glBindTexture(GL_TEXTURE_2D, m_hTexture);
-		glReadPixels(0, 0, m_dstImageFormat.frame_width, m_dstImageFormat.frame_height, GL_RGBA, GL_UNSIGNED_BYTE, pDstImg->planes[0]);
-		GLenum result = glGetError();
-		if (result != GL_NO_ERROR) {
-			result = result;
-
-		}*/
 	}
 
 
