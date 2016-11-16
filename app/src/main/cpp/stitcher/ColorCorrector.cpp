@@ -77,8 +77,8 @@ float ColorCorrector::CalcAdjustCoeff(const VideoFrame_t * pFrontImg, const Vide
 		int coord_x_back = m_backMatchPoints[i].x;
 		int coord_y_back = m_backMatchPoints[i].y;
 
-		uint8_t * ptr_pixel_front = &pFrontImg->planes[0][coord_y_front * pFrontImg->strides[0] + 4 * coord_x_front];
-		uint8_t * ptr_pixel_back = &pBackImg->planes[0][coord_y_back * pBackImg->strides[0] + 4 * coord_x_back];
+		uint8_t * ptr_pixel_front = &pFrontImg->planes[0][coord_y_front * pFrontImg->strides[0] + 3 * coord_x_front];
+		uint8_t * ptr_pixel_back = &pBackImg->planes[0][coord_y_back * pBackImg->strides[0] + 3 * coord_x_back];
 
 		all_Tamount += ptr_pixel_front[0]/* + ptr_pixel_front[1] + ptr_pixel_front[2]*/;
 		all_Bamount += ptr_pixel_back[0]/* + ptr_pixel_back[1] + ptr_pixel_back[2]*/;
