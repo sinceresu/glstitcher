@@ -103,7 +103,7 @@ bool MemTransferAndroid::prepareInput(int inTexW, int inTexH) {
 //    glGenerateMipmap(GL_TEXTURE_EXTERNAL_OES);
     int usage = GraphicBuffer::USAGE_HW_TEXTURE | GraphicBuffer::USAGE_SW_WRITE_OFTEN ;
 
-    _pFrontGraphicBuffer = std::make_shared<GraphicBuffer>(inputW, inputH, PIXEL_FORMAT_RGBA_8888, usage);
+    _pFrontGraphicBuffer = std::make_shared<GraphicBuffer>(inputW, inputH, PIXEL_FORMAT_RGB_888, usage);
     // get window buffer
     inputFrontNativeBuf = (struct ANativeWindowBuffer *)_pFrontGraphicBuffer->getNativeBuffer();
 
@@ -146,7 +146,7 @@ bool MemTransferAndroid::prepareInput(int inTexW, int inTexH) {
 //    glGenerateMipmap(GL_TEXTURE_EXTERNAL_OES);
     // create graphic buffer
 
-    _pBackGraphicBuffer = std::make_shared<GraphicBuffer>(inputW, inputH, PIXEL_FORMAT_RGBA_8888, usage);
+    _pBackGraphicBuffer = std::make_shared<GraphicBuffer>(inputW, inputH, PIXEL_FORMAT_RGB_888, usage);
     // get window buffer
     inputBackNativeBuf = (struct ANativeWindowBuffer *)_pBackGraphicBuffer->getNativeBuffer();
 
@@ -329,9 +329,9 @@ void MemTransferAndroid::toGPU(const unsigned char *frontBuf, const unsigned cha
     const unsigned char * readPtr  = frontBuf;
 
     for (int row = 0; row < inputH; row++) {
-        memcpy(writePtr, readPtr, inputW * 4);
-        readPtr += inputW  * 4;
-        writePtr += stride * 4;
+        memcpy(writePtr, readPtr, inputW * 3);
+        readPtr += inputW  * 3;
+        writePtr += stride * 3;
     }
    // memcpy(graphicsPtr, frontBuf, stride * inputH * 3);
     //  memset(graphicsPtr, 0, inputW * inputH * 4);
@@ -354,9 +354,9 @@ void MemTransferAndroid::toGPU(const unsigned char *frontBuf, const unsigned cha
     readPtr  = backBuf;
 
     for (int row = 0; row < inputH; row++) {
-        memcpy(writePtr, readPtr, inputW * 4);
-        readPtr += inputW  * 4;
-        writePtr += stride * 4;
+        memcpy(writePtr, readPtr, inputW * 3);
+        readPtr += inputW  * 3;
+        writePtr += stride * 3;
     }
     // copy whole image from "buf" to "graphicsPtr"
    // memcpy(graphicsPtr, backBuf, stride * inputH * 3);
