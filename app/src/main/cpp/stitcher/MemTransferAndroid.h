@@ -18,8 +18,9 @@
 #define GL_GLEXT_PROTOTYPES
 #endif
 #include <GLES2/gl2ext.h>
+#include <memory>
 
-
+class GraphicBuffer;
 // constructor
 typedef void (*GraphicBufferFnCtor)(void *graphicBufHndl, uint32_t w, uint32_t h, uint32_t format, uint32_t usage);
 
@@ -139,7 +140,8 @@ private:
 
     EGLImageKHR outputImage;    // ImageKHR handle for output
 
-
+    std::shared_ptr<GraphicBuffer> _pFrontGraphicBuffer;
+    std::shared_ptr<GraphicBuffer> _pBackGraphicBuffer;
 };
 
 

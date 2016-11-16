@@ -5,6 +5,7 @@
 #include "MemTransferAndroid.h"
 #include <dlfcn.h>
 #include <assert.h>
+#include "GraphicBuffer.h"
 
 #include "../common/common_includes.h"
 
@@ -104,7 +105,7 @@ MemTransferAndroid::~MemTransferAndroid() {
     releaseInput();
     releaseOutput();
 }
-#define OG_ANDROID_GRAPHIC_BUFFER_SIZE 1024
+#define OG_ANDROID_GRAPHIC_BUFFER_SIZE 2048
 
 bool MemTransferAndroid::prepareInput(int inTexW, int inTexH) {
     assert(inTexW > 0 && inTexH > 0);
@@ -123,27 +124,12 @@ bool MemTransferAndroid::prepareInput(int inTexW, int inTexH) {
 
     // generate texture id
 
-    glGenTextures(1, &front_tex);
-    glBindTexture(GL_TEXTURE_2D, front_tex);
-
-
-
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-
 //    glGenerateMipmap(GL_TEXTURE_2D);
+    int usage = GraphicBuffer::USAGE_HW_TEXTURE | GraphicBuffer::USAGE_SW_WRITE_OFTEN ;
 
-    int nativePxFmt = HAL_PIXEL_FORMAT_RGBA_8888;
-
-    // create graphic buffer
-    inputFrontGraBufHndl = malloc(OG_ANDROID_GRAPHIC_BUFFER_SIZE);
-    graBufCreate(inputFrontGraBufHndl, inputW, inputH, nativePxFmt,
-                 GRALLOC_USAGE_HW_TEXTURE | GRALLOC_USAGE_SW_WRITE_OFTEN);  // is used as OpenGL texture and will be written often
-
+    _pFrontGraphicBuffer = std::make_shared<GraphicBuffer>(inputW, inputH, PIXEL_FORMAT_RGBA_8888, usage);
     // get window buffer
-    inputFrontNativeBuf = (struct ANativeWindowBuffer *)graBufGetNativeBuffer(inputFrontGraBufHndl);
+    inputFrontNativeBuf = (struct ANativeWindowBuffer *)_pFrontGraphicBuffer->getNativeBuffer();
 
     if (!inputFrontNativeBuf) {
         OG_LOGERR("MemTransferAndroid", "error getting native window buffer for input");
@@ -151,7 +137,7 @@ bool MemTransferAndroid::prepareInput(int inTexW, int inTexH) {
     }
 
     // create image for reading back the results
-    EGLint eglImgAttrs[] = { EGL_IMAGE_PRESERVED_KHR, EGL_TRUE, EGL_NONE, EGL_NONE };
+    EGLint eglImgAttrs[] = { EGL_WIDTH, inputW, EGL_HEIGHT, inputH, EGL_MATCH_FORMAT_KHR,  EGL_FORMAT_RGBA_8888_KHR, EGL_IMAGE_PRESERVED_KHR, EGL_TRUE, EGL_NONE };
     inputFrontImage = imageKHRCreate(eglGetDisplay(EGL_DEFAULT_DISPLAY),
                                 EGL_NO_CONTEXT,
                                 EGL_NATIVE_BUFFER_ANDROID,
@@ -162,29 +148,31 @@ bool MemTransferAndroid::prepareInput(int inTexW, int inTexH) {
         OG_LOGERR("MemTransferAndroid", "error creating image KHR for input");
         return 0;
     }
-    glEGLImageTargetTexture2DOES(GL_TEXTURE_2D, inputFrontImage);
 
-    GLenum err = glGetError();
+    glGenTextures(1, &front_tex);
+    glBindTexture(GL_TEXTURE_2D, front_tex);
 
 
-    glGenTextures(1, &back_tex);
-    glBindTexture(GL_TEXTURE_2D, back_tex);
 
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
+
+    glEGLImageTargetTexture2DOES(GL_TEXTURE_2D, inputFrontImage);
+
+    GLenum err = glGetError();
+
+
     //glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, black);
 
 //    glGenerateMipmap(GL_TEXTURE_2D);
     // create graphic buffer
-    inputBackGraBufHndl = malloc(OG_ANDROID_GRAPHIC_BUFFER_SIZE);
-    graBufCreate(inputBackGraBufHndl, inputW, inputH, nativePxFmt,
-                 GRALLOC_USAGE_HW_TEXTURE | GRALLOC_USAGE_SW_WRITE_OFTEN);  // is used as OpenGL texture and will be written often
 
+    _pBackGraphicBuffer = std::make_shared<GraphicBuffer>(inputW, inputH, PIXEL_FORMAT_RGBA_8888, usage);
     // get window buffer
-    inputBackNativeBuf = (struct ANativeWindowBuffer *)graBufGetNativeBuffer(inputBackGraBufHndl);
+    inputBackNativeBuf = (struct ANativeWindowBuffer *)_pBackGraphicBuffer->getNativeBuffer();
 
     if (!inputBackNativeBuf) {
         OG_LOGERR("MemTransferAndroid", "error getting native window buffer for input");
@@ -202,6 +190,14 @@ bool MemTransferAndroid::prepareInput(int inTexW, int inTexH) {
         OG_LOGERR("MemTransferAndroid", "error creating image KHR for input");
         return 0;
     }
+
+    glGenTextures(1, &back_tex);
+    glBindTexture(GL_TEXTURE_2D, back_tex);
+
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
     glEGLImageTargetTexture2DOES(GL_TEXTURE_2D, inputBackImage);
 
@@ -355,34 +351,70 @@ void MemTransferAndroid::toGPU(const unsigned char *frontBuf, const unsigned cha
     assert(preparedInput && front_tex > 0  && back_tex > 0 && frontBuf && backBuf);
 
     glActiveTexture(GL_TEXTURE0);
+    glEnable(GL_TEXTURE_2D);
+    glDisable(GL_CULL_FACE);
+    glDisable(GL_DEPTH_TEST);
+    glDisable(GL_STENCIL_TEST);
+    glDisable(GL_DITHER);
+    glDisable(GL_BLEND);
+
     glBindTexture(GL_TEXTURE_2D, front_tex);
 
     // activate the image KHR for the input
-//    glEGLImageTargetTexture2DOES(GL_TEXTURE_2D, inputFrontImage);
+    glEGLImageTargetTexture2DOES(GL_TEXTURE_2D, inputFrontImage);
 
     // lock the graphics buffer at graphicsPtr
-    unsigned char *graphicsPtr = (unsigned char *)lockInputBufferAndGetPtr(inputFrontGraBufHndl);
+    unsigned char *graphicsPtr;
+    void* temp;
+    _pFrontGraphicBuffer->lock(GraphicBuffer::USAGE_SW_WRITE_OFTEN, &temp);
+    graphicsPtr = (unsigned char *) temp;
 
     // copy whole image from "buf" to "graphicsPtr"
-    memcpy(graphicsPtr, frontBuf, inputW * inputH * 4);
+    int stride = _pFrontGraphicBuffer->getStride();
+    unsigned char * writePtr = graphicsPtr;
+    const unsigned char * readPtr  = frontBuf;
+
+    for (int row = 0; row < inputH; row++) {
+        memcpy(writePtr, readPtr, inputW * 4);
+        readPtr = ((readPtr) + inputW  * 4);
+        writePtr = ((writePtr) + stride * 4);
+    }
+   // memcpy(graphicsPtr, frontBuf, stride * inputH * 3);
     //  memset(graphicsPtr, 0, inputW * inputH * 4);
     // unlock the graphics buffer again
-    unlockInputBuffer(inputFrontGraBufHndl);
+
+    _pFrontGraphicBuffer->unlock();
 
 
     glActiveTexture(GL_TEXTURE1);
+    glEnable(GL_TEXTURE_2D);
+    glDisable(GL_CULL_FACE);
+    glDisable(GL_DEPTH_TEST);
+    glDisable(GL_STENCIL_TEST);
+    glDisable(GL_DITHER);
+    glDisable(GL_BLEND);
     glBindTexture(GL_TEXTURE_2D, back_tex);
     // activate the image KHR for the input
-//    glEGLImageTargetTexture2DOES(GL_TEXTURE_2D, inputBackImage);
+    glEGLImageTargetTexture2DOES(GL_TEXTURE_2D, inputBackImage);
 
     // lock the graphics buffer at graphicsPtr
-    graphicsPtr = (unsigned char *)lockInputBufferAndGetPtr(inputBackGraBufHndl);
+    _pBackGraphicBuffer->lock(GraphicBuffer::USAGE_SW_WRITE_OFTEN, &temp);
+    graphicsPtr = (unsigned char *) temp;
 
+    stride = _pFrontGraphicBuffer->getStride();
+    writePtr = graphicsPtr;
+    readPtr  = backBuf;
+
+    for (int row = 0; row < inputH; row++) {
+        memcpy(writePtr, readPtr, inputW * 4);
+        readPtr = ((readPtr) + inputW  * 4);
+        writePtr = ((writePtr) + stride * 4);
+    }
     // copy whole image from "buf" to "graphicsPtr"
-    memcpy(graphicsPtr, backBuf, inputW * inputH * 4);
+   // memcpy(graphicsPtr, backBuf, stride * inputH * 3);
 
     // unlock the graphics buffer again
-    unlockInputBuffer(inputBackGraBufHndl);
+    _pBackGraphicBuffer->unlock();
 
 
 }

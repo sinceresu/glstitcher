@@ -58,8 +58,7 @@ bool MemTransfer::prepareInput(int inTexW, int inTexH) {
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
-    //const GLfloat black[] = { 0.0f, 0.0f, 0.0f, 1.0f };
-    //glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, black);
+
 
 //    glGenerateMipmap(GL_TEXTURE_2D);
 
@@ -148,7 +147,7 @@ void MemTransfer::toGPU(const unsigned char *frontBuf, const unsigned char *back
 
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, front_tex);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, inputW, inputH, 0, GL_RGB, GL_UNSIGNED_BYTE, frontBuf);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, inputW, inputH, 0, GL_RGBA, GL_UNSIGNED_BYTE, frontBuf);
 /*
     glTexSubImage2D(GL_TEXTURE_2D,
                     0,
@@ -160,7 +159,7 @@ void MemTransfer::toGPU(const unsigned char *frontBuf, const unsigned char *back
 
     glActiveTexture(GL_TEXTURE1);
     glBindTexture(GL_TEXTURE_2D, back_tex);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, inputW, inputH, 0, GL_RGB, GL_UNSIGNED_BYTE, backBuf);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, inputW, inputH, 0, GL_RGBA, GL_UNSIGNED_BYTE, backBuf);
 //    glTexSubImage2D(GL_TEXTURE_2D,
 //                    0,
 //                    0, 0,
