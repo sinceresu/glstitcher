@@ -229,6 +229,7 @@ bool GLStitcher::InitMembers()
 	{
 	char vShaderStr[] =
 		"#version 300 es                            \n"
+		"#extension GL_OES_EGL_image_external : require\n"
 		"\n"
 		"layout (location = 0) in vec2 in_position;\n"
 		"layout (location = 1) in vec4 in_tex_coord1;\n"
@@ -256,6 +257,7 @@ bool GLStitcher::InitMembers()
 
 	char fShaderStr[] =
 		"#version 300 es                                     \n"
+		"#extension GL_OES_EGL_image_external : require\n"
 		"precision mediump float;                            \n"
 		"\n"
 		"in vec2 tex_coord1;\n"
@@ -272,9 +274,9 @@ bool GLStitcher::InitMembers()
 		"\n"
 		"layout (location = 0) out vec4 color;\n"
 		"\n"
-		"uniform sampler2D tex1;\n"
+		"uniform samplerExternalOES tex1;\n"
 		"\n"
-		"uniform sampler2D tex2;\n"
+		"uniform samplerExternalOES tex2;\n"
 		"\n"
 		"uniform float adjust;\n"
 		"\n"
