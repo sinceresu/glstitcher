@@ -51,13 +51,6 @@ enum {
     HAL_PIXEL_FORMAT_RGBA_4444          = 7,
 };
 
-
-GraphicBufferFnCtor MemTransferAndroid::graBufCreate = NULL;
-GraphicBufferFnDtor MemTransferAndroid::graBufDestroy = NULL;
-GraphicBufferFnGetNativeBuffer MemTransferAndroid::graBufGetNativeBuffer = NULL;
-GraphicBufferFnLock MemTransferAndroid::graBufLock = NULL;
-GraphicBufferFnUnlock MemTransferAndroid::graBufUnlock = NULL;
-
 EGLExtFnCreateImage MemTransferAndroid::imageKHRCreate = NULL;
 EGLExtFnDestroyImage MemTransferAndroid::imageKHRDestroy = NULL;
 
@@ -77,23 +70,6 @@ bool MemTransferAndroid::initPlatformOptimizations() {
 
     dlclose(dlEGLhndl);
 
-    // load necessary Android GraphicBuffer functions
-    void *dlUIhndl = dlopen("libui.so", RTLD_LAZY);
-    if (!dlUIhndl) {
-        return false;
-    }
-
-    graBufCreate = OG_DL_FUNC(dlUIhndl, "_ZN7android13GraphicBufferC1Ejjij", GraphicBufferFnCtor);
-
-    graBufDestroy = OG_DL_FUNC(dlUIhndl, "_ZN7android13GraphicBufferD1Ev", GraphicBufferFnDtor);
-
-    graBufGetNativeBuffer = OG_DL_FUNC(dlUIhndl, "_ZNK7android13GraphicBuffer15getNativeBufferEv", GraphicBufferFnGetNativeBuffer);
-
-    graBufLock = OG_DL_FUNC(dlUIhndl, "_ZN7android13GraphicBuffer4lockEjPPv", GraphicBufferFnLock);
-
-    graBufUnlock = OG_DL_FUNC(dlUIhndl, "_ZN7android13GraphicBuffer6unlockEv", GraphicBufferFnUnlock);
-
-    dlclose(dlUIhndl);
 
     // all done
 
@@ -293,15 +269,7 @@ void MemTransferAndroid::releaseInput() {
         inputFrontImage = NULL;
     }
 
-    // release android graphic buffer handle for input
-    if (inputFrontGraBufHndl) {
-        OG_LOGINF("MemTransferAndroid", "releasing graphic buffer handle for input");
-        graBufDestroy(inputFrontGraBufHndl);
-        free(inputFrontGraBufHndl);
 
-        inputFrontGraBufHndl = NULL;
-        inputFrontNativeBuf = NULL;  // reset weak-ref pointer to NULL
-    }
 
     if (inputBackImage) {
         OG_LOGINF("MemTransferAndroid", "releasing input image");
@@ -310,15 +278,6 @@ void MemTransferAndroid::releaseInput() {
         inputBackImage = NULL;
     }
 
-    // release android graphic buffer handle for input
-    if (inputBackGraBufHndl) {
-        OG_LOGINF("MemTransferAndroid", "releasing graphic buffer handle for input");
-        graBufDestroy(inputBackGraBufHndl);
-        free(inputBackGraBufHndl);
-
-        inputBackGraBufHndl = NULL;
-        inputBackNativeBuf = NULL;  // reset weak-ref pointer to NULL
-    }
 
 }
 
@@ -351,12 +310,7 @@ void MemTransferAndroid::toGPU(const unsigned char *frontBuf, const unsigned cha
     assert(preparedInput && front_tex > 0  && back_tex > 0 && frontBuf && backBuf);
 
     glActiveTexture(GL_TEXTURE0);
-    glEnable(GL_TEXTURE_2D);
-    glDisable(GL_CULL_FACE);
-    glDisable(GL_DEPTH_TEST);
-    glDisable(GL_STENCIL_TEST);
-    glDisable(GL_DITHER);
-    glDisable(GL_BLEND);
+;
 
     glBindTexture(GL_TEXTURE_2D, front_tex);
 
@@ -387,13 +341,7 @@ void MemTransferAndroid::toGPU(const unsigned char *frontBuf, const unsigned cha
 
 
     glActiveTexture(GL_TEXTURE1);
-    glEnable(GL_TEXTURE_2D);
-    glDisable(GL_CULL_FACE);
-    glDisable(GL_DEPTH_TEST);
-    glDisable(GL_STENCIL_TEST);
-    glDisable(GL_DITHER);
-    glDisable(GL_BLEND);
-    glBindTexture(GL_TEXTURE_2D, back_tex);
+     glBindTexture(GL_TEXTURE_2D, back_tex);
     // activate the image KHR for the input
     glEGLImageTargetTexture2DOES(GL_TEXTURE_2D, inputBackImage);
 
@@ -439,52 +387,3 @@ void MemTransferAndroid::toGPU(const unsigned char *frontBuf, const unsigned cha
 //
 //}
 
-
-void *MemTransferAndroid::lockInputBufferAndGetPtr(void *inputGraBufHndl) {
-    void *hndl;
-    int usage;
-    unsigned char *memPtr;
-
-    hndl = inputGraBufHndl;
-    usage = GRALLOC_USAGE_SW_WRITE_OFTEN;
-
-
-    // lock and get pointer
-    graBufLock(hndl, usage, &memPtr);
-
-    // check for valid pointer
-    if (!memPtr) {
-        OG_LOGERR("MemTransferAndroid", "GraphicBuffer lock returned invalid pointer");
-    }
-
-    return (void *)memPtr;
-}
-
-
-void *MemTransferAndroid::lockOutputBufferAndGetPtr() {
-    void *hndl;
-    int usage;
-    unsigned char *memPtr;
-
-    hndl = outputGraBufHndl;
-    usage = GRALLOC_USAGE_SW_READ_OFTEN;
-
-
-    // lock and get pointer
-    graBufLock(hndl, usage, &memPtr);
-
-    // check for valid pointer
-    if (!memPtr) {
-        OG_LOGERR("MemTransferAndroid", "GraphicBuffer lock returned invalid pointer");
-    }
-
-    return (void *)memPtr;
-}
-
-void MemTransferAndroid::unlockInputBuffer(void *inputGraBufHndl) {
-    graBufUnlock(inputGraBufHndl);
-}
-
-void MemTransferAndroid::unlockOutputBuffer() {
-    graBufUnlock(outputGraBufHndl);
-}
