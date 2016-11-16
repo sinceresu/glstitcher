@@ -48,6 +48,7 @@ public:
      */
     virtual void fromGPU(unsigned char *buf);
 
+    static bool initPlatformOptimizations();
 
 protected:
     bool initialized;       // is initialized?

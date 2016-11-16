@@ -62,12 +62,12 @@ int GLStitcher::StitchImage(VideoFrame_t * pSrcImgs, VideoFrame_t * pDstImg)
 	if (glCheckFramebufferStatus(GL_FRAMEBUFFER) == GL_FRAMEBUFFER_COMPLETE) {
 		float adjust_coeff = m_pColorCorrector->CalcAdjustCoeff(&pSrcImgs[0], &pSrcImgs[1]);
 		glClear(GL_COLOR_BUFFER_BIT);
-		glDisable(GL_CULL_FACE);
+//		glDisable(GL_CULL_FACE);
 		glUseProgram(base_prog);
 
 		glUniform1f(adjust_loc, adjust_coeff);
 
-		glBindVertexArray(vao);
+//		glBindVertexArray(vao);
 
 		m_pMemTransfer->toGPU(pSrcImgs[0].planes[0], pSrcImgs[1].planes[0]);
 
@@ -300,7 +300,8 @@ bool GLStitcher::InitMembers()
 	glGetProgramInfoLog(base_prog, 1024, NULL, buf);
 
 	glUseProgram(base_prog);
-
+#ifdef GL_TEXTURE_EXTERNAL_OES
+#endif
 	adjust_loc = glGetUniformLocation(base_prog, "adjust");
 	glUniform1i(glGetUniformLocation(base_prog, "tex1"), 0);
 	glUniform1i(glGetUniformLocation(base_prog, "tex2"), 1);
@@ -325,27 +326,20 @@ void GLStitcher::InitGLModel()
 	glBufferSubData(GL_ARRAY_BUFFER, vertices.size() * sizeof(GLfloat), front_texcoords.size() * sizeof(GLfloat), front_texcoords.data());
 	glBufferSubData(GL_ARRAY_BUFFER, vertices.size() * sizeof(GLfloat) + front_texcoords.size() * sizeof(GLfloat),
 		back_texcoords.size() * sizeof(GLfloat), back_texcoords.data());
-
-	glGenVertexArrays(1, &vao);
-	glBindVertexArray(vao);
+//
+//	glGenVertexArrays(1, &vao);
+//	glBindVertexArray(vao);
 
 	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));
 
-#ifdef TEST_DATA
-	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(sizeof(plane_vertices)));
-#else
 	glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(vertices.size() * sizeof(GLfloat)));
 	glVertexAttribPointer(2, 4, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(vertices.size() * sizeof(GLfloat) +
 		front_texcoords.size() * sizeof(GLfloat)));
-#endif // TEST_DATA
 
-	//glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(16 * sizeof(float)));
-	//glVertexAttribPointer(2, 1, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(16 * sizeof(float)));
 
 	glEnableVertexAttribArray(0);
 	glEnableVertexAttribArray(1);
 	glEnableVertexAttribArray(2);
-	//glEnableVertexAttribArray(2);
 
 	glGenBuffers(1, &m_elementBuffer);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_elementBuffer);
@@ -394,8 +388,11 @@ bool GLStitcher::Initialize()
 
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
-	//glDisable(GL_CULL_FACE);
-	//glEnable(GL_DEPTH_TEST);
+	glDisable(GL_CULL_FACE);
+	glDisable(GL_DEPTH_TEST);
+	glDisable(GL_STENCIL_TEST);
+	glDisable(GL_DITHER);
+	glDisable(GL_BLEND);
 
 	m_bInitialized = true;
 
@@ -415,7 +412,7 @@ void GLStitcher::Release()
 	glDeleteProgram(base_prog);
 //	glDeleteTextures(1, &front_tex);
 //	glDeleteTextures(1, &back_tex);
-	glDeleteVertexArrays(1, &vao);
+//	glDeleteVertexArrays(1, &vao);
 	
 	m_bInitialized = false;
 }

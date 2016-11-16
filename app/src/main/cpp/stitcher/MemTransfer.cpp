@@ -5,6 +5,12 @@
 #include "MemTransfer.h"
 #include <assert.h>
 
+bool MemTransfer::initPlatformOptimizations() {
+    // always return false here. this method is only fully implemented
+    // in platform-specialized classes of MemTransfer.
+    return false;
+}
+
 MemTransfer::MemTransfer() {
     // set defaults
     inputW = inputH = outputW = outputH = 0;
@@ -41,9 +47,9 @@ bool MemTransfer::prepareInput(int inTexW, int inTexH) {
 
     glGenTextures(1, &front_tex);
     glBindTexture(GL_TEXTURE_2D, front_tex);
-    glTexStorage2D(GL_TEXTURE_2D, 1, GL_RGB8,
-                   inputW, inputH
-    );
+//    glTexStorage2D(GL_TEXTURE_2D, 1, GL_RGBA8,
+//                   inputW, inputH
+//    );
 
     //static const GLint swizzles[] = { GL_RED, GL_GREEN, GL_BLUE, GL_ONE };
     //glTexParameteriv(GL_TEXTURE_2D, GL_TEXTURE_SWIZZLE_RGBA, swizzles);
@@ -55,14 +61,14 @@ bool MemTransfer::prepareInput(int inTexW, int inTexH) {
     //const GLfloat black[] = { 0.0f, 0.0f, 0.0f, 1.0f };
     //glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, black);
 
-    glGenerateMipmap(GL_TEXTURE_2D);
+//    glGenerateMipmap(GL_TEXTURE_2D);
 
     glGenTextures(1, &back_tex);
 
     glBindTexture(GL_TEXTURE_2D, back_tex);
-    glTexStorage2D(GL_TEXTURE_2D, 1, GL_RGB8,
-                   inputW, inputH
-    );
+//    glTexStorage2D(GL_TEXTURE_2D, 1, GL_RGBA8,
+//                   inputW, inputH
+//    );
 
     //static const GLint swizzles[] = { GL_RED, GL_GREEN, GL_BLUE, GL_ONE };
     //glTexParameteriv(GL_TEXTURE_2D, GL_TEXTURE_SWIZZLE_RGBA, swizzles);
@@ -73,7 +79,7 @@ bool MemTransfer::prepareInput(int inTexW, int inTexH) {
 
     //glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, black);
 
-    glGenerateMipmap(GL_TEXTURE_2D);
+//    glGenerateMipmap(GL_TEXTURE_2D);
     // done
     preparedInput = true;
 
@@ -142,22 +148,25 @@ void MemTransfer::toGPU(const unsigned char *frontBuf, const unsigned char *back
 
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, front_tex);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, inputW, inputH, 0, GL_RGB, GL_UNSIGNED_BYTE, frontBuf);
+/*
     glTexSubImage2D(GL_TEXTURE_2D,
                     0,
                     0, 0,
                     inputW, inputH,
-                    GL_RGB, GL_UNSIGNED_BYTE,
-                    frontBuf);
+                    GL_RGBA, GL_UNSIGNED_BYTE,
+                    frontBuf);*/
 
 
     glActiveTexture(GL_TEXTURE1);
     glBindTexture(GL_TEXTURE_2D, back_tex);
-    glTexSubImage2D(GL_TEXTURE_2D,
-                    0,
-                    0, 0,
-                    inputW, inputH,
-                    GL_RGB, GL_UNSIGNED_BYTE,
-                    backBuf);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, inputW, inputH, 0, GL_RGB, GL_UNSIGNED_BYTE, backBuf);
+//    glTexSubImage2D(GL_TEXTURE_2D,
+//                    0,
+//                    0, 0,
+//                    inputW, inputH,
+//                    GL_RGBA, GL_UNSIGNED_BYTE,
+//                    backBuf);
 
 
 }
