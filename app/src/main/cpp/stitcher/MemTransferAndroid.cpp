@@ -299,7 +299,7 @@ void MemTransferAndroid::toGPU(const unsigned char *frontBuf, const unsigned cha
     glBindTexture(GL_TEXTURE_2D, front_tex);
 
     // activate the image KHR for the input
-    glEGLImageTargetTexture2DOES(GL_TEXTURE_2D, inputFrontImage);
+//    glEGLImageTargetTexture2DOES(GL_TEXTURE_2D, inputFrontImage);
 
     // lock the graphics buffer at graphicsPtr
     unsigned char *graphicsPtr;
@@ -327,7 +327,7 @@ void MemTransferAndroid::toGPU(const unsigned char *frontBuf, const unsigned cha
     glActiveTexture(GL_TEXTURE1);
      glBindTexture(GL_TEXTURE_2D, back_tex);
     // activate the image KHR for the input
-    glEGLImageTargetTexture2DOES(GL_TEXTURE_2D, inputBackImage);
+//    glEGLImageTargetTexture2DOES(GL_TEXTURE_2D, inputBackImage);
 
     // lock the graphics buffer at graphicsPtr
     _pBackGraphicBuffer->lock(GraphicBuffer::USAGE_SW_WRITE_OFTEN, &temp);
@@ -357,7 +357,7 @@ void MemTransferAndroid::fromGPU(unsigned char *buf) {
     glBindTexture(GL_TEXTURE_2D, output_tex);
 
     // activate the image KHR for the output
-    glEGLImageTargetTexture2DOES(GL_TEXTURE_2D, outputImage);
+//    glEGLImageTargetTexture2DOES(GL_TEXTURE_2D, outputImage);
 
 
     // lock the graphics buffer at graphicsPtr
