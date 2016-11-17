@@ -98,11 +98,9 @@ bool MemTransferAndroid::prepareInput(int inTexW, int inTexH) {
     inputW = inTexW;
     inputH = inTexH;
 
-    // generate texture id
 
-//    glGenerateMipmap(GL_TEXTURE_EXTERNAL_OES);
     int usage = GraphicBuffer::USAGE_HW_TEXTURE | GraphicBuffer::USAGE_SW_WRITE_OFTEN ;
-
+    // create graphic buffer
     _pFrontGraphicBuffer = std::make_shared<GraphicBuffer>(inputW, inputH, PIXEL_FORMAT_RGB_888, usage);
     // get window buffer
     inputFrontNativeBuf = (struct ANativeWindowBuffer *)_pFrontGraphicBuffer->getNativeBuffer();
@@ -126,24 +124,19 @@ bool MemTransferAndroid::prepareInput(int inTexW, int inTexH) {
     }
 
     glGenTextures(1, &front_tex);
-    glBindTexture(GL_TEXTURE_EXTERNAL_OES, front_tex);
+    glBindTexture(GL_TEXTURE_2D, front_tex);
 
 
 
-    glTexParameteri(GL_TEXTURE_EXTERNAL_OES, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_EXTERNAL_OES, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_EXTERNAL_OES, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-    glTexParameteri(GL_TEXTURE_EXTERNAL_OES, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
 
-    glEGLImageTargetTexture2DOES(GL_TEXTURE_EXTERNAL_OES, inputFrontImage);
+    glEGLImageTargetTexture2DOES(GL_TEXTURE_2D, inputFrontImage);
 
     GLenum err = glGetError();
-
-
-    //glTexParameterfv(GL_TEXTURE_EXTERNAL_OES, GL_TEXTURE_BORDER_COLOR, black);
-
-//    glGenerateMipmap(GL_TEXTURE_EXTERNAL_OES);
     // create graphic buffer
 
     _pBackGraphicBuffer = std::make_shared<GraphicBuffer>(inputW, inputH, PIXEL_FORMAT_RGB_888, usage);
@@ -168,14 +161,14 @@ bool MemTransferAndroid::prepareInput(int inTexW, int inTexH) {
     }
 
     glGenTextures(1, &back_tex);
-    glBindTexture(GL_TEXTURE_EXTERNAL_OES, back_tex);
+    glBindTexture(GL_TEXTURE_2D, back_tex);
 
-    glTexParameteri(GL_TEXTURE_EXTERNAL_OES, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_EXTERNAL_OES, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_EXTERNAL_OES, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-    glTexParameteri(GL_TEXTURE_EXTERNAL_OES, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
-    glEGLImageTargetTexture2DOES(GL_TEXTURE_EXTERNAL_OES, inputBackImage);
+    glEGLImageTargetTexture2DOES(GL_TEXTURE_2D, inputBackImage);
 
     // done
     preparedInput = true;
@@ -183,74 +176,72 @@ bool MemTransferAndroid::prepareInput(int inTexW, int inTexH) {
     return true;
 }
 
-//bool MemTransferAndroid::prepareOutput(int outTexW, int outTexH) {
-//    assert(outTexW > 0 && outTexH > 0);
-//
-//    if (outputW == outTexW && outputH == outTexH) {
-//        return true; // no change
-//    }
-//
-//    if (preparedOutput) {    // already prepared -- release buffers!
-//        releaseOutput();
-//    }
-//
-//    // set attributes
-//    outputW = outTexW;
-//    outputH = outTexH;
-//
-//    // generate texture id
-//
-//    glGenTextures(1, &output_tex);
-//
-//
-//    if (output_tex == 0) {
-//        return false;
-//    }
-//    glBindTexture(GL_TEXTURE_EXTERNAL_OES, output_tex);
-//    glTexImage2D(GL_TEXTURE_EXTERNAL_OES, 0, GL_RGBA, outputW, outputH, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
-//
-//    glTexParameterf(GL_TEXTURE_EXTERNAL_OES, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-//    glTexParameterf(GL_TEXTURE_EXTERNAL_OES, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-//    glTexParameterf(GL_TEXTURE_EXTERNAL_OES, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-//    glTexParameterf(GL_TEXTURE_EXTERNAL_OES, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-//
-//
-//    // create graphic buffer
-//    outputGraBufHndl = malloc(OG_ANDROID_GRAPHIC_BUFFER_SIZE);
-//    graBufCreate(outputGraBufHndl, outputW, outputH, HAL_PIXEL_FORMAT_RGBA_8888,
-//                 GRALLOC_USAGE_HW_RENDER | GRALLOC_USAGE_SW_READ_OFTEN);    // is render target and will be read often
-//
-//    // get window buffer
-//    outputNativeBuf = (struct ANativeWindowBuffer *)graBufGetNativeBuffer(outputGraBufHndl);
-//
-//    if (!outputNativeBuf) {
-//        OG_LOGERR("MemTransferAndroid", "error getting native window buffer for output");
-//        return 0;
-//    }
-//
-//    // create image for reading back the results
-//    EGLint eglImgAttrs[] = { EGL_IMAGE_PRESERVED_KHR, EGL_TRUE, EGL_NONE, EGL_NONE };
-//    outputImage = imageKHRCreate(eglGetDisplay(EGL_DEFAULT_DISPLAY),
-//                                 EGL_NO_CONTEXT,
-//                                 EGL_NATIVE_BUFFER_ANDROID,
-//                                 (EGLClientBuffer)outputNativeBuf,
-//                                 eglImgAttrs);	// or NULL as last param?
-//
-//    if (!outputImage) {
-//        OG_LOGERR("MemTransferAndroid", "error creating image KHR for output");
-//        return 0;
-//    }
-//
-//
-//
-//    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_EXTERNAL_OES, output_tex, 0);
-//
-//    // done
-//    preparedOutput = true;
-//
-//    return true;
-//}
-//
+/*
+bool MemTransferAndroid::prepareOutput(int outTexW, int outTexH) {
+    assert(outTexW > 0 && outTexH > 0);
+
+    if (outputW == outTexW && outputH == outTexH) {
+        return true; // no change
+    }
+
+    if (preparedOutput) {    // already prepared -- release buffers!
+        releaseOutput();
+    }
+
+    // set attributes
+    outputW = outTexW;
+    outputH = outTexH;
+
+    // generate texture id
+
+    glGenTextures(1, &output_tex);
+
+
+    if (output_tex == 0) {
+        return false;
+    }
+    glBindTexture(GL_TEXTURE_2D, output_tex);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, outputW, outputH, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
+
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+    int usage = GraphicBuffer::USAGE_HW_RENDER | GraphicBuffer::USAGE_SW_READ_OFTEN;
+
+    // create graphic buffer
+    _pStitchedGraphicBuffer = std::make_shared<GraphicBuffer>(outputW, outputH, PIXEL_FORMAT_RGBA_8888, usage);
+    // get window buffer
+    outputNativeBuf = (struct ANativeWindowBuffer *)_pStitchedGraphicBuffer->getNativeBuffer();
+
+    if (!outputNativeBuf) {
+        OG_LOGERR("MemTransferAndroid", "error getting native window buffer for output");
+        return 0;
+    }
+
+    // create image for reading back the results
+    EGLint eglImgAttrs[] = { EGL_IMAGE_PRESERVED_KHR, EGL_TRUE, EGL_NONE, EGL_NONE };
+    outputImage = imageKHRCreate(eglGetDisplay(EGL_DEFAULT_DISPLAY),
+                                 EGL_NO_CONTEXT,
+                                 EGL_NATIVE_BUFFER_ANDROID,
+                                 (EGLClientBuffer)outputNativeBuf,
+                                 eglImgAttrs);	// or NULL as last param?
+
+    if (!outputImage) {
+        OG_LOGERR("MemTransferAndroid", "error creating image KHR for output");
+        return 0;
+    }
+
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, output_tex, 0);
+
+    // done
+    preparedOutput = true;
+
+    return true;
+}
+*/
+
 void MemTransferAndroid::releaseInput() {
     if (front_tex > 0) {
         glDeleteTextures(1, &front_tex);
@@ -282,29 +273,24 @@ void MemTransferAndroid::releaseInput() {
 }
 
 
-//void MemTransferAndroid::releaseOutput() {
-//    if (output_tex > 0) {
-//        glDeleteTextures(1, &output_tex);
-//        output_tex = 0;
-//    }
-//
-//    if (outputImage) {
-//        OG_LOGINF("MemTransferAndroid", "releasing output image");
-//        imageKHRDestroy(EGL_DEFAULT_DISPLAY, outputImage);
-//        free(outputImage);
-//        outputImage = NULL;
-//    }
-//
-//    // release android graphic buffer handle for output
-//    if (outputGraBufHndl) {
-//        OG_LOGINF("MemTransferAndroid", "releasing graphic buffer handle for output");
-//        graBufDestroy(outputGraBufHndl);
-//        free(outputGraBufHndl);
-//
-//        outputGraBufHndl = NULL;
-//        outputNativeBuf = NULL;  // reset weak-ref pointer to NULL
-//    }
-//}
+/*
+void MemTransferAndroid::releaseOutput() {
+    if (output_tex > 0) {
+        glDeleteTextures(1, &output_tex);
+        output_tex = 0;
+    }
+
+    if (outputImage) {
+        OG_LOGINF("MemTransferAndroid", "releasing output image");
+        imageKHRDestroy(EGL_DEFAULT_DISPLAY, outputImage);
+        free(outputImage);
+        outputImage = NULL;
+    }
+
+    // release android graphic buffer handle for output
+
+}
+*/
 
 void MemTransferAndroid::toGPU(const unsigned char *frontBuf, const unsigned char *backBuf) {
     assert(preparedInput && front_tex > 0  && back_tex > 0 && frontBuf && backBuf);
@@ -312,10 +298,10 @@ void MemTransferAndroid::toGPU(const unsigned char *frontBuf, const unsigned cha
     glActiveTexture(GL_TEXTURE0);
 ;
 
-    glBindTexture(GL_TEXTURE_EXTERNAL_OES, front_tex);
+    glBindTexture(GL_TEXTURE_2D, front_tex);
 
     // activate the image KHR for the input
-    glEGLImageTargetTexture2DOES(GL_TEXTURE_EXTERNAL_OES, inputFrontImage);
+    glEGLImageTargetTexture2DOES(GL_TEXTURE_2D, inputFrontImage);
 
     // lock the graphics buffer at graphicsPtr
     unsigned char *graphicsPtr;
@@ -341,9 +327,9 @@ void MemTransferAndroid::toGPU(const unsigned char *frontBuf, const unsigned cha
 
 
     glActiveTexture(GL_TEXTURE1);
-     glBindTexture(GL_TEXTURE_EXTERNAL_OES, back_tex);
+     glBindTexture(GL_TEXTURE_2D, back_tex);
     // activate the image KHR for the input
-    glEGLImageTargetTexture2DOES(GL_TEXTURE_EXTERNAL_OES, inputBackImage);
+    glEGLImageTargetTexture2DOES(GL_TEXTURE_2D, inputBackImage);
 
     // lock the graphics buffer at graphicsPtr
     _pBackGraphicBuffer->lock(GraphicBuffer::USAGE_SW_WRITE_OFTEN, &temp);
@@ -367,23 +353,38 @@ void MemTransferAndroid::toGPU(const unsigned char *frontBuf, const unsigned cha
 
 }
 
-//void MemTransferAndroid::fromGPU(unsigned char *buf) {
-//    assert(preparedOutput && output_tex > 0 && buf);
-//
-//    glBindTexture(GL_TEXTURE_EXTERNAL_OES, output_tex);
-//
-//    // activate the image KHR for the output
-//    glEGLImageTargetTexture2DOES(GL_TEXTURE_EXTERNAL_OES, outputImage);
-//
-//
-//    // lock the graphics buffer at graphicsPtr
-//    const unsigned char *graphicsPtr = (const unsigned char *)lockOutputBufferAndGetPtr();
-//
-//    // copy whole image from "graphicsPtr" to "buf"
-//    memcpy(buf, graphicsPtr, outputW * outputH * 4);
-//
-//    // unlock the graphics buffer again
+/*
+void MemTransferAndroid::fromGPU(unsigned char *buf) {
+    assert(preparedOutput && output_tex > 0 && buf);
+
+    glBindTexture(GL_TEXTURE_2D, output_tex);
+
+    // activate the image KHR for the output
+    glEGLImageTargetTexture2DOES(GL_TEXTURE_2D, outputImage);
+
+
+    // lock the graphics buffer at graphicsPtr
+    const unsigned char *graphicsPtr;
+    void* temp;
+    _pStitchedGraphicBuffer->lock(GraphicBuffer::USAGE_SW_READ_OFTEN, &temp);
+    graphicsPtr = (const unsigned char *) temp;
+
+    // copy whole image from "graphicsPtr" to "buf"
+   // memcpy(buf, graphicsPtr, outputW * outputH * 4);
+    const unsigned char * readPtr = graphicsPtr;
+    unsigned char *  writePtr  = buf;
+
+    int stride = _pStitchedGraphicBuffer->getStride();
+    for (int row = 0; row < outputH; row++) {
+        memcpy(writePtr, readPtr, outputW * 3);
+        readPtr += stride* 3;
+        writePtr +=  outputW  * 3;
+    }
+
+    // unlock the graphics buffer again
 //    unlockOutputBuffer();
-//
-//}
+    _pStitchedGraphicBuffer->unlock();
+
+}
+*/
 

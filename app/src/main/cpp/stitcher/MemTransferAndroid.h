@@ -85,7 +85,7 @@ public:
     /**
       * Delete output texture.
       */
-  //  virtual void releaseOutput();
+    //virtual void releaseOutput();
 
 
     /**
@@ -118,6 +118,9 @@ private:
 
     std::shared_ptr<GraphicBuffer> _pFrontGraphicBuffer;
     std::shared_ptr<GraphicBuffer> _pBackGraphicBuffer;
+
+    std::shared_ptr<GraphicBuffer> _pStitchedGraphicBuffer;
+
 };
 
 
