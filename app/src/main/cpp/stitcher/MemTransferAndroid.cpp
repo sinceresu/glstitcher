@@ -256,19 +256,24 @@ void MemTransferAndroid::releaseInput() {
     if (inputFrontImage) {
         OG_LOGINF("MemTransferAndroid", "releasing input image");
         imageKHRDestroy(EGL_DEFAULT_DISPLAY, inputFrontImage);
-        free(inputFrontImage);
+//        free(inputFrontImage);
         inputFrontImage = NULL;
     }
-
-
+    if (inputFrontNativeBuf) {
+        _pFrontGraphicBuffer.reset();
+        inputFrontNativeBuf =  NULL;
+    }
 
     if (inputBackImage) {
         OG_LOGINF("MemTransferAndroid", "releasing input image");
         imageKHRDestroy(EGL_DEFAULT_DISPLAY, inputBackImage);
-        free(inputBackImage);
+//        free(inputBackImage);
         inputBackImage = NULL;
     }
-
+    if (inputBackNativeBuf) {
+        _pBackGraphicBuffer.reset();
+        inputBackNativeBuf =  NULL;
+    }
 
 }
 
@@ -282,10 +287,13 @@ void MemTransferAndroid::releaseOutput() {
     if (outputImage) {
         OG_LOGINF("MemTransferAndroid", "releasing output image");
         imageKHRDestroy(EGL_DEFAULT_DISPLAY, outputImage);
-        free(outputImage);
+//        free(outputImage);
         outputImage = NULL;
     }
-
+    if (outputNativeBuf) {
+        _pStitchedGraphicBuffer.reset();
+        outputNativeBuf =  NULL;
+    }
     // release android graphic buffer handle for output
 
 }
@@ -294,8 +302,6 @@ void MemTransferAndroid::toGPU(const unsigned char *frontBuf, const unsigned cha
     assert(preparedInput && front_tex > 0  && back_tex > 0 && frontBuf && backBuf);
 
     glActiveTexture(GL_TEXTURE0);
-;
-
     glBindTexture(GL_TEXTURE_2D, front_tex);
 
     // activate the image KHR for the input
@@ -325,7 +331,7 @@ void MemTransferAndroid::toGPU(const unsigned char *frontBuf, const unsigned cha
 
 
     glActiveTexture(GL_TEXTURE1);
-     glBindTexture(GL_TEXTURE_2D, back_tex);
+    glBindTexture(GL_TEXTURE_2D, back_tex);
     // activate the image KHR for the input
 //    glEGLImageTargetTexture2DOES(GL_TEXTURE_2D, inputBackImage);
 
@@ -374,7 +380,7 @@ void MemTransferAndroid::fromGPU(unsigned char *buf) {
     int stride = _pStitchedGraphicBuffer->getStride();
     for (int row = 0; row < outputH; row++) {
         memcpy(writePtr, readPtr, outputW * 3);
-        readPtr += stride* 3;
+        readPtr += stride * 3;
         writePtr +=  outputW  * 3;
     }
 
