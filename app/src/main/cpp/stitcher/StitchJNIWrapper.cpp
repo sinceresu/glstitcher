@@ -14,9 +14,9 @@ void RGB2YUVRevert(unsigned char *yuvBuf, unsigned char *rgbBuf, int w, int h, i
     unsigned char *pYuvBuf = yuvBuf + stride * (h - 1);
     //uint8_t * line = img + stride * (h - 1);
     int fy;
-
+    int stride_rgb = w * 4;
     for (int i = 0; i<h; i++) {
-        for (int j = 0; j < 4 * w; j += 4) {
+        for (int j = 0, k = 0; j < 3 * w; j += 3, k += 4) {
             y = pYuvBuf[j];
             u = pYuvBuf[j + 1];
             v = pYuvBuf[j + 2];
@@ -31,13 +31,13 @@ void RGB2YUVRevert(unsigned char *yuvBuf, unsigned char *rgbBuf, int w, int h, i
             g = ((fy - 401*u - 833*v + 512)>>10);
             b = ((fy + 2065*u + 512)>>10);
 
-            rgbBuf[j + 2] = (b>255) ? 255 : ((b<0) ? 0 : b);
-            rgbBuf[j + 1] = (g>255) ? 255 : ((g<0) ? 0 : g);
-            rgbBuf[j] = (r>255) ? 255 : ((r<0) ? 0 : r);
-            rgbBuf[j + 3] = 255;
+            rgbBuf[k + 2] = (b>255) ? 255 : ((b<0) ? 0 : b);
+            rgbBuf[k + 1] = (g>255) ? 255 : ((g<0) ? 0 : g);
+            rgbBuf[k] = (r>255) ? 255 : ((r<0) ? 0 : r);
+            rgbBuf[k + 3] = 255;
          }
         pYuvBuf -= stride;
-        rgbBuf += stride;
+        rgbBuf += stride_rgb;
         //	fwrite(img+(stride*(h-i-1)),3,w,f);
     }
 }
@@ -209,7 +209,7 @@ JNIEXPORT jobject JNICALL Java_com_xiaoyi_sujin_glstitch_StitchJNIWrapper_proces
     process_time = process_time / milliDivide;
 //    YUV2RGB(dst_frame.planes[0], outputPxBufData, output_format.frame_width * output_format.frame_height * 4);
     RGB2YUVRevert(dst_frame.planes[0], outputPxBufData, output_format.frame_width, output_format.frame_height,
-                  output_format.frame_width  * 4);
+                  output_format.frame_width  * 3);
 
     return outputPxBuf;
 

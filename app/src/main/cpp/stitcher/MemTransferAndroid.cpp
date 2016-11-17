@@ -200,7 +200,7 @@ bool MemTransferAndroid::prepareOutput(int outTexW, int outTexH) {
         return false;
     }
     glBindTexture(GL_TEXTURE_2D, output_tex);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, outputW, outputH, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, outputW, outputH, 0, GL_RGB, GL_UNSIGNED_BYTE, 0);
 
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
@@ -210,7 +210,7 @@ bool MemTransferAndroid::prepareOutput(int outTexW, int outTexH) {
     int usage = GraphicBuffer::USAGE_HW_RENDER | GraphicBuffer::USAGE_SW_READ_OFTEN;
 
     // create graphic buffer
-    _pStitchedGraphicBuffer = std::make_shared<GraphicBuffer>(outputW, outputH, PIXEL_FORMAT_RGBA_8888, usage);
+    _pStitchedGraphicBuffer = std::make_shared<GraphicBuffer>(outputW, outputH, PIXEL_FORMAT_RGB_888, usage);
     // get window buffer
     outputNativeBuf = (struct ANativeWindowBuffer *)_pStitchedGraphicBuffer->getNativeBuffer();
 
@@ -373,9 +373,9 @@ void MemTransferAndroid::fromGPU(unsigned char *buf) {
 
     int stride = _pStitchedGraphicBuffer->getStride();
     for (int row = 0; row < outputH; row++) {
-        memcpy(writePtr, readPtr, outputW * 4);
-        readPtr += stride* 4;
-        writePtr +=  outputW  * 4;
+        memcpy(writePtr, readPtr, outputW * 3);
+        readPtr += stride* 3;
+        writePtr +=  outputW  * 3;
     }
 
     // unlock the graphics buffer again
