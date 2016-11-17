@@ -69,12 +69,12 @@ int GLStitcher::StitchImage(VideoFrame_t * pSrcImgs, VideoFrame_t * pDstImg)
 
 //		glBindVertexArray(vao);
 
-		m_pMemTransfer->toGPU(pSrcImgs[0].planes[0], pSrcImgs[1].planes[0]);
+		m_pMemTransfer->toGPU(&pSrcImgs[0], &pSrcImgs[1]);
 
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_elementBuffer);
 		glDrawElements(GL_TRIANGLE_STRIP, m_pVertexBuilder->GetElementNum(), GL_UNSIGNED_SHORT, NULL);
 
-		m_pMemTransfer->fromGPU(pDstImg->planes[0]);
+		m_pMemTransfer->fromGPU(pDstImg);
 
 	}
 

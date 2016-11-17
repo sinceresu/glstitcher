@@ -91,12 +91,12 @@ public:
     /**
      * Map data in <buf> to GPU.
      */
-    virtual void toGPU(const unsigned char *frontBuf, const unsigned char *backBuf);
+    virtual void toGPU(const VideoFrame_t *frontBuf, const VideoFrame_t *backBuf);
 
     /**
      * Map data from GPU to <buf>
      */
-    virtual void fromGPU(unsigned char *buf);
+    virtual void fromGPU(VideoFrame_t *outputFrm);
 
 private:
 

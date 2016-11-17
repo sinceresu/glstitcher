@@ -4,6 +4,7 @@
 
 #ifndef GLSTITCH_MEMTRANSFER_H
 #define GLSTITCH_MEMTRANSFER_H
+#include "types.h"
 #include "esutil.h"
 
 class MemTransfer {
@@ -41,12 +42,12 @@ public:
     /**
      * Map data in <buf> to GPU.
      */
-    virtual void toGPU(const unsigned char *frontBuf, const unsigned char *backBuf);
+    virtual void toGPU(const VideoFrame_t *frontFrm, const VideoFrame_t *backFrm);
 
     /**
      * Map data from GPU to <buf>
      */
-    virtual void fromGPU(unsigned char *buf);
+    virtual void fromGPU(VideoFrame_t *outputFrm);
 
     static bool initPlatformOptimizations();
 

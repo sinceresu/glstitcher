@@ -3,6 +3,7 @@
 //
 
 #include "MemTransfer.h"
+#include "types.h"
 #include <assert.h>
 
 bool MemTransfer::initPlatformOptimizations() {
@@ -140,12 +141,12 @@ void MemTransfer::releaseOutput() {
     }
 }
 
-void MemTransfer::toGPU(const unsigned char *frontBuf, const unsigned char *backBuf) {
-    assert(preparedInput && front_tex > 0  && back_tex > 0 && frontBuf && backBuf);
+void MemTransfer::toGPU(const VideoFrame_t *frontFrm, const VideoFrame_t *backFrm) {
+    assert(preparedInput && front_tex > 0  && back_tex > 0 && frontFrm && backFrm);
 
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, front_tex);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, inputW, inputH, 0, GL_RGB, GL_UNSIGNED_BYTE, frontBuf);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, inputW, inputH, 0, GL_RGB, GL_UNSIGNED_BYTE, frontFrm->planes[0]);
 /*
     glTexSubImage2D(GL_TEXTURE_2D,
                     0,
@@ -157,7 +158,7 @@ void MemTransfer::toGPU(const unsigned char *frontBuf, const unsigned char *back
 
     glActiveTexture(GL_TEXTURE1);
     glBindTexture(GL_TEXTURE_2D, back_tex);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, inputW, inputH, 0, GL_RGB, GL_UNSIGNED_BYTE, backBuf);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, inputW, inputH, 0, GL_RGB, GL_UNSIGNED_BYTE, backFrm->planes[0]);
 //    glTexSubImage2D(GL_TEXTURE_2D,
 //                    0,
 //                    0, 0,
@@ -168,12 +169,12 @@ void MemTransfer::toGPU(const unsigned char *frontBuf, const unsigned char *back
 
 }
 
-void MemTransfer::fromGPU(unsigned char *buf) {
-    assert(preparedOutput && output_tex > 0 && buf);
+void MemTransfer::fromGPU(VideoFrame_t *outputFrm) {
+    assert(preparedOutput && output_tex > 0 && outputFrm);
 
     glBindTexture(GL_TEXTURE_2D, output_tex);
 
     // default (and slow) way using glReadPixels:
-    glReadPixels(0, 0, outputW, outputH, GL_RGBA, GL_UNSIGNED_BYTE, buf);
+    glReadPixels(0, 0, outputW, outputH, GL_RGBA, GL_UNSIGNED_BYTE, outputFrm->planes[0]);
 
 }

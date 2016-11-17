@@ -298,8 +298,8 @@ void MemTransferAndroid::releaseOutput() {
 
 }
 
-void MemTransferAndroid::toGPU(const unsigned char *frontBuf, const unsigned char *backBuf) {
-    assert(preparedInput && front_tex > 0  && back_tex > 0 && frontBuf && backBuf);
+void MemTransferAndroid::toGPU(const VideoFrame_t *frontFrm, const VideoFrame_t *backFrm) {
+    assert(preparedInput && front_tex > 0  && back_tex > 0 && frontFrm && backFrm);
 
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, front_tex);
@@ -316,7 +316,7 @@ void MemTransferAndroid::toGPU(const unsigned char *frontBuf, const unsigned cha
     // copy whole image from "buf" to "graphicsPtr"
     int stride = _pFrontGraphicBuffer->getStride();
     unsigned char * writePtr = graphicsPtr;
-    const unsigned char * readPtr  = frontBuf;
+    const unsigned char * readPtr  = frontFrm->planes[0];
 
     for (int row = 0; row < inputH; row++) {
         memcpy(writePtr, readPtr, inputW * 3);
@@ -341,7 +341,7 @@ void MemTransferAndroid::toGPU(const unsigned char *frontBuf, const unsigned cha
 
     stride = _pBackGraphicBuffer->getStride();
     writePtr = graphicsPtr;
-    readPtr  = backBuf;
+    readPtr  = backFrm->planes[0];
 
     for (int row = 0; row < inputH; row++) {
         memcpy(writePtr, readPtr, inputW * 3);
@@ -357,8 +357,8 @@ void MemTransferAndroid::toGPU(const unsigned char *frontBuf, const unsigned cha
 
 }
 
-void MemTransferAndroid::fromGPU(unsigned char *buf) {
-    assert(preparedOutput && output_tex > 0 && buf);
+void MemTransferAndroid::fromGPU(VideoFrame_t *outputFrm) {
+    assert(preparedOutput && output_tex > 0 && outputFrm);
 
     glBindTexture(GL_TEXTURE_2D, output_tex);
 
@@ -373,9 +373,8 @@ void MemTransferAndroid::fromGPU(unsigned char *buf) {
     graphicsPtr = (const unsigned char *) temp;
 
     // copy whole image from "graphicsPtr" to "buf"
-   // memcpy(buf, graphicsPtr, outputW * outputH * 4);
     const unsigned char * readPtr = graphicsPtr;
-    unsigned char *  writePtr  = buf;
+    unsigned char *  writePtr  = outputFrm->planes[0];
 
     int stride = _pStitchedGraphicBuffer->getStride();
     for (int row = 0; row < outputH; row++) {
@@ -385,7 +384,6 @@ void MemTransferAndroid::fromGPU(unsigned char *buf) {
     }
 
     // unlock the graphics buffer again
-//    unlockOutputBuffer();
     _pStitchedGraphicBuffer->unlock();
 
 }
