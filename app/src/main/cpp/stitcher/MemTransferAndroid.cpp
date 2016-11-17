@@ -176,7 +176,6 @@ bool MemTransferAndroid::prepareInput(int inTexW, int inTexH) {
     return true;
 }
 
-/*
 bool MemTransferAndroid::prepareOutput(int outTexW, int outTexH) {
     assert(outTexW > 0 && outTexH > 0);
 
@@ -233,6 +232,8 @@ bool MemTransferAndroid::prepareOutput(int outTexW, int outTexH) {
         return 0;
     }
 
+    glEGLImageTargetTexture2DOES(GL_TEXTURE_2D, outputImage);
+
     glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, output_tex, 0);
 
     // done
@@ -240,7 +241,6 @@ bool MemTransferAndroid::prepareOutput(int outTexW, int outTexH) {
 
     return true;
 }
-*/
 
 void MemTransferAndroid::releaseInput() {
     if (front_tex > 0) {
@@ -273,7 +273,6 @@ void MemTransferAndroid::releaseInput() {
 }
 
 
-/*
 void MemTransferAndroid::releaseOutput() {
     if (output_tex > 0) {
         glDeleteTextures(1, &output_tex);
@@ -290,7 +289,6 @@ void MemTransferAndroid::releaseOutput() {
     // release android graphic buffer handle for output
 
 }
-*/
 
 void MemTransferAndroid::toGPU(const unsigned char *frontBuf, const unsigned char *backBuf) {
     assert(preparedInput && front_tex > 0  && back_tex > 0 && frontBuf && backBuf);
@@ -353,7 +351,6 @@ void MemTransferAndroid::toGPU(const unsigned char *frontBuf, const unsigned cha
 
 }
 
-/*
 void MemTransferAndroid::fromGPU(unsigned char *buf) {
     assert(preparedOutput && output_tex > 0 && buf);
 
@@ -376,9 +373,9 @@ void MemTransferAndroid::fromGPU(unsigned char *buf) {
 
     int stride = _pStitchedGraphicBuffer->getStride();
     for (int row = 0; row < outputH; row++) {
-        memcpy(writePtr, readPtr, outputW * 3);
-        readPtr += stride* 3;
-        writePtr +=  outputW  * 3;
+        memcpy(writePtr, readPtr, outputW * 4);
+        readPtr += stride* 4;
+        writePtr +=  outputW  * 4;
     }
 
     // unlock the graphics buffer again
@@ -386,5 +383,4 @@ void MemTransferAndroid::fromGPU(unsigned char *buf) {
     _pStitchedGraphicBuffer->unlock();
 
 }
-*/
 

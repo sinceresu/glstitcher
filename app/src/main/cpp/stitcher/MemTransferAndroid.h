@@ -76,7 +76,7 @@ public:
     /**
      * Prepare for output frames of size <outTexW>x<outTexH>. Return a texture id for the output frames.
      */
-  //  virtual bool prepareOutput(int outTexW, int outTexH);
+    virtual bool prepareOutput(int outTexW, int outTexH);
 
     /**
      * Delete input texture.
@@ -85,7 +85,7 @@ public:
     /**
       * Delete output texture.
       */
-    //virtual void releaseOutput();
+    virtual void releaseOutput();
 
 
     /**
@@ -96,7 +96,7 @@ public:
     /**
      * Map data from GPU to <buf>
      */
-   // virtual void fromGPU(unsigned char *buf);
+    virtual void fromGPU(unsigned char *buf);
 
 private:
 
