@@ -157,6 +157,12 @@ bool MemTransferAndroid::prepareOutput(int outTexW, int outTexH) {
     outputW = outTexW;
     outputH = outTexH;
 
+    _pOutputFormatConverter = FormatConverterFactory::CreateFormatConverter(PIXELFORMAT_ARGB, PIXELFORMAT_ARGB);
+
+    if (!_pOutputFormatConverter)
+        return false;
+    _pOutputFormatConverter->SetImageSize(outTexW, outTexH);
+
     // generate texture id
 
     glGenTextures(1, &output_tex);
@@ -166,7 +172,7 @@ bool MemTransferAndroid::prepareOutput(int outTexW, int outTexH) {
         return false;
     }
     glBindTexture(GL_TEXTURE_2D, output_tex);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, outputW, outputH, 0, GL_RGB, GL_UNSIGNED_BYTE, 0);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, outputW, outputH, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
 
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
@@ -274,37 +280,24 @@ void MemTransferAndroid::toGPU(const VideoFrame_t *frontFrm, const VideoFrame_t 
 //    glEGLImageTargetTexture2DOES(GL_TEXTURE_2D, inputFrontImage);
 
     // lock the graphics buffer at graphicsPtr
-    unsigned char *graphicsPtr;
-    void* temp;
-    _pFrontGraphicBuffer->lock(GraphicBuffer::USAGE_SW_WRITE_OFTEN, &temp);
-    graphicsPtr = (unsigned char *) temp;
-
+    void* graphicsPtr;
+    _pFrontGraphicBuffer->lock(GraphicBuffer::USAGE_SW_WRITE_OFTEN, &graphicsPtr);
     // copy whole image from "buf" to "graphicsPtr"
     int stride = _pFrontGraphicBuffer->getStride();
 
     VideoFrame_t graphic_frm = {
-            PIXELFORMAT_ABGR,
-            {
-                    graphicsPtr, NULL, NULL
-            },
-            {
-                    stride * 4, 0, 0
-    }
+        PIXELFORMAT_ABGR,
+        {
+                (unsigned char *) graphicsPtr, NULL, NULL
+        },
+        {
+                stride * 4, 0, 0
+        }
     };
     _pInputFormatConverter->ConvertImage(frontFrm, &graphic_frm);
 
-/*    unsigned char * writePtr = graphicsPtr;
-    const unsigned char * readPtr  = frontFrm->planes[0];
 
-    for (int row = 0; row < inputH; row++) {
-        memcpy(writePtr, readPtr, inputW * 4);
-        readPtr += inputW  * 4;
-        writePtr += stride * 4;
-    }*/
-   // memcpy(graphicsPtr, frontBuf, stride * inputH * 3);
-    //  memset(graphicsPtr, 0, inputW * inputH * 4);
     // unlock the graphics buffer again
-
     _pFrontGraphicBuffer->unlock();
 
 
@@ -314,31 +307,19 @@ void MemTransferAndroid::toGPU(const VideoFrame_t *frontFrm, const VideoFrame_t 
 //    glEGLImageTargetTexture2DOES(GL_TEXTURE_2D, inputBackImage);
 
     // lock the graphics buffer at graphicsPtr
-    _pBackGraphicBuffer->lock(GraphicBuffer::USAGE_SW_WRITE_OFTEN, &temp);
-    graphicsPtr = (unsigned char *) temp;
-
+    _pBackGraphicBuffer->lock(GraphicBuffer::USAGE_SW_WRITE_OFTEN, &graphicsPtr);
+    // copy whole image from "buf" to "graphicsPtr"
     stride = _pBackGraphicBuffer->getStride();
     graphic_frm = {
-            PIXELFORMAT_ABGR,
-            {
-                    graphicsPtr, NULL, NULL
-            },
-            {
-                    stride * 4, 0, 0
-            }
+        PIXELFORMAT_ABGR,
+        {
+                (unsigned char *) graphicsPtr, NULL, NULL
+        },
+        {
+                stride * 4, 0, 0
+        }
     };
     _pInputFormatConverter->ConvertImage(backFrm, &graphic_frm);
-
-/*    writePtr = graphicsPtr;
-    readPtr  = backFrm->planes[0];
-
-    for (int row = 0; row < inputH; row++) {
-        memcpy(writePtr, readPtr, inputW * 4);
-        readPtr += inputW  * 4;
-        writePtr += stride * 4;
-    }*/
-    // copy whole image from "buf" to "graphicsPtr"
-   // memcpy(graphicsPtr, backBuf, stride * inputH * 3);
 
     // unlock the graphics buffer again
     _pBackGraphicBuffer->unlock();
@@ -356,21 +337,21 @@ void MemTransferAndroid::fromGPU(VideoFrame_t *outputFrm) {
 
 
     // lock the graphics buffer at graphicsPtr
-    const unsigned char *graphicsPtr;
-    void* temp;
-    _pStitchedGraphicBuffer->lock(GraphicBuffer::USAGE_SW_READ_OFTEN, &temp);
-    graphicsPtr = (const unsigned char *) temp;
-
+     void* graphicsPtr;
+    _pStitchedGraphicBuffer->lock(GraphicBuffer::USAGE_SW_READ_OFTEN, &graphicsPtr);
     // copy whole image from "graphicsPtr" to "buf"
-    const unsigned char * readPtr = graphicsPtr;
-    unsigned char *  writePtr  = outputFrm->planes[0];
-
     int stride = _pStitchedGraphicBuffer->getStride();
-    for (int row = 0; row < outputH; row++) {
-        memcpy(writePtr, readPtr, outputW * 4);
-        readPtr += stride * 4;
-        writePtr +=  outputW  * 4;
-    }
+    VideoFrame_t graphic_frm = {
+        PIXELFORMAT_444,
+        {
+                (unsigned char *)graphicsPtr, NULL, NULL
+        },
+        {
+                stride * 4, 0, 0
+        }
+    };
+   _pOutputFormatConverter->ConvertImage(&graphic_frm, outputFrm);
+
 
     // unlock the graphics buffer again
     _pStitchedGraphicBuffer->unlock();

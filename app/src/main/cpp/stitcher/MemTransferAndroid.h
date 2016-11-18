@@ -124,6 +124,7 @@ private:
     std::shared_ptr<GraphicBuffer> _pStitchedGraphicBuffer;
 
     std::shared_ptr<FormatConverter> _pInputFormatConverter;
+    std::shared_ptr<FormatConverter> _pOutputFormatConverter;
 };
 
 

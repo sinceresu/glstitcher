@@ -16,6 +16,7 @@ std::shared_ptr<FormatConverter> FormatConverterFactory::CreateFormatConverter(e
         return std::make_shared<PackedCopyConverter>(4);
     }
 
+
     if (dstPixelFormat == PIXELFORMAT_RGB && srcPixelFormat == PIXELFORMAT_RGB) {
         return std::make_shared<PackedCopyConverter>(3);
     }
