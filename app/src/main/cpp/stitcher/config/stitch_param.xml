@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Stitch>
+    <TargetImageSize width="3840" height="1920"/>
+    <TableStep step_x="16" step_y="16"/>
+    <Cameras>
+        <Camera position="front">
+        	 <ROIS>
+             <ROI left="752" width="2336">
+           		<TableSize width="147" height="121"/>
+             </ROI>
+           </ROIS>
+        </Camera>
+        <Camera position="back">
+        	 <ROIS>
+             <ROI left="0" width="1152">
+           		<TableSize width="73" height="121"/>
+             </ROI>
+             <ROI left="2688" width="1152">
+           		<TableSize width="73" height="121"/>
+             </ROI>
+           </ROIS>
+        </Camera>
+    </Cameras>
+</Stitch>
