@@ -41,6 +41,33 @@ void RGB2YUVRevert(unsigned char *yuvBuf, unsigned char *rgbBuf, int w, int h, i
         //	fwrite(img+(stride*(h-i-1)),3,w,f);
     }
 }
+
+void RGB2RGBRevert(unsigned char *yuvBuf, unsigned char *rgbBuf, int w, int h, int stride)
+{
+    int i, j;
+    int r,g,b,y,u,v;
+    unsigned char *pYuvBuf = yuvBuf + stride * (h - 1);
+    //uint8_t * line = img + stride * (h - 1);
+    int fy;
+    int stride_rgb = w * 4;
+    for (int i = 0; i<h; i++) {
+        for (int j = 0, k = 0; j < 3 * w; j += 3, k += 4) {
+//            r = pYuvBuf[j];
+//            g = pYuvBuf[j + 1];
+//            b = pYuvBuf[j + 2];
+
+            rgbBuf[k + 2] = pYuvBuf[j];
+            rgbBuf[k + 1] = pYuvBuf[j + 1];
+            rgbBuf[k] = pYuvBuf[j + 2];
+            rgbBuf[k + 3] = 255;
+        }
+        pYuvBuf -= stride;
+        rgbBuf += stride_rgb;
+        //	fwrite(img+(stride*(h-i-1)),3,w,f);
+    }
+}
+
+
 int RGB2YUV(unsigned char *rgbBuf, unsigned char *yuvBuf, int buf_block)
 {
     // rgbBuf's data order is interleaved
@@ -186,13 +213,13 @@ JNIEXPORT jobject JNICALL Java_com_xiaoyi_sujin_glstitch_StitchJNIWrapper_proces
         isInitiated = true;
     }*/
 
-    RGB2YUV((uint8_t*)pxFrontInts, front_buffer.data(), input_format.frame_width*input_format.frame_height * 4);
-    RGB2YUV((uint8_t*)pxBackInts, back_buffer.data(), input_format.frame_width*input_format.frame_height * 4);
+//    RGB2YUV((uint8_t*)pxFrontInts, front_buffer.data(), input_format.frame_width*input_format.frame_height * 4);
+//    RGB2YUV((uint8_t*)pxBackInts, back_buffer.data(), input_format.frame_width*input_format.frame_height * 4);
 
     VideoFrame_t src_frame[2];
-    src_frame[0].planes[0] = front_buffer.data();
+    src_frame[0].planes[0] = (uint8_t*)pxFrontInts;
     src_frame[0].strides[0] = input_format.frame_width * 4;
-    src_frame[1].planes[0] = back_buffer.data();
+    src_frame[1].planes[0] = (uint8_t*)pxBackInts;
     src_frame[1].strides[0] = input_format.frame_width * 4;
 
     VideoFrame_t dst_frame;
@@ -208,7 +235,7 @@ JNIEXPORT jobject JNICALL Java_com_xiaoyi_sujin_glstitch_StitchJNIWrapper_proces
     int milliDivide = CLOCKS_PER_SEC / 1000;
     process_time = process_time / milliDivide;
 //    YUV2RGB(dst_frame.planes[0], outputPxBufData, output_format.frame_width * output_format.frame_height * 4);
-    RGB2YUVRevert(dst_frame.planes[0], outputPxBufData, output_format.frame_width, output_format.frame_height,
+    RGB2RGBRevert(dst_frame.planes[0], outputPxBufData, output_format.frame_width, output_format.frame_height,
                   output_format.frame_width  * 3);
 
     return outputPxBuf;

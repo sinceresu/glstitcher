@@ -287,8 +287,8 @@ bool GLStitcher::InitMembers()
 		"    vec4 output2 = texture(tex2, tex_coord2);\n"
 		"\n"
 		//"    color = output1 * tex_alpha1 * tex_coeff1 * adjust + output2 * tex_alpha2;\n"
-		"    color = vec4(output1.r * tex_coeff1 * adjust, output1.g, output1.b, output1.a) * tex_alpha1 + \
-		vec4(output2.r * tex_coeff2, output2.g, output2.b, output2.a) * tex_alpha2;\n"
+		"    color = vec4(output1.r, output1.g, output1.b, output1.a) * tex_coeff1 * tex_alpha1 + \
+		vec4(output2.r, output2.g, output2.b, output2.a) * tex_coeff2 * tex_alpha2;\n"
 		"}\n"
 		;
 
