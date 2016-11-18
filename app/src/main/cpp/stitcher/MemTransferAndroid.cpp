@@ -101,7 +101,7 @@ bool MemTransferAndroid::prepareInput(int inTexW, int inTexH) {
 
     int usage = GraphicBuffer::USAGE_HW_TEXTURE | GraphicBuffer::USAGE_SW_WRITE_OFTEN ;
     // create graphic buffer
-    _pFrontGraphicBuffer = std::make_shared<GraphicBuffer>(inputW, inputH, PIXEL_FORMAT_RGB_888, usage);
+    _pFrontGraphicBuffer = std::make_shared<GraphicBuffer>(inputW, inputH, PIXEL_FORMAT_RGBA_8888, usage);
     // get window buffer
     inputFrontNativeBuf = (struct ANativeWindowBuffer *)_pFrontGraphicBuffer->getNativeBuffer();
 
@@ -111,7 +111,7 @@ bool MemTransferAndroid::prepareInput(int inTexW, int inTexH) {
     }
 
     // create image for reading back the results
-    EGLint eglImgAttrs[] = { EGL_WIDTH, inputW, EGL_HEIGHT, inputH, EGL_MATCH_FORMAT_KHR,  EGL_FORMAT_RGBA_8888_KHR, EGL_IMAGE_PRESERVED_KHR, EGL_TRUE, EGL_NONE };
+    EGLint eglImgAttrs[] = {EGL_IMAGE_PRESERVED_KHR, EGL_TRUE, EGL_NONE };
     inputFrontImage = imageKHRCreate(eglGetDisplay(EGL_DEFAULT_DISPLAY),
                                 EGL_NO_CONTEXT,
                                 EGL_NATIVE_BUFFER_ANDROID,
@@ -139,7 +139,7 @@ bool MemTransferAndroid::prepareInput(int inTexW, int inTexH) {
     GLenum err = glGetError();
     // create graphic buffer
 
-    _pBackGraphicBuffer = std::make_shared<GraphicBuffer>(inputW, inputH, PIXEL_FORMAT_RGB_888, usage);
+    _pBackGraphicBuffer = std::make_shared<GraphicBuffer>(inputW, inputH, PIXEL_FORMAT_RGBA_8888, usage);
     // get window buffer
     inputBackNativeBuf = (struct ANativeWindowBuffer *)_pBackGraphicBuffer->getNativeBuffer();
 
@@ -319,9 +319,9 @@ void MemTransferAndroid::toGPU(const VideoFrame_t *frontFrm, const VideoFrame_t 
     const unsigned char * readPtr  = frontFrm->planes[0];
 
     for (int row = 0; row < inputH; row++) {
-        memcpy(writePtr, readPtr, inputW * 3);
-        readPtr += inputW  * 3;
-        writePtr += stride * 3;
+        memcpy(writePtr, readPtr, inputW * 4);
+        readPtr += inputW  * 4;
+        writePtr += stride * 4;
     }
    // memcpy(graphicsPtr, frontBuf, stride * inputH * 3);
     //  memset(graphicsPtr, 0, inputW * inputH * 4);
@@ -344,9 +344,9 @@ void MemTransferAndroid::toGPU(const VideoFrame_t *frontFrm, const VideoFrame_t 
     readPtr  = backFrm->planes[0];
 
     for (int row = 0; row < inputH; row++) {
-        memcpy(writePtr, readPtr, inputW * 3);
-        readPtr += inputW  * 3;
-        writePtr += stride * 3;
+        memcpy(writePtr, readPtr, inputW * 4);
+        readPtr += inputW  * 4;
+        writePtr += stride * 4;
     }
     // copy whole image from "buf" to "graphicsPtr"
    // memcpy(graphicsPtr, backBuf, stride * inputH * 3);

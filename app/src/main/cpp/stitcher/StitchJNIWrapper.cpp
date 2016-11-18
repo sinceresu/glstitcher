@@ -48,7 +48,7 @@ int RGB2YUV(unsigned char *rgbBuf, unsigned char *yuvBuf, int buf_block)
     int i, j;
     int r,g,b,y,u,v;
     unsigned char *pyBuf = yuvBuf;
-    for (i = 0, j = 0; i < buf_block; i += 4, j += 3) {
+    for (i = 0, j = 0; i < buf_block; i += 4, j += 4) {
         b = rgbBuf[i];
         g = rgbBuf[i + 1];
         r = rgbBuf[i + 2];
@@ -191,9 +191,9 @@ JNIEXPORT jobject JNICALL Java_com_xiaoyi_sujin_glstitch_StitchJNIWrapper_proces
 
     VideoFrame_t src_frame[2];
     src_frame[0].planes[0] = front_buffer.data();
-    src_frame[0].strides[0] = input_format.frame_width * 3;
+    src_frame[0].strides[0] = input_format.frame_width * 4;
     src_frame[1].planes[0] = back_buffer.data();
-    src_frame[1].strides[0] = input_format.frame_width * 3;
+    src_frame[1].strides[0] = input_format.frame_width * 4;
 
     VideoFrame_t dst_frame;
     dst_frame.planes[0] = stitched_buffer.data();
