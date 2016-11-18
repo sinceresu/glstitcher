@@ -25,3 +25,5 @@
 2895	3274	0	../../../../build/intermediates/cmake/debug/obj/arm64-v8a/libstitch-lib.so	aa40118ff875c75f
 4	454	0	CMakeFiles/stitch-lib.dir/src/main/cpp/stitcher/MemTransferAndroid.cpp.o	8406385473daca28
 454	870	0	../../../../build/intermediates/cmake/debug/obj/arm64-v8a/libstitch-lib.so	aa40118ff875c75f
+2	126	0	../../../../build/intermediates/cmake/debug/obj/arm64-v8a/libtinyxml2.so	7a90c2638ca3b33c
+4	397	0	../../../../build/intermediates/cmake/debug/obj/arm64-v8a/libstitch-lib.so	aa40118ff875c75f

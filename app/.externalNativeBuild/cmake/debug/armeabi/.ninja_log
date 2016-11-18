@@ -23,3 +23,5 @@
 1962	3007	0	CMakeFiles/stitch-lib.dir/src/main/cpp/platform/android/egl.cpp.o	7930ff7a619513ee
 2695	3786	0	CMakeFiles/stitch-lib.dir/src/main/cpp/stitcher/StitchJNIWrapper.cpp.o	3acdca17bf42b794
 626	977	0	../../../../build/intermediates/cmake/debug/obj/armeabi/libstitch-lib.so	664e81a79c2b4b74
+1	157	0	../../../../build/intermediates/cmake/debug/obj/armeabi/libtinyxml2.so	afd22fa7ece0e82c
+3	355	0	../../../../build/intermediates/cmake/debug/obj/armeabi/libstitch-lib.so	664e81a79c2b4b74

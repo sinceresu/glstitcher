@@ -25,3 +25,5 @@
 4234	4620	0	../../../../build/intermediates/cmake/debug/obj/mips/libstitch-lib.so	ff6507bdcb497551
 6	550	0	CMakeFiles/stitch-lib.dir/src/main/cpp/stitcher/MemTransferAndroid.cpp.o	184e60d569344d87
 550	982	0	../../../../build/intermediates/cmake/debug/obj/mips/libstitch-lib.so	ff6507bdcb497551
+2	148	0	../../../../build/intermediates/cmake/debug/obj/mips/libtinyxml2.so	a0b9bd24be63952d
+4	374	0	../../../../build/intermediates/cmake/debug/obj/mips/libstitch-lib.so	ff6507bdcb497551

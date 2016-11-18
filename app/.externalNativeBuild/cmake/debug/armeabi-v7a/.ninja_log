@@ -25,3 +25,5 @@
 2891	3780	0	CMakeFiles/stitch-lib.dir/src/main/cpp/stitcher/StitchJNIWrapper.cpp.o	753d380f9284ece6
 4	586	0	CMakeFiles/stitch-lib.dir/src/main/cpp/stitcher/MemTransferAndroid.cpp.o	e1d7d1b15b52bf53
 586	1020	0	../../../../build/intermediates/cmake/debug/obj/armeabi-v7a/libstitch-lib.so	1de5fcbb0219d98
+2	173	0	../../../../build/intermediates/cmake/debug/obj/armeabi-v7a/libtinyxml2.so	1c283655f7533694
+5	356	0	../../../../build/intermediates/cmake/debug/obj/armeabi-v7a/libstitch-lib.so	1de5fcbb0219d98
