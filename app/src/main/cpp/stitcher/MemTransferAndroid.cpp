@@ -92,13 +92,10 @@ bool MemTransferAndroid::prepareInput(int inTexW, int inTexH) {
     glGenTextures(1, &front_tex);
     glBindTexture(GL_TEXTURE_2D, front_tex);
 
-
-
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-
 
     glEGLImageTargetTexture2DOES(GL_TEXTURE_2D, inputFrontImage);
 
@@ -276,17 +273,13 @@ void MemTransferAndroid::toGPU(const VideoFrame_t *frontFrm, const VideoFrame_t 
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, front_tex);
 
-    // activate the image KHR for the input
-//    glEGLImageTargetTexture2DOES(GL_TEXTURE_2D, inputFrontImage);
-
     // lock the graphics buffer at graphicsPtr
     void* graphicsPtr;
     _pFrontGraphicBuffer->lock(GraphicBuffer::USAGE_SW_WRITE_OFTEN, &graphicsPtr);
     // copy whole image from "buf" to "graphicsPtr"
     int stride = _pFrontGraphicBuffer->getStride();
-
     VideoFrame_t graphic_frm = {
-        PIXELFORMAT_ABGR,
+        PIXELFORMAT_ARGB,
         {
                 (unsigned char *) graphicsPtr, NULL, NULL
         },
@@ -295,11 +288,8 @@ void MemTransferAndroid::toGPU(const VideoFrame_t *frontFrm, const VideoFrame_t 
         }
     };
     _pInputFormatConverter->ConvertImage(frontFrm, &graphic_frm);
-
-
     // unlock the graphics buffer again
     _pFrontGraphicBuffer->unlock();
-
 
     glActiveTexture(GL_TEXTURE1);
     glBindTexture(GL_TEXTURE_2D, back_tex);
@@ -311,7 +301,7 @@ void MemTransferAndroid::toGPU(const VideoFrame_t *frontFrm, const VideoFrame_t 
     // copy whole image from "buf" to "graphicsPtr"
     stride = _pBackGraphicBuffer->getStride();
     graphic_frm = {
-        PIXELFORMAT_ABGR,
+        PIXELFORMAT_ARGB,
         {
                 (unsigned char *) graphicsPtr, NULL, NULL
         },
@@ -342,7 +332,7 @@ void MemTransferAndroid::fromGPU(VideoFrame_t *outputFrm) {
     // copy whole image from "graphicsPtr" to "buf"
     int stride = _pStitchedGraphicBuffer->getStride();
     VideoFrame_t graphic_frm = {
-        PIXELFORMAT_444,
+        PIXELFORMAT_ARGB,
         {
                 (unsigned char *)graphicsPtr, NULL, NULL
         },
@@ -351,7 +341,6 @@ void MemTransferAndroid::fromGPU(VideoFrame_t *outputFrm) {
         }
     };
    _pOutputFormatConverter->ConvertImage(&graphic_frm, outputFrm);
-
 
     // unlock the graphics buffer again
     _pStitchedGraphicBuffer->unlock();

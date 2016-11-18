@@ -7,40 +7,6 @@
 #include "GLStitcher.h"
 #include <time.h>
 
-void RGB2YUVRevert(unsigned char *yuvBuf, unsigned char *rgbBuf, int w, int h, int stride)
-{
-    int i, j;
-    int r,g,b,y,u,v;
-    unsigned char *pYuvBuf = yuvBuf + stride * (h - 1);
-    //uint8_t * line = img + stride * (h - 1);
-    int fy;
-    int stride_rgb = w * 4;
-    for (int i = 0; i<h; i++) {
-        for (int j = 0, k = 0; j < 3 * w; j += 3, k += 4) {
-            y = pYuvBuf[j];
-            u = pYuvBuf[j + 1];
-            v = pYuvBuf[j + 2];
-
-            y -= 16;
-            u -= 128;
-            v -= 128;
-
-            fy = 1192*y;
-
-            r = ((fy           + 1634*v + 512)>>10);
-            g = ((fy - 401*u - 833*v + 512)>>10);
-            b = ((fy + 2065*u + 512)>>10);
-
-            rgbBuf[k + 2] = (b>255) ? 255 : ((b<0) ? 0 : b);
-            rgbBuf[k + 1] = (g>255) ? 255 : ((g<0) ? 0 : g);
-            rgbBuf[k] = (r>255) ? 255 : ((r<0) ? 0 : r);
-            rgbBuf[k + 3] = 255;
-         }
-        pYuvBuf -= stride;
-        rgbBuf += stride_rgb;
-        //	fwrite(img+(stride*(h-i-1)),3,w,f);
-    }
-}
 
 void RGBA2RGBARevert(unsigned char *inputBuf, unsigned char *outputBuf, int w, int h, int stride)
 {
@@ -55,7 +21,7 @@ void RGBA2RGBARevert(unsigned char *inputBuf, unsigned char *outputBuf, int w, i
             outputBuf[k + 2] = pInputBuf[j];
             outputBuf[k + 1] = pInputBuf[j + 1];
             outputBuf[k] = pInputBuf[j + 2];
-            outputBuf[k + 3] = 255;
+            outputBuf[k + 3] = pInputBuf[j + 3];
         }
         pInputBuf -= stride;
         outputBuf += stride_rgb;
@@ -63,67 +29,6 @@ void RGBA2RGBARevert(unsigned char *inputBuf, unsigned char *outputBuf, int w, i
     }
 }
 
-
-int RGB2YUV(unsigned char *rgbBuf, unsigned char *yuvBuf, int buf_block)
-{
-    // rgbBuf's data order is interleaved
-    // yuvBuf's data order is separated
-    int i, j;
-    int r,g,b,y,u,v;
-    unsigned char *pyBuf = yuvBuf;
-    for (i = 0, j = 0; i < buf_block; i += 4, j += 4) {
-        b = rgbBuf[i];
-        g = rgbBuf[i + 1];
-        r = rgbBuf[i + 2];
-
-        y = (( 263*r + 516*g + 100*b + 16896)>>10);
-        u = ((-152*r - 298*g + 450*b + 131584)>>10);
-        v =  ((450*r - 377*g - 73*b + 131584)>>10);
-
-        pyBuf[j] = (y>255) ? 255 : ((y<0) ? 0 : y);
-        pyBuf[j + 1] = (u>255) ? 255 : ((u<0) ? 0 : u);
-        pyBuf[j + 2] = (v>255) ? 255 : ((v<0) ? 0 : v);
-        pyBuf[j + 3] = 255;
-    }
-    return 0;
-}
-
-int YUV2RGB(unsigned char *yuvBuf, unsigned char *rgbBuf, int buf_block)
-{
-    // yuvBuf's data order is separated
-    // rgbBuf's data order is interleaved
-    int i, j;
-    int r,g,b,y,u,v;
-
-    int fy;
-
-    unsigned char *prgbBuf = rgbBuf ;
-
-    for(i = 0, j = 0; i < buf_block; i+=4, j+=4)
-    {
-        y = yuvBuf[i];
-        u = yuvBuf[i + 1];
-        v = yuvBuf[i + 2];
-
-        y -= 16;
-        u -= 128;
-        v -= 128;
-
-        fy = 1192*y;
-
-        r = ((fy           + 1634*v + 512)>>10);
-        g = ((fy - 401*u - 833*v + 512)>>10);
-        b = ((fy + 2065*u + 512)>>10);
-
-        rgbBuf[j] = (b>255) ? 255 : ((b<0) ? 0 : b);
-        rgbBuf[j + 1] = (g>255) ? 255 : ((g<0) ? 0 : g);
-        rgbBuf[j + 2] = (r>255) ? 255 : ((r<0) ? 0 : r);
-        rgbBuf[j + 3] = 255;
-
-    }
-
-    return 0;
-}
 
 
 static jlong outputPxBufNumBytes = 0;			// number of bytes in output buffer
