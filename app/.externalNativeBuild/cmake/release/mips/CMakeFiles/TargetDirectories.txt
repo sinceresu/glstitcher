@@ -1,0 +1,17 @@
+C:/MyProjects/glStitch/app/.externalNativeBuild/cmake/release/mips/CMakeFiles/stitch-lib.dir
+C:/MyProjects/glStitch/app/.externalNativeBuild/cmake/release/mips/CMakeFiles/edit_cache.dir
+C:/MyProjects/glStitch/app/.externalNativeBuild/cmake/release/mips/CMakeFiles/install.dir
+C:/MyProjects/glStitch/app/.externalNativeBuild/cmake/release/mips/CMakeFiles/install/local.dir
+C:/MyProjects/glStitch/app/.externalNativeBuild/cmake/release/mips/CMakeFiles/rebuild_cache.dir
+C:/MyProjects/glStitch/app/.externalNativeBuild/cmake/release/mips/CMakeFiles/list_install_components.dir
+C:/MyProjects/glStitch/app/.externalNativeBuild/cmake/release/mips/CMakeFiles/install/strip.dir
+C:/MyProjects/glStitch/app/.externalNativeBuild/cmake/release/mips/src/main/cpp/tinyxml2/CMakeFiles/DATA_COPY.dir
+C:/MyProjects/glStitch/app/.externalNativeBuild/cmake/release/mips/src/main/cpp/tinyxml2/CMakeFiles/list_install_components.dir
+C:/MyProjects/glStitch/app/.externalNativeBuild/cmake/release/mips/src/main/cpp/tinyxml2/CMakeFiles/xmltest.dir
+C:/MyProjects/glStitch/app/.externalNativeBuild/cmake/release/mips/src/main/cpp/tinyxml2/CMakeFiles/tinyxml2.dir
+C:/MyProjects/glStitch/app/.externalNativeBuild/cmake/release/mips/src/main/cpp/tinyxml2/CMakeFiles/uninstall.dir
+C:/MyProjects/glStitch/app/.externalNativeBuild/cmake/release/mips/src/main/cpp/tinyxml2/CMakeFiles/edit_cache.dir
+C:/MyProjects/glStitch/app/.externalNativeBuild/cmake/release/mips/src/main/cpp/tinyxml2/CMakeFiles/install.dir
+C:/MyProjects/glStitch/app/.externalNativeBuild/cmake/release/mips/src/main/cpp/tinyxml2/CMakeFiles/install/local.dir
+C:/MyProjects/glStitch/app/.externalNativeBuild/cmake/release/mips/src/main/cpp/tinyxml2/CMakeFiles/rebuild_cache.dir
+C:/MyProjects/glStitch/app/.externalNativeBuild/cmake/release/mips/src/main/cpp/tinyxml2/CMakeFiles/install/strip.dir

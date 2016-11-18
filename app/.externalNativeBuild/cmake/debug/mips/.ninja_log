@@ -1,0 +1,27 @@
+# ninja log v5
+3	878	0	src/main/cpp/tinyxml2/CMakeFiles/tinyxml2.dir/tinyxml2.cpp.o	8946f3158a3d2013
+878	1015	0	../../../../build/intermediates/cmake/debug/obj/mips/libtinyxml2.so	a0b9bd24be63952d
+1164	1821	0	CMakeFiles/stitch-lib.dir/src/main/cpp/stitcher/ParamReader.cpp.o	a4aabcd3709caefa
+12	1133	0	CMakeFiles/stitch-lib.dir/src/main/cpp/stitcher/TexMapBuilder.cpp.o	95edd43933a384e7
+4	1178	0	CMakeFiles/stitch-lib.dir/src/main/cpp/stitcher/MapPointsBuilder.cpp.o	4411fea1853b6439
+20	1163	0	CMakeFiles/stitch-lib.dir/src/main/cpp/stitcher/MaskMaker.cpp.o	ccd238b3e8ba3d7d
+1133	1694	0	CMakeFiles/stitch-lib.dir/src/main/cpp/stitcher/MemTransfer.cpp.o	a04141d6f2f94b72
+34	1192	0	CMakeFiles/stitch-lib.dir/src/main/cpp/stitcher/ColorCorrector.cpp.o	5d5ef5cb95dc6b9f
+75	1212	0	CMakeFiles/stitch-lib.dir/src/main/cpp/stitcher/VertexBuilder.cpp.o	fa94f80425fb8fd3
+105	2008	0	CMakeFiles/stitch-lib.dir/src/main/cpp/stitcher/MemTransferFactory.cpp.o	694385eb1b0e4d18
+1193	2160	0	CMakeFiles/stitch-lib.dir/src/main/cpp/stitcher/ImageStitcher.cpp.o	1edb38bd21d6ba26
+1178	2808	0	CMakeFiles/stitch-lib.dir/src/main/cpp/stitcher/MemTransferAndroid.cpp.o	184e60d569344d87
+1212	3524	0	CMakeFiles/stitch-lib.dir/src/main/cpp/stitcher/GLStitcher.cpp.o	d2f8b44ccb4908dd
+2905	3459	0	CMakeFiles/stitch-lib.dir/src/main/cpp/stitcher/FormatConverter.cpp.o	f4400d3a53be55e0
+1821	2905	0	CMakeFiles/stitch-lib.dir/src/main/cpp/platform/android/egl.cpp.o	24f3cdc20bcbef69
+1694	2209	0	CMakeFiles/stitch-lib.dir/src/main/cpp/esutil/Source/esShader.c.o	72da5f60da9a6cdf
+2778	3601	0	CMakeFiles/stitch-lib.dir/src/main/cpp/stitcher/GraphicBuffer.cpp.o	7507a9704ada6bc7
+2160	2778	0	CMakeFiles/stitch-lib.dir/src/main/cpp/esutil/Source/esUtil.c.o	54601111d89d267c
+3004	3581	0	CMakeFiles/stitch-lib.dir/src/main/cpp/esutil/Source/Android/esUtil_Android.c.o	f03d8139503a3407
+2008	3003	0	CMakeFiles/stitch-lib.dir/src/main/cpp/stitcher/FormatConverterFactory.cpp.o	ff2a758980500feb
+2209	3141	0	CMakeFiles/stitch-lib.dir/src/main/cpp/stitcher/PackedCopyConverter.cpp.o	dd11f54caa1d1984
+2808	3593	0	CMakeFiles/stitch-lib.dir/src/main/cpp/stitcher/DynamicLibrary.cpp.o	351020ac31a7255c
+3141	4234	0	CMakeFiles/stitch-lib.dir/src/main/cpp/stitcher/StitchJNIWrapper.cpp.o	4b2ccba10ade73a8
+4234	4620	0	../../../../build/intermediates/cmake/debug/obj/mips/libstitch-lib.so	ff6507bdcb497551
+6	550	0	CMakeFiles/stitch-lib.dir/src/main/cpp/stitcher/MemTransferAndroid.cpp.o	184e60d569344d87
+550	982	0	../../../../build/intermediates/cmake/debug/obj/mips/libstitch-lib.so	ff6507bdcb497551

@@ -13,76 +13,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eb3f9eba-9705-4983-94dd-5a6717ed158b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/animated_vector_drawable_24_2_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_24_2_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/espresso_core_2_2_2.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/espresso_idling_resource_2_2_2.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/exposed_instrumentation_api_publish_0_5.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/hamcrest_core_1_3.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/hamcrest_integration_1_3.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/hamcrest_library_1_3.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/javawriter_2_1_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/javax_annotation_api_1_2.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/javax_inject_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/jsr305_2_0_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/junit_4_12.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/rules_0_5.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/runner_0_5.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/support_annotations_24_2_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/support_compat_24_2_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/support_core_ui_24_2_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/support_core_utils_24_2_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/support_fragment_24_2_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/support_media_compat_24_2_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/support_v4_24_2_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/support_vector_drawable_24_2_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/cpp/common/common_includes.h" afterPath="$PROJECT_DIR$/app/src/main/cpp/common/common_includes.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/cpp/common/core.cpp" afterPath="$PROJECT_DIR$/app/src/main/cpp/common/core.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/cpp/common/core.h" afterPath="$PROJECT_DIR$/app/src/main/cpp/common/core.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/cpp/common/gl/fbo.cpp" afterPath="$PROJECT_DIR$/app/src/main/cpp/common/gl/fbo.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/cpp/common/gl/fbo.h" afterPath="$PROJECT_DIR$/app/src/main/cpp/common/gl/fbo.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/cpp/common/gl/memtransfer.cpp" afterPath="$PROJECT_DIR$/app/src/main/cpp/common/gl/memtransfer.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/cpp/common/gl/memtransfer.h" afterPath="$PROJECT_DIR$/app/src/main/cpp/common/gl/memtransfer.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/cpp/common/gl/memtransfer_factory.cpp" afterPath="$PROJECT_DIR$/app/src/main/cpp/common/gl/memtransfer_factory.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/cpp/common/gl/memtransfer_factory.h" afterPath="$PROJECT_DIR$/app/src/main/cpp/common/gl/memtransfer_factory.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/cpp/common/gl/memtransfer_optimized.h" afterPath="$PROJECT_DIR$/app/src/main/cpp/common/gl/memtransfer_optimized.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/cpp/common/gl/shader.cpp" afterPath="$PROJECT_DIR$/app/src/main/cpp/common/gl/shader.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/cpp/common/gl/shader.h" afterPath="$PROJECT_DIR$/app/src/main/cpp/common/gl/shader.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/cpp/common/macros.h" afterPath="$PROJECT_DIR$/app/src/main/cpp/common/macros.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/cpp/common/proc/adapt_thresh.h" afterPath="$PROJECT_DIR$/app/src/main/cpp/common/proc/adapt_thresh.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/cpp/common/proc/base/filterprocbase.cpp" afterPath="$PROJECT_DIR$/app/src/main/cpp/common/proc/base/filterprocbase.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/cpp/common/proc/base/filterprocbase.h" afterPath="$PROJECT_DIR$/app/src/main/cpp/common/proc/base/filterprocbase.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/cpp/common/proc/base/multipassproc.cpp" afterPath="$PROJECT_DIR$/app/src/main/cpp/common/proc/base/multipassproc.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/cpp/common/proc/base/multipassproc.h" afterPath="$PROJECT_DIR$/app/src/main/cpp/common/proc/base/multipassproc.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/cpp/common/proc/base/procbase.cpp" afterPath="$PROJECT_DIR$/app/src/main/cpp/common/proc/base/procbase.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/cpp/common/proc/base/procbase.h" afterPath="$PROJECT_DIR$/app/src/main/cpp/common/proc/base/procbase.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/cpp/common/proc/base/procinterface.h" afterPath="$PROJECT_DIR$/app/src/main/cpp/common/proc/base/procinterface.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/cpp/common/proc/disp.cpp" afterPath="$PROJECT_DIR$/app/src/main/cpp/common/proc/disp.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/cpp/common/proc/disp.h" afterPath="$PROJECT_DIR$/app/src/main/cpp/common/proc/disp.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/cpp/common/proc/gauss.h" afterPath="$PROJECT_DIR$/app/src/main/cpp/common/proc/gauss.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/cpp/common/proc/grayscale.cpp" afterPath="$PROJECT_DIR$/app/src/main/cpp/common/proc/grayscale.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/cpp/common/proc/grayscale.h" afterPath="$PROJECT_DIR$/app/src/main/cpp/common/proc/grayscale.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/cpp/common/proc/multipass/adapt_thresh_pass.cpp" afterPath="$PROJECT_DIR$/app/src/main/cpp/common/proc/multipass/adapt_thresh_pass.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/cpp/common/proc/multipass/adapt_thresh_pass.h" afterPath="$PROJECT_DIR$/app/src/main/cpp/common/proc/multipass/adapt_thresh_pass.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/cpp/common/proc/multipass/gauss_pass.cpp" afterPath="$PROJECT_DIR$/app/src/main/cpp/common/proc/multipass/gauss_pass.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/cpp/common/proc/multipass/gauss_pass.h" afterPath="$PROJECT_DIR$/app/src/main/cpp/common/proc/multipass/gauss_pass.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/cpp/common/proc/thresh.cpp" afterPath="$PROJECT_DIR$/app/src/main/cpp/common/proc/thresh.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/cpp/common/proc/thresh.h" afterPath="$PROJECT_DIR$/app/src/main/cpp/common/proc/thresh.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/cpp/common/tools.cpp" afterPath="$PROJECT_DIR$/app/src/main/cpp/common/tools.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/cpp/common/tools.h" afterPath="$PROJECT_DIR$/app/src/main/cpp/common/tools.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/cpp/common/types.h" afterPath="$PROJECT_DIR$/app/src/main/cpp/common/types.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/cpp/platform/android/egl.cpp" afterPath="$PROJECT_DIR$/app/src/main/cpp/platform/android/egl.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/cpp/platform/android/egl.h" afterPath="$PROJECT_DIR$/app/src/main/cpp/platform/android/egl.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/cpp/platform/android/gl_includes.h" afterPath="$PROJECT_DIR$/app/src/main/cpp/platform/android/gl_includes.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/cpp/platform/android/macros.h" afterPath="$PROJECT_DIR$/app/src/main/cpp/platform/android/macros.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/cpp/platform/android/memtransfer_android.cpp" afterPath="$PROJECT_DIR$/app/src/main/cpp/platform/android/memtransfer_android.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/cpp/platform/android/memtransfer_android.h" afterPath="$PROJECT_DIR$/app/src/main/cpp/platform/android/memtransfer_android.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/cpp/platform/ios/gl_includes.h" afterPath="$PROJECT_DIR$/app/src/main/cpp/platform/ios/gl_includes.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/cpp/platform/ios/memtransfer_ios.cpp" afterPath="$PROJECT_DIR$/app/src/main/cpp/platform/ios/memtransfer_ios.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/cpp/platform/ios/memtransfer_ios.h" afterPath="$PROJECT_DIR$/app/src/main/cpp/platform/ios/memtransfer_ios.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/cpp/tinyxml2/CMakeLists.txt" afterPath="$PROJECT_DIR$/app/src/main/cpp/tinyxml2/CMakeLists.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gradlew" afterPath="$PROJECT_DIR$/gradlew" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/animated_vector_drawable_24_2_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_24_2_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/espresso_core_2_2_2.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/espresso_idling_resource_2_2_2.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/exposed_instrumentation_api_publish_0_5.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/hamcrest_core_1_3.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/hamcrest_integration_1_3.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/hamcrest_library_1_3.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/javawriter_2_1_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/javax_annotation_api_1_2.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/javax_inject_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/jsr305_2_0_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/junit_4_12.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/rules_0_5.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/runner_0_5.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/support_annotations_24_2_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/support_compat_24_2_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/support_core_ui_24_2_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/support_core_utils_24_2_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/support_fragment_24_2_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/support_media_compat_24_2_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/support_v4_24_2_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/support_vector_drawable_24_2_1.xml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="glStitch.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -1952,6 +1907,7 @@
         <option value="$PROJECT_DIR$/app/src/main/cpp/stitcher/MemTransfer.cpp" />
         <option value="$PROJECT_DIR$/app/src/main/cpp/stitcher/YUV444ToNVConverter.cpp" />
         <option value="$PROJECT_DIR$/app/src/main/cpp/stitcher/GraphicBuffer.h" />
+        <option value="$PROJECT_DIR$/app/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/app/src/main/cpp/stitcher/NVCopyConverter.h" />
         <option value="$PROJECT_DIR$/app/src/main/cpp/stitcher/NVCopyConverter.cpp" />
         <option value="$PROJECT_DIR$/app/src/main/cpp/stitcher/common.h" />
@@ -1963,7 +1919,6 @@
         <option value="$PROJECT_DIR$/app/src/main/cpp/stitcher/StitchJNIWrapper.cpp" />
         <option value="$PROJECT_DIR$/app/src/main/cpp/stitcher/GLStitcher.cpp" />
         <option value="$PROJECT_DIR$/app/src/main/cpp/stitcher/MemTransferAndroid.cpp" />
-        <option value="$PROJECT_DIR$/app/CMakeLists.txt" />
       </list>
     </option>
   </component>
@@ -1999,8 +1954,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane" />
-      <pane id="Scope" />
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -2011,6 +1964,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="ProjectPane" />
+      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="Scratches" />
     </panes>
@@ -2351,8 +2306,8 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35947713" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32897604" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32938644" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32897604" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32897604" sideWeight="0.49781898" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24972737" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -2364,8 +2319,8 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24972796" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2603486" sideWeight="0.5694066" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2603486" sideWeight="0.5694066" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
