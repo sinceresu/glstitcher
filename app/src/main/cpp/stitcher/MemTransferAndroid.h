@@ -20,6 +20,8 @@
 #include <GLES2/gl2ext.h>
 #include <memory>
 
+class FormatConverter;
+
 class GraphicBuffer;
 // constructor
 typedef void (*GraphicBufferFnCtor)(void *graphicBufHndl, uint32_t w, uint32_t h, uint32_t format, uint32_t usage);
@@ -121,6 +123,7 @@ private:
 
     std::shared_ptr<GraphicBuffer> _pStitchedGraphicBuffer;
 
+    std::shared_ptr<FormatConverter> _pInputFormatConverter;
 };
 
 

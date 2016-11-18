@@ -49,6 +49,9 @@ add_library( # Sets the name of the library.
              src/main/cpp/stitcher/MemTransferFactory.cpp
              src/main/cpp/stitcher/GraphicBuffer.cpp
              src/main/cpp/stitcher/DynamicLibrary.cpp
+             src/main/cpp/stitcher/FormatConverter.cpp
+             src/main/cpp/stitcher/PackedCopyConverter.cpp
+             src/main/cpp/stitcher/FormatConverterFactory.cpp
              src/main/cpp/platform/android/egl.cpp
              src/main/cpp/esutil/Source/esShader.c
              src/main/cpp/esutil/Source/esUtil.c

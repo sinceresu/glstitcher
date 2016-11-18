@@ -8,48 +8,8 @@
 #include "GraphicBuffer.h"
 
 #include "../common/common_includes.h"
-
-
-enum {
-    /* buffer is never read in software */
-            GRALLOC_USAGE_SW_READ_NEVER   = 0x00000000,
-    /* buffer is rarely read in software */
-            GRALLOC_USAGE_SW_READ_RARELY  = 0x00000002,
-    /* buffer is often read in software */
-            GRALLOC_USAGE_SW_READ_OFTEN   = 0x00000003,
-    /* mask for the software read values */
-            GRALLOC_USAGE_SW_READ_MASK    = 0x0000000F,
-
-    /* buffer is never written in software */
-            GRALLOC_USAGE_SW_WRITE_NEVER  = 0x00000000,
-    /* buffer is never written in software */
-            GRALLOC_USAGE_SW_WRITE_RARELY = 0x00000020,
-    /* buffer is never written in software */
-            GRALLOC_USAGE_SW_WRITE_OFTEN  = 0x00000030,
-    /* mask for the software write values */
-            GRALLOC_USAGE_SW_WRITE_MASK   = 0x000000F0,
-
-    /* buffer will be used as an OpenGL ES texture */
-            GRALLOC_USAGE_HW_TEXTURE      = 0x00000100,
-    /* buffer will be used as an OpenGL ES render target */
-            GRALLOC_USAGE_HW_RENDER       = 0x00000200,
-    /* buffer will be used by the 2D hardware blitter */
-            GRALLOC_USAGE_HW_2D           = 0x00000400,
-    /* buffer will be used with the framebuffer device */
-            GRALLOC_USAGE_HW_FB           = 0x00001000,
-    /* mask for the software usage bit-mask */
-            GRALLOC_USAGE_HW_MASK         = 0x00001F00,
-};
-
-enum {
-    HAL_PIXEL_FORMAT_RGBA_8888          = 1,
-    HAL_PIXEL_FORMAT_RGBX_8888          = 2,
-    HAL_PIXEL_FORMAT_RGB_888            = 3,
-    HAL_PIXEL_FORMAT_RGB_565            = 4,
-    HAL_PIXEL_FORMAT_BGRA_8888          = 5,
-    HAL_PIXEL_FORMAT_RGBA_5551          = 6,
-    HAL_PIXEL_FORMAT_RGBA_4444          = 7,
-};
+#include "FormatConverterFactory.h"
+#include "FormatConverter.h"
 
 EGLExtFnCreateImage MemTransferAndroid::imageKHRCreate = NULL;
 EGLExtFnDestroyImage MemTransferAndroid::imageKHRDestroy = NULL;
@@ -97,6 +57,12 @@ bool MemTransferAndroid::prepareInput(int inTexW, int inTexH) {
     // set attributes
     inputW = inTexW;
     inputH = inTexH;
+
+    _pInputFormatConverter = FormatConverterFactory::CreateFormatConverter(PIXELFORMAT_ARGB, PIXELFORMAT_ARGB);
+
+    if (!_pInputFormatConverter)
+        return false;
+    _pInputFormatConverter->SetImageSize(inTexW, inTexH);
 
 
     int usage = GraphicBuffer::USAGE_HW_TEXTURE | GraphicBuffer::USAGE_SW_WRITE_OFTEN ;
@@ -315,14 +281,26 @@ void MemTransferAndroid::toGPU(const VideoFrame_t *frontFrm, const VideoFrame_t 
 
     // copy whole image from "buf" to "graphicsPtr"
     int stride = _pFrontGraphicBuffer->getStride();
-    unsigned char * writePtr = graphicsPtr;
+
+    VideoFrame_t graphic_frm = {
+            PIXELFORMAT_ABGR,
+            {
+                    graphicsPtr, NULL, NULL
+            },
+            {
+                    stride * 4, 0, 0
+    }
+    };
+    _pInputFormatConverter->ConvertImage(frontFrm, &graphic_frm);
+
+/*    unsigned char * writePtr = graphicsPtr;
     const unsigned char * readPtr  = frontFrm->planes[0];
 
     for (int row = 0; row < inputH; row++) {
         memcpy(writePtr, readPtr, inputW * 4);
         readPtr += inputW  * 4;
         writePtr += stride * 4;
-    }
+    }*/
    // memcpy(graphicsPtr, frontBuf, stride * inputH * 3);
     //  memset(graphicsPtr, 0, inputW * inputH * 4);
     // unlock the graphics buffer again
@@ -340,14 +318,25 @@ void MemTransferAndroid::toGPU(const VideoFrame_t *frontFrm, const VideoFrame_t 
     graphicsPtr = (unsigned char *) temp;
 
     stride = _pBackGraphicBuffer->getStride();
-    writePtr = graphicsPtr;
+    graphic_frm = {
+            PIXELFORMAT_ABGR,
+            {
+                    graphicsPtr, NULL, NULL
+            },
+            {
+                    stride * 4, 0, 0
+            }
+    };
+    _pInputFormatConverter->ConvertImage(backFrm, &graphic_frm);
+
+/*    writePtr = graphicsPtr;
     readPtr  = backFrm->planes[0];
 
     for (int row = 0; row < inputH; row++) {
         memcpy(writePtr, readPtr, inputW * 4);
         readPtr += inputW  * 4;
         writePtr += stride * 4;
-    }
+    }*/
     // copy whole image from "buf" to "graphicsPtr"
    // memcpy(graphicsPtr, backBuf, stride * inputH * 3);
 
