@@ -42,27 +42,23 @@ void RGB2YUVRevert(unsigned char *yuvBuf, unsigned char *rgbBuf, int w, int h, i
     }
 }
 
-void RGB2RGBRevert(unsigned char *yuvBuf, unsigned char *rgbBuf, int w, int h, int stride)
+void RGBA2RGBARevert(unsigned char *inputBuf, unsigned char *outputBuf, int w, int h, int stride)
 {
     int i, j;
     int r,g,b,y,u,v;
-    unsigned char *pYuvBuf = yuvBuf + stride * (h - 1);
+    unsigned char *pInputBuf = inputBuf + stride * (h - 1);
     //uint8_t * line = img + stride * (h - 1);
     int fy;
     int stride_rgb = w * 4;
     for (int i = 0; i<h; i++) {
-        for (int j = 0, k = 0; j < 3 * w; j += 3, k += 4) {
-//            r = pYuvBuf[j];
-//            g = pYuvBuf[j + 1];
-//            b = pYuvBuf[j + 2];
-
-            rgbBuf[k + 2] = pYuvBuf[j];
-            rgbBuf[k + 1] = pYuvBuf[j + 1];
-            rgbBuf[k] = pYuvBuf[j + 2];
-            rgbBuf[k + 3] = 255;
+        for (int j = 0, k = 0; j < 4 * w; j += 4, k += 4) {
+            outputBuf[k + 2] = pInputBuf[j];
+            outputBuf[k + 1] = pInputBuf[j + 1];
+            outputBuf[k] = pInputBuf[j + 2];
+            outputBuf[k + 3] = 255;
         }
-        pYuvBuf -= stride;
-        rgbBuf += stride_rgb;
+        pInputBuf -= stride;
+        outputBuf += stride_rgb;
         //	fwrite(img+(stride*(h-i-1)),3,w,f);
     }
 }
@@ -224,6 +220,7 @@ JNIEXPORT jobject JNICALL Java_com_xiaoyi_sujin_glstitch_StitchJNIWrapper_proces
 
     VideoFrame_t dst_frame;
     dst_frame.planes[0] = stitched_buffer.data();
+    dst_frame.strides[0] = output_format.frame_width * 4;
 
     stitcher->StitchImage(src_frame, &dst_frame);
 
@@ -235,8 +232,8 @@ JNIEXPORT jobject JNICALL Java_com_xiaoyi_sujin_glstitch_StitchJNIWrapper_proces
     int milliDivide = CLOCKS_PER_SEC / 1000;
     process_time = process_time / milliDivide;
 //    YUV2RGB(dst_frame.planes[0], outputPxBufData, output_format.frame_width * output_format.frame_height * 4);
-    RGB2RGBRevert(dst_frame.planes[0], outputPxBufData, output_format.frame_width, output_format.frame_height,
-                  output_format.frame_width  * 3);
+    RGBA2RGBARevert(dst_frame.planes[0], outputPxBufData, output_format.frame_width, output_format.frame_height,
+                  output_format.frame_width  * 4);
 
     return outputPxBuf;
 

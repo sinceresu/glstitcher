@@ -176,7 +176,7 @@ bool MemTransferAndroid::prepareOutput(int outTexW, int outTexH) {
     int usage = GraphicBuffer::USAGE_HW_RENDER | GraphicBuffer::USAGE_SW_READ_OFTEN;
 
     // create graphic buffer
-    _pStitchedGraphicBuffer = std::make_shared<GraphicBuffer>(outputW, outputH, PIXEL_FORMAT_RGB_888, usage);
+    _pStitchedGraphicBuffer = std::make_shared<GraphicBuffer>(outputW, outputH, PIXEL_FORMAT_RGBA_8888, usage);
     // get window buffer
     outputNativeBuf = (struct ANativeWindowBuffer *)_pStitchedGraphicBuffer->getNativeBuffer();
 
@@ -367,9 +367,9 @@ void MemTransferAndroid::fromGPU(VideoFrame_t *outputFrm) {
 
     int stride = _pStitchedGraphicBuffer->getStride();
     for (int row = 0; row < outputH; row++) {
-        memcpy(writePtr, readPtr, outputW * 3);
-        readPtr += stride * 3;
-        writePtr +=  outputW  * 3;
+        memcpy(writePtr, readPtr, outputW * 4);
+        readPtr += stride * 4;
+        writePtr +=  outputW  * 4;
     }
 
     // unlock the graphics buffer again

@@ -18,6 +18,10 @@ PackedCopyConverter::~PackedCopyConverter()
 
 int PackedCopyConverter::ConvertImage(const VideoFrame_t *pSrcImg, VideoFrame_t *pDstImg)
 {
+    if (pSrcImg->strides[0] == pDstImg->strides[0]) {
+        memcpy(pDstImg->planes[0], pSrcImg->planes[0], pSrcImg->strides[0] * _height * _nPixelBytes);
+        return 0;
+    }
     unsigned char * writePtr = pDstImg->planes[0];
     const unsigned char * readPtr  = pSrcImg->planes[0];
 
