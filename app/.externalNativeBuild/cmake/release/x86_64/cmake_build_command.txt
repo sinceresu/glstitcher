@@ -1,6 +1,6 @@
 Executable : C:\android-sdk\cmake\3.6.3155560\bin\cmake.exe
 arguments : 
--HC:\MyProjects\glStitch\app
+-HC:\MyProjects\glStitch\app\src\main\cpp
 -BC:\MyProjects\glStitch\app\.externalNativeBuild\cmake\release\x86_64
 -GAndroid Gradle - Ninja
 -DANDROID_ABI=x86_64

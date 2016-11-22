@@ -36,193 +36,193 @@ include rules.ninja
 #############################################
 # Order-only phony target for stitch-lib
 
-build cmake_order_depends_target_stitch-lib: phony || ../../../../build/intermediates/cmake/debug/obj/x86_64/libtinyxml2.so
-build CMakeFiles/stitch-lib.dir/src/main/cpp/stitcher/ColorCorrector.cpp.o: CXX_COMPILER__stitch-lib ../../../../src/main/cpp/stitcher/ColorCorrector.cpp || cmake_order_depends_target_stitch-lib
+build cmake_order_depends_target_stitch-lib: phony || C$:/MyProjects/glStitch/app/build/intermediates/cmake/debug/obj/x86_64/libtinyxml2.so
+build CMakeFiles/stitch-lib.dir/stitcher/ColorCorrector.cpp.o: CXX_COMPILER__stitch-lib C$:/MyProjects/glStitch/app/src/main/cpp/stitcher/ColorCorrector.cpp || cmake_order_depends_target_stitch-lib
   DEFINES = -DANDROID -Dstitch_lib_EXPORTS
-  DEP_FILE = CMakeFiles\stitch-lib.dir\src\main\cpp\stitcher\ColorCorrector.cpp.o.d
+  DEP_FILE = CMakeFiles\stitch-lib.dir\stitcher\ColorCorrector.cpp.o.d
   FLAGS = -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -std=c++11 -frtti -fexceptions -std=c++11 -fno-rtti -Wall -O0 -fno-limit-debug-info -O0 -fno-limit-debug-info  -fPIC
-  INCLUDES = -I../../../../src/main/cpp/esutil/Include -I../../../../src/main/cpp/tinyxml2 -I../../../../src/main/cpp/tinyxml2/. -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/libs/x86_64/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/backward
+  INCLUDES = -IC:/MyProjects/glStitch/app/src/main/cpp/esutil/Include -IC:/MyProjects/glStitch/app/src/main/cpp/tinyxml2 -IC:/MyProjects/glStitch/app/src/main/cpp/tinyxml2/. -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/libs/x86_64/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/backward
   IN_ABS = C:\MyProjects\glStitch\app\src\main\cpp\stitcher\ColorCorrector.cpp
   OBJECT_DIR = CMakeFiles\stitch-lib.dir
-  OBJECT_FILE_DIR = CMakeFiles\stitch-lib.dir\src\main\cpp\stitcher
-build CMakeFiles/stitch-lib.dir/src/main/cpp/stitcher/MapPointsBuilder.cpp.o: CXX_COMPILER__stitch-lib ../../../../src/main/cpp/stitcher/MapPointsBuilder.cpp || cmake_order_depends_target_stitch-lib
+  OBJECT_FILE_DIR = CMakeFiles\stitch-lib.dir\stitcher
+build CMakeFiles/stitch-lib.dir/stitcher/MapPointsBuilder.cpp.o: CXX_COMPILER__stitch-lib C$:/MyProjects/glStitch/app/src/main/cpp/stitcher/MapPointsBuilder.cpp || cmake_order_depends_target_stitch-lib
   DEFINES = -DANDROID -Dstitch_lib_EXPORTS
-  DEP_FILE = CMakeFiles\stitch-lib.dir\src\main\cpp\stitcher\MapPointsBuilder.cpp.o.d
+  DEP_FILE = CMakeFiles\stitch-lib.dir\stitcher\MapPointsBuilder.cpp.o.d
   FLAGS = -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -std=c++11 -frtti -fexceptions -std=c++11 -fno-rtti -Wall -O0 -fno-limit-debug-info -O0 -fno-limit-debug-info  -fPIC
-  INCLUDES = -I../../../../src/main/cpp/esutil/Include -I../../../../src/main/cpp/tinyxml2 -I../../../../src/main/cpp/tinyxml2/. -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/libs/x86_64/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/backward
+  INCLUDES = -IC:/MyProjects/glStitch/app/src/main/cpp/esutil/Include -IC:/MyProjects/glStitch/app/src/main/cpp/tinyxml2 -IC:/MyProjects/glStitch/app/src/main/cpp/tinyxml2/. -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/libs/x86_64/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/backward
   IN_ABS = C:\MyProjects\glStitch\app\src\main\cpp\stitcher\MapPointsBuilder.cpp
   OBJECT_DIR = CMakeFiles\stitch-lib.dir
-  OBJECT_FILE_DIR = CMakeFiles\stitch-lib.dir\src\main\cpp\stitcher
-build CMakeFiles/stitch-lib.dir/src/main/cpp/stitcher/MaskMaker.cpp.o: CXX_COMPILER__stitch-lib ../../../../src/main/cpp/stitcher/MaskMaker.cpp || cmake_order_depends_target_stitch-lib
+  OBJECT_FILE_DIR = CMakeFiles\stitch-lib.dir\stitcher
+build CMakeFiles/stitch-lib.dir/stitcher/MaskMaker.cpp.o: CXX_COMPILER__stitch-lib C$:/MyProjects/glStitch/app/src/main/cpp/stitcher/MaskMaker.cpp || cmake_order_depends_target_stitch-lib
   DEFINES = -DANDROID -Dstitch_lib_EXPORTS
-  DEP_FILE = CMakeFiles\stitch-lib.dir\src\main\cpp\stitcher\MaskMaker.cpp.o.d
+  DEP_FILE = CMakeFiles\stitch-lib.dir\stitcher\MaskMaker.cpp.o.d
   FLAGS = -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -std=c++11 -frtti -fexceptions -std=c++11 -fno-rtti -Wall -O0 -fno-limit-debug-info -O0 -fno-limit-debug-info  -fPIC
-  INCLUDES = -I../../../../src/main/cpp/esutil/Include -I../../../../src/main/cpp/tinyxml2 -I../../../../src/main/cpp/tinyxml2/. -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/libs/x86_64/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/backward
+  INCLUDES = -IC:/MyProjects/glStitch/app/src/main/cpp/esutil/Include -IC:/MyProjects/glStitch/app/src/main/cpp/tinyxml2 -IC:/MyProjects/glStitch/app/src/main/cpp/tinyxml2/. -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/libs/x86_64/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/backward
   IN_ABS = C:\MyProjects\glStitch\app\src\main\cpp\stitcher\MaskMaker.cpp
   OBJECT_DIR = CMakeFiles\stitch-lib.dir
-  OBJECT_FILE_DIR = CMakeFiles\stitch-lib.dir\src\main\cpp\stitcher
-build CMakeFiles/stitch-lib.dir/src/main/cpp/stitcher/TexMapBuilder.cpp.o: CXX_COMPILER__stitch-lib ../../../../src/main/cpp/stitcher/TexMapBuilder.cpp || cmake_order_depends_target_stitch-lib
+  OBJECT_FILE_DIR = CMakeFiles\stitch-lib.dir\stitcher
+build CMakeFiles/stitch-lib.dir/stitcher/TexMapBuilder.cpp.o: CXX_COMPILER__stitch-lib C$:/MyProjects/glStitch/app/src/main/cpp/stitcher/TexMapBuilder.cpp || cmake_order_depends_target_stitch-lib
   DEFINES = -DANDROID -Dstitch_lib_EXPORTS
-  DEP_FILE = CMakeFiles\stitch-lib.dir\src\main\cpp\stitcher\TexMapBuilder.cpp.o.d
+  DEP_FILE = CMakeFiles\stitch-lib.dir\stitcher\TexMapBuilder.cpp.o.d
   FLAGS = -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -std=c++11 -frtti -fexceptions -std=c++11 -fno-rtti -Wall -O0 -fno-limit-debug-info -O0 -fno-limit-debug-info  -fPIC
-  INCLUDES = -I../../../../src/main/cpp/esutil/Include -I../../../../src/main/cpp/tinyxml2 -I../../../../src/main/cpp/tinyxml2/. -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/libs/x86_64/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/backward
+  INCLUDES = -IC:/MyProjects/glStitch/app/src/main/cpp/esutil/Include -IC:/MyProjects/glStitch/app/src/main/cpp/tinyxml2 -IC:/MyProjects/glStitch/app/src/main/cpp/tinyxml2/. -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/libs/x86_64/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/backward
   IN_ABS = C:\MyProjects\glStitch\app\src\main\cpp\stitcher\TexMapBuilder.cpp
   OBJECT_DIR = CMakeFiles\stitch-lib.dir
-  OBJECT_FILE_DIR = CMakeFiles\stitch-lib.dir\src\main\cpp\stitcher
-build CMakeFiles/stitch-lib.dir/src/main/cpp/stitcher/VertexBuilder.cpp.o: CXX_COMPILER__stitch-lib ../../../../src/main/cpp/stitcher/VertexBuilder.cpp || cmake_order_depends_target_stitch-lib
+  OBJECT_FILE_DIR = CMakeFiles\stitch-lib.dir\stitcher
+build CMakeFiles/stitch-lib.dir/stitcher/VertexBuilder.cpp.o: CXX_COMPILER__stitch-lib C$:/MyProjects/glStitch/app/src/main/cpp/stitcher/VertexBuilder.cpp || cmake_order_depends_target_stitch-lib
   DEFINES = -DANDROID -Dstitch_lib_EXPORTS
-  DEP_FILE = CMakeFiles\stitch-lib.dir\src\main\cpp\stitcher\VertexBuilder.cpp.o.d
+  DEP_FILE = CMakeFiles\stitch-lib.dir\stitcher\VertexBuilder.cpp.o.d
   FLAGS = -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -std=c++11 -frtti -fexceptions -std=c++11 -fno-rtti -Wall -O0 -fno-limit-debug-info -O0 -fno-limit-debug-info  -fPIC
-  INCLUDES = -I../../../../src/main/cpp/esutil/Include -I../../../../src/main/cpp/tinyxml2 -I../../../../src/main/cpp/tinyxml2/. -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/libs/x86_64/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/backward
+  INCLUDES = -IC:/MyProjects/glStitch/app/src/main/cpp/esutil/Include -IC:/MyProjects/glStitch/app/src/main/cpp/tinyxml2 -IC:/MyProjects/glStitch/app/src/main/cpp/tinyxml2/. -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/libs/x86_64/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/backward
   IN_ABS = C:\MyProjects\glStitch\app\src\main\cpp\stitcher\VertexBuilder.cpp
   OBJECT_DIR = CMakeFiles\stitch-lib.dir
-  OBJECT_FILE_DIR = CMakeFiles\stitch-lib.dir\src\main\cpp\stitcher
-build CMakeFiles/stitch-lib.dir/src/main/cpp/stitcher/ImageStitcher.cpp.o: CXX_COMPILER__stitch-lib ../../../../src/main/cpp/stitcher/ImageStitcher.cpp || cmake_order_depends_target_stitch-lib
+  OBJECT_FILE_DIR = CMakeFiles\stitch-lib.dir\stitcher
+build CMakeFiles/stitch-lib.dir/stitcher/ImageStitcher.cpp.o: CXX_COMPILER__stitch-lib C$:/MyProjects/glStitch/app/src/main/cpp/stitcher/ImageStitcher.cpp || cmake_order_depends_target_stitch-lib
   DEFINES = -DANDROID -Dstitch_lib_EXPORTS
-  DEP_FILE = CMakeFiles\stitch-lib.dir\src\main\cpp\stitcher\ImageStitcher.cpp.o.d
+  DEP_FILE = CMakeFiles\stitch-lib.dir\stitcher\ImageStitcher.cpp.o.d
   FLAGS = -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -std=c++11 -frtti -fexceptions -std=c++11 -fno-rtti -Wall -O0 -fno-limit-debug-info -O0 -fno-limit-debug-info  -fPIC
-  INCLUDES = -I../../../../src/main/cpp/esutil/Include -I../../../../src/main/cpp/tinyxml2 -I../../../../src/main/cpp/tinyxml2/. -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/libs/x86_64/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/backward
+  INCLUDES = -IC:/MyProjects/glStitch/app/src/main/cpp/esutil/Include -IC:/MyProjects/glStitch/app/src/main/cpp/tinyxml2 -IC:/MyProjects/glStitch/app/src/main/cpp/tinyxml2/. -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/libs/x86_64/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/backward
   IN_ABS = C:\MyProjects\glStitch\app\src\main\cpp\stitcher\ImageStitcher.cpp
   OBJECT_DIR = CMakeFiles\stitch-lib.dir
-  OBJECT_FILE_DIR = CMakeFiles\stitch-lib.dir\src\main\cpp\stitcher
-build CMakeFiles/stitch-lib.dir/src/main/cpp/stitcher/GLStitcher.cpp.o: CXX_COMPILER__stitch-lib ../../../../src/main/cpp/stitcher/GLStitcher.cpp || cmake_order_depends_target_stitch-lib
+  OBJECT_FILE_DIR = CMakeFiles\stitch-lib.dir\stitcher
+build CMakeFiles/stitch-lib.dir/stitcher/GLStitcher.cpp.o: CXX_COMPILER__stitch-lib C$:/MyProjects/glStitch/app/src/main/cpp/stitcher/GLStitcher.cpp || cmake_order_depends_target_stitch-lib
   DEFINES = -DANDROID -Dstitch_lib_EXPORTS
-  DEP_FILE = CMakeFiles\stitch-lib.dir\src\main\cpp\stitcher\GLStitcher.cpp.o.d
+  DEP_FILE = CMakeFiles\stitch-lib.dir\stitcher\GLStitcher.cpp.o.d
   FLAGS = -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -std=c++11 -frtti -fexceptions -std=c++11 -fno-rtti -Wall -O0 -fno-limit-debug-info -O0 -fno-limit-debug-info  -fPIC
-  INCLUDES = -I../../../../src/main/cpp/esutil/Include -I../../../../src/main/cpp/tinyxml2 -I../../../../src/main/cpp/tinyxml2/. -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/libs/x86_64/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/backward
+  INCLUDES = -IC:/MyProjects/glStitch/app/src/main/cpp/esutil/Include -IC:/MyProjects/glStitch/app/src/main/cpp/tinyxml2 -IC:/MyProjects/glStitch/app/src/main/cpp/tinyxml2/. -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/libs/x86_64/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/backward
   IN_ABS = C:\MyProjects\glStitch\app\src\main\cpp\stitcher\GLStitcher.cpp
   OBJECT_DIR = CMakeFiles\stitch-lib.dir
-  OBJECT_FILE_DIR = CMakeFiles\stitch-lib.dir\src\main\cpp\stitcher
-build CMakeFiles/stitch-lib.dir/src/main/cpp/stitcher/ParamReader.cpp.o: CXX_COMPILER__stitch-lib ../../../../src/main/cpp/stitcher/ParamReader.cpp || cmake_order_depends_target_stitch-lib
+  OBJECT_FILE_DIR = CMakeFiles\stitch-lib.dir\stitcher
+build CMakeFiles/stitch-lib.dir/stitcher/ParamReader.cpp.o: CXX_COMPILER__stitch-lib C$:/MyProjects/glStitch/app/src/main/cpp/stitcher/ParamReader.cpp || cmake_order_depends_target_stitch-lib
   DEFINES = -DANDROID -Dstitch_lib_EXPORTS
-  DEP_FILE = CMakeFiles\stitch-lib.dir\src\main\cpp\stitcher\ParamReader.cpp.o.d
+  DEP_FILE = CMakeFiles\stitch-lib.dir\stitcher\ParamReader.cpp.o.d
   FLAGS = -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -std=c++11 -frtti -fexceptions -std=c++11 -fno-rtti -Wall -O0 -fno-limit-debug-info -O0 -fno-limit-debug-info  -fPIC
-  INCLUDES = -I../../../../src/main/cpp/esutil/Include -I../../../../src/main/cpp/tinyxml2 -I../../../../src/main/cpp/tinyxml2/. -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/libs/x86_64/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/backward
+  INCLUDES = -IC:/MyProjects/glStitch/app/src/main/cpp/esutil/Include -IC:/MyProjects/glStitch/app/src/main/cpp/tinyxml2 -IC:/MyProjects/glStitch/app/src/main/cpp/tinyxml2/. -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/libs/x86_64/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/backward
   IN_ABS = C:\MyProjects\glStitch\app\src\main\cpp\stitcher\ParamReader.cpp
   OBJECT_DIR = CMakeFiles\stitch-lib.dir
-  OBJECT_FILE_DIR = CMakeFiles\stitch-lib.dir\src\main\cpp\stitcher
-build CMakeFiles/stitch-lib.dir/src/main/cpp/stitcher/MemTransfer.cpp.o: CXX_COMPILER__stitch-lib ../../../../src/main/cpp/stitcher/MemTransfer.cpp || cmake_order_depends_target_stitch-lib
+  OBJECT_FILE_DIR = CMakeFiles\stitch-lib.dir\stitcher
+build CMakeFiles/stitch-lib.dir/stitcher/MemTransfer.cpp.o: CXX_COMPILER__stitch-lib C$:/MyProjects/glStitch/app/src/main/cpp/stitcher/MemTransfer.cpp || cmake_order_depends_target_stitch-lib
   DEFINES = -DANDROID -Dstitch_lib_EXPORTS
-  DEP_FILE = CMakeFiles\stitch-lib.dir\src\main\cpp\stitcher\MemTransfer.cpp.o.d
+  DEP_FILE = CMakeFiles\stitch-lib.dir\stitcher\MemTransfer.cpp.o.d
   FLAGS = -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -std=c++11 -frtti -fexceptions -std=c++11 -fno-rtti -Wall -O0 -fno-limit-debug-info -O0 -fno-limit-debug-info  -fPIC
-  INCLUDES = -I../../../../src/main/cpp/esutil/Include -I../../../../src/main/cpp/tinyxml2 -I../../../../src/main/cpp/tinyxml2/. -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/libs/x86_64/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/backward
+  INCLUDES = -IC:/MyProjects/glStitch/app/src/main/cpp/esutil/Include -IC:/MyProjects/glStitch/app/src/main/cpp/tinyxml2 -IC:/MyProjects/glStitch/app/src/main/cpp/tinyxml2/. -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/libs/x86_64/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/backward
   IN_ABS = C:\MyProjects\glStitch\app\src\main\cpp\stitcher\MemTransfer.cpp
   OBJECT_DIR = CMakeFiles\stitch-lib.dir
-  OBJECT_FILE_DIR = CMakeFiles\stitch-lib.dir\src\main\cpp\stitcher
-build CMakeFiles/stitch-lib.dir/src/main/cpp/stitcher/MemTransferAndroid.cpp.o: CXX_COMPILER__stitch-lib ../../../../src/main/cpp/stitcher/MemTransferAndroid.cpp || cmake_order_depends_target_stitch-lib
+  OBJECT_FILE_DIR = CMakeFiles\stitch-lib.dir\stitcher
+build CMakeFiles/stitch-lib.dir/stitcher/MemTransferAndroid.cpp.o: CXX_COMPILER__stitch-lib C$:/MyProjects/glStitch/app/src/main/cpp/stitcher/MemTransferAndroid.cpp || cmake_order_depends_target_stitch-lib
   DEFINES = -DANDROID -Dstitch_lib_EXPORTS
-  DEP_FILE = CMakeFiles\stitch-lib.dir\src\main\cpp\stitcher\MemTransferAndroid.cpp.o.d
+  DEP_FILE = CMakeFiles\stitch-lib.dir\stitcher\MemTransferAndroid.cpp.o.d
   FLAGS = -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -std=c++11 -frtti -fexceptions -std=c++11 -fno-rtti -Wall -O0 -fno-limit-debug-info -O0 -fno-limit-debug-info  -fPIC
-  INCLUDES = -I../../../../src/main/cpp/esutil/Include -I../../../../src/main/cpp/tinyxml2 -I../../../../src/main/cpp/tinyxml2/. -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/libs/x86_64/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/backward
+  INCLUDES = -IC:/MyProjects/glStitch/app/src/main/cpp/esutil/Include -IC:/MyProjects/glStitch/app/src/main/cpp/tinyxml2 -IC:/MyProjects/glStitch/app/src/main/cpp/tinyxml2/. -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/libs/x86_64/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/backward
   IN_ABS = C:\MyProjects\glStitch\app\src\main\cpp\stitcher\MemTransferAndroid.cpp
   OBJECT_DIR = CMakeFiles\stitch-lib.dir
-  OBJECT_FILE_DIR = CMakeFiles\stitch-lib.dir\src\main\cpp\stitcher
-build CMakeFiles/stitch-lib.dir/src/main/cpp/stitcher/MemTransferFactory.cpp.o: CXX_COMPILER__stitch-lib ../../../../src/main/cpp/stitcher/MemTransferFactory.cpp || cmake_order_depends_target_stitch-lib
+  OBJECT_FILE_DIR = CMakeFiles\stitch-lib.dir\stitcher
+build CMakeFiles/stitch-lib.dir/stitcher/MemTransferFactory.cpp.o: CXX_COMPILER__stitch-lib C$:/MyProjects/glStitch/app/src/main/cpp/stitcher/MemTransferFactory.cpp || cmake_order_depends_target_stitch-lib
   DEFINES = -DANDROID -Dstitch_lib_EXPORTS
-  DEP_FILE = CMakeFiles\stitch-lib.dir\src\main\cpp\stitcher\MemTransferFactory.cpp.o.d
+  DEP_FILE = CMakeFiles\stitch-lib.dir\stitcher\MemTransferFactory.cpp.o.d
   FLAGS = -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -std=c++11 -frtti -fexceptions -std=c++11 -fno-rtti -Wall -O0 -fno-limit-debug-info -O0 -fno-limit-debug-info  -fPIC
-  INCLUDES = -I../../../../src/main/cpp/esutil/Include -I../../../../src/main/cpp/tinyxml2 -I../../../../src/main/cpp/tinyxml2/. -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/libs/x86_64/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/backward
+  INCLUDES = -IC:/MyProjects/glStitch/app/src/main/cpp/esutil/Include -IC:/MyProjects/glStitch/app/src/main/cpp/tinyxml2 -IC:/MyProjects/glStitch/app/src/main/cpp/tinyxml2/. -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/libs/x86_64/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/backward
   IN_ABS = C:\MyProjects\glStitch\app\src\main\cpp\stitcher\MemTransferFactory.cpp
   OBJECT_DIR = CMakeFiles\stitch-lib.dir
-  OBJECT_FILE_DIR = CMakeFiles\stitch-lib.dir\src\main\cpp\stitcher
-build CMakeFiles/stitch-lib.dir/src/main/cpp/stitcher/GraphicBuffer.cpp.o: CXX_COMPILER__stitch-lib ../../../../src/main/cpp/stitcher/GraphicBuffer.cpp || cmake_order_depends_target_stitch-lib
+  OBJECT_FILE_DIR = CMakeFiles\stitch-lib.dir\stitcher
+build CMakeFiles/stitch-lib.dir/stitcher/GraphicBuffer.cpp.o: CXX_COMPILER__stitch-lib C$:/MyProjects/glStitch/app/src/main/cpp/stitcher/GraphicBuffer.cpp || cmake_order_depends_target_stitch-lib
   DEFINES = -DANDROID -Dstitch_lib_EXPORTS
-  DEP_FILE = CMakeFiles\stitch-lib.dir\src\main\cpp\stitcher\GraphicBuffer.cpp.o.d
+  DEP_FILE = CMakeFiles\stitch-lib.dir\stitcher\GraphicBuffer.cpp.o.d
   FLAGS = -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -std=c++11 -frtti -fexceptions -std=c++11 -fno-rtti -Wall -O0 -fno-limit-debug-info -O0 -fno-limit-debug-info  -fPIC
-  INCLUDES = -I../../../../src/main/cpp/esutil/Include -I../../../../src/main/cpp/tinyxml2 -I../../../../src/main/cpp/tinyxml2/. -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/libs/x86_64/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/backward
+  INCLUDES = -IC:/MyProjects/glStitch/app/src/main/cpp/esutil/Include -IC:/MyProjects/glStitch/app/src/main/cpp/tinyxml2 -IC:/MyProjects/glStitch/app/src/main/cpp/tinyxml2/. -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/libs/x86_64/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/backward
   IN_ABS = C:\MyProjects\glStitch\app\src\main\cpp\stitcher\GraphicBuffer.cpp
   OBJECT_DIR = CMakeFiles\stitch-lib.dir
-  OBJECT_FILE_DIR = CMakeFiles\stitch-lib.dir\src\main\cpp\stitcher
-build CMakeFiles/stitch-lib.dir/src/main/cpp/stitcher/DynamicLibrary.cpp.o: CXX_COMPILER__stitch-lib ../../../../src/main/cpp/stitcher/DynamicLibrary.cpp || cmake_order_depends_target_stitch-lib
+  OBJECT_FILE_DIR = CMakeFiles\stitch-lib.dir\stitcher
+build CMakeFiles/stitch-lib.dir/stitcher/DynamicLibrary.cpp.o: CXX_COMPILER__stitch-lib C$:/MyProjects/glStitch/app/src/main/cpp/stitcher/DynamicLibrary.cpp || cmake_order_depends_target_stitch-lib
   DEFINES = -DANDROID -Dstitch_lib_EXPORTS
-  DEP_FILE = CMakeFiles\stitch-lib.dir\src\main\cpp\stitcher\DynamicLibrary.cpp.o.d
+  DEP_FILE = CMakeFiles\stitch-lib.dir\stitcher\DynamicLibrary.cpp.o.d
   FLAGS = -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -std=c++11 -frtti -fexceptions -std=c++11 -fno-rtti -Wall -O0 -fno-limit-debug-info -O0 -fno-limit-debug-info  -fPIC
-  INCLUDES = -I../../../../src/main/cpp/esutil/Include -I../../../../src/main/cpp/tinyxml2 -I../../../../src/main/cpp/tinyxml2/. -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/libs/x86_64/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/backward
+  INCLUDES = -IC:/MyProjects/glStitch/app/src/main/cpp/esutil/Include -IC:/MyProjects/glStitch/app/src/main/cpp/tinyxml2 -IC:/MyProjects/glStitch/app/src/main/cpp/tinyxml2/. -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/libs/x86_64/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/backward
   IN_ABS = C:\MyProjects\glStitch\app\src\main\cpp\stitcher\DynamicLibrary.cpp
   OBJECT_DIR = CMakeFiles\stitch-lib.dir
-  OBJECT_FILE_DIR = CMakeFiles\stitch-lib.dir\src\main\cpp\stitcher
-build CMakeFiles/stitch-lib.dir/src/main/cpp/stitcher/FormatConverter.cpp.o: CXX_COMPILER__stitch-lib ../../../../src/main/cpp/stitcher/FormatConverter.cpp || cmake_order_depends_target_stitch-lib
+  OBJECT_FILE_DIR = CMakeFiles\stitch-lib.dir\stitcher
+build CMakeFiles/stitch-lib.dir/stitcher/FormatConverter.cpp.o: CXX_COMPILER__stitch-lib C$:/MyProjects/glStitch/app/src/main/cpp/stitcher/FormatConverter.cpp || cmake_order_depends_target_stitch-lib
   DEFINES = -DANDROID -Dstitch_lib_EXPORTS
-  DEP_FILE = CMakeFiles\stitch-lib.dir\src\main\cpp\stitcher\FormatConverter.cpp.o.d
+  DEP_FILE = CMakeFiles\stitch-lib.dir\stitcher\FormatConverter.cpp.o.d
   FLAGS = -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -std=c++11 -frtti -fexceptions -std=c++11 -fno-rtti -Wall -O0 -fno-limit-debug-info -O0 -fno-limit-debug-info  -fPIC
-  INCLUDES = -I../../../../src/main/cpp/esutil/Include -I../../../../src/main/cpp/tinyxml2 -I../../../../src/main/cpp/tinyxml2/. -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/libs/x86_64/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/backward
+  INCLUDES = -IC:/MyProjects/glStitch/app/src/main/cpp/esutil/Include -IC:/MyProjects/glStitch/app/src/main/cpp/tinyxml2 -IC:/MyProjects/glStitch/app/src/main/cpp/tinyxml2/. -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/libs/x86_64/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/backward
   IN_ABS = C:\MyProjects\glStitch\app\src\main\cpp\stitcher\FormatConverter.cpp
   OBJECT_DIR = CMakeFiles\stitch-lib.dir
-  OBJECT_FILE_DIR = CMakeFiles\stitch-lib.dir\src\main\cpp\stitcher
-build CMakeFiles/stitch-lib.dir/src/main/cpp/stitcher/PackedCopyConverter.cpp.o: CXX_COMPILER__stitch-lib ../../../../src/main/cpp/stitcher/PackedCopyConverter.cpp || cmake_order_depends_target_stitch-lib
+  OBJECT_FILE_DIR = CMakeFiles\stitch-lib.dir\stitcher
+build CMakeFiles/stitch-lib.dir/stitcher/PackedCopyConverter.cpp.o: CXX_COMPILER__stitch-lib C$:/MyProjects/glStitch/app/src/main/cpp/stitcher/PackedCopyConverter.cpp || cmake_order_depends_target_stitch-lib
   DEFINES = -DANDROID -Dstitch_lib_EXPORTS
-  DEP_FILE = CMakeFiles\stitch-lib.dir\src\main\cpp\stitcher\PackedCopyConverter.cpp.o.d
+  DEP_FILE = CMakeFiles\stitch-lib.dir\stitcher\PackedCopyConverter.cpp.o.d
   FLAGS = -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -std=c++11 -frtti -fexceptions -std=c++11 -fno-rtti -Wall -O0 -fno-limit-debug-info -O0 -fno-limit-debug-info  -fPIC
-  INCLUDES = -I../../../../src/main/cpp/esutil/Include -I../../../../src/main/cpp/tinyxml2 -I../../../../src/main/cpp/tinyxml2/. -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/libs/x86_64/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/backward
+  INCLUDES = -IC:/MyProjects/glStitch/app/src/main/cpp/esutil/Include -IC:/MyProjects/glStitch/app/src/main/cpp/tinyxml2 -IC:/MyProjects/glStitch/app/src/main/cpp/tinyxml2/. -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/libs/x86_64/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/backward
   IN_ABS = C:\MyProjects\glStitch\app\src\main\cpp\stitcher\PackedCopyConverter.cpp
   OBJECT_DIR = CMakeFiles\stitch-lib.dir
-  OBJECT_FILE_DIR = CMakeFiles\stitch-lib.dir\src\main\cpp\stitcher
-build CMakeFiles/stitch-lib.dir/src/main/cpp/stitcher/FormatConverterFactory.cpp.o: CXX_COMPILER__stitch-lib ../../../../src/main/cpp/stitcher/FormatConverterFactory.cpp || cmake_order_depends_target_stitch-lib
+  OBJECT_FILE_DIR = CMakeFiles\stitch-lib.dir\stitcher
+build CMakeFiles/stitch-lib.dir/stitcher/FormatConverterFactory.cpp.o: CXX_COMPILER__stitch-lib C$:/MyProjects/glStitch/app/src/main/cpp/stitcher/FormatConverterFactory.cpp || cmake_order_depends_target_stitch-lib
   DEFINES = -DANDROID -Dstitch_lib_EXPORTS
-  DEP_FILE = CMakeFiles\stitch-lib.dir\src\main\cpp\stitcher\FormatConverterFactory.cpp.o.d
+  DEP_FILE = CMakeFiles\stitch-lib.dir\stitcher\FormatConverterFactory.cpp.o.d
   FLAGS = -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -std=c++11 -frtti -fexceptions -std=c++11 -fno-rtti -Wall -O0 -fno-limit-debug-info -O0 -fno-limit-debug-info  -fPIC
-  INCLUDES = -I../../../../src/main/cpp/esutil/Include -I../../../../src/main/cpp/tinyxml2 -I../../../../src/main/cpp/tinyxml2/. -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/libs/x86_64/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/backward
+  INCLUDES = -IC:/MyProjects/glStitch/app/src/main/cpp/esutil/Include -IC:/MyProjects/glStitch/app/src/main/cpp/tinyxml2 -IC:/MyProjects/glStitch/app/src/main/cpp/tinyxml2/. -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/libs/x86_64/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/backward
   IN_ABS = C:\MyProjects\glStitch\app\src\main\cpp\stitcher\FormatConverterFactory.cpp
   OBJECT_DIR = CMakeFiles\stitch-lib.dir
-  OBJECT_FILE_DIR = CMakeFiles\stitch-lib.dir\src\main\cpp\stitcher
-build CMakeFiles/stitch-lib.dir/src/main/cpp/platform/android/egl.cpp.o: CXX_COMPILER__stitch-lib ../../../../src/main/cpp/platform/android/egl.cpp || cmake_order_depends_target_stitch-lib
+  OBJECT_FILE_DIR = CMakeFiles\stitch-lib.dir\stitcher
+build CMakeFiles/stitch-lib.dir/platform/android/egl.cpp.o: CXX_COMPILER__stitch-lib C$:/MyProjects/glStitch/app/src/main/cpp/platform/android/egl.cpp || cmake_order_depends_target_stitch-lib
   DEFINES = -DANDROID -Dstitch_lib_EXPORTS
-  DEP_FILE = CMakeFiles\stitch-lib.dir\src\main\cpp\platform\android\egl.cpp.o.d
+  DEP_FILE = CMakeFiles\stitch-lib.dir\platform\android\egl.cpp.o.d
   FLAGS = -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -std=c++11 -frtti -fexceptions -std=c++11 -fno-rtti -Wall -O0 -fno-limit-debug-info -O0 -fno-limit-debug-info  -fPIC
-  INCLUDES = -I../../../../src/main/cpp/esutil/Include -I../../../../src/main/cpp/tinyxml2 -I../../../../src/main/cpp/tinyxml2/. -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/libs/x86_64/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/backward
+  INCLUDES = -IC:/MyProjects/glStitch/app/src/main/cpp/esutil/Include -IC:/MyProjects/glStitch/app/src/main/cpp/tinyxml2 -IC:/MyProjects/glStitch/app/src/main/cpp/tinyxml2/. -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/libs/x86_64/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/backward
   IN_ABS = C:\MyProjects\glStitch\app\src\main\cpp\platform\android\egl.cpp
   OBJECT_DIR = CMakeFiles\stitch-lib.dir
-  OBJECT_FILE_DIR = CMakeFiles\stitch-lib.dir\src\main\cpp\platform\android
-build CMakeFiles/stitch-lib.dir/src/main/cpp/esutil/Source/esShader.c.o: C_COMPILER__stitch-lib ../../../../src/main/cpp/esutil/Source/esShader.c || cmake_order_depends_target_stitch-lib
+  OBJECT_FILE_DIR = CMakeFiles\stitch-lib.dir\platform\android
+build CMakeFiles/stitch-lib.dir/esutil/Source/esShader.c.o: C_COMPILER__stitch-lib C$:/MyProjects/glStitch/app/src/main/cpp/esutil/Source/esShader.c || cmake_order_depends_target_stitch-lib
   DEFINES = -DANDROID -Dstitch_lib_EXPORTS
-  DEP_FILE = CMakeFiles\stitch-lib.dir\src\main\cpp\esutil\Source\esShader.c.o.d
+  DEP_FILE = CMakeFiles\stitch-lib.dir\esutil\Source\esShader.c.o.d
   FLAGS = -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security  -Wall -O0 -fno-limit-debug-info -O0 -fno-limit-debug-info  -fPIC
-  INCLUDES = -I../../../../src/main/cpp/esutil/Include -I../../../../src/main/cpp/tinyxml2 -I../../../../src/main/cpp/tinyxml2/.
+  INCLUDES = -IC:/MyProjects/glStitch/app/src/main/cpp/esutil/Include -IC:/MyProjects/glStitch/app/src/main/cpp/tinyxml2 -IC:/MyProjects/glStitch/app/src/main/cpp/tinyxml2/.
   IN_ABS = C:\MyProjects\glStitch\app\src\main\cpp\esutil\Source\esShader.c
   OBJECT_DIR = CMakeFiles\stitch-lib.dir
-  OBJECT_FILE_DIR = CMakeFiles\stitch-lib.dir\src\main\cpp\esutil\Source
-build CMakeFiles/stitch-lib.dir/src/main/cpp/esutil/Source/esUtil.c.o: C_COMPILER__stitch-lib ../../../../src/main/cpp/esutil/Source/esUtil.c || cmake_order_depends_target_stitch-lib
+  OBJECT_FILE_DIR = CMakeFiles\stitch-lib.dir\esutil\Source
+build CMakeFiles/stitch-lib.dir/esutil/Source/esUtil.c.o: C_COMPILER__stitch-lib C$:/MyProjects/glStitch/app/src/main/cpp/esutil/Source/esUtil.c || cmake_order_depends_target_stitch-lib
   DEFINES = -DANDROID -Dstitch_lib_EXPORTS
-  DEP_FILE = CMakeFiles\stitch-lib.dir\src\main\cpp\esutil\Source\esUtil.c.o.d
+  DEP_FILE = CMakeFiles\stitch-lib.dir\esutil\Source\esUtil.c.o.d
   FLAGS = -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security  -Wall -O0 -fno-limit-debug-info -O0 -fno-limit-debug-info  -fPIC
-  INCLUDES = -I../../../../src/main/cpp/esutil/Include -I../../../../src/main/cpp/tinyxml2 -I../../../../src/main/cpp/tinyxml2/.
+  INCLUDES = -IC:/MyProjects/glStitch/app/src/main/cpp/esutil/Include -IC:/MyProjects/glStitch/app/src/main/cpp/tinyxml2 -IC:/MyProjects/glStitch/app/src/main/cpp/tinyxml2/.
   IN_ABS = C:\MyProjects\glStitch\app\src\main\cpp\esutil\Source\esUtil.c
   OBJECT_DIR = CMakeFiles\stitch-lib.dir
-  OBJECT_FILE_DIR = CMakeFiles\stitch-lib.dir\src\main\cpp\esutil\Source
-build CMakeFiles/stitch-lib.dir/src/main/cpp/esutil/Source/Android/esUtil_Android.c.o: C_COMPILER__stitch-lib ../../../../src/main/cpp/esutil/Source/Android/esUtil_Android.c || cmake_order_depends_target_stitch-lib
+  OBJECT_FILE_DIR = CMakeFiles\stitch-lib.dir\esutil\Source
+build CMakeFiles/stitch-lib.dir/esutil/Source/Android/esUtil_Android.c.o: C_COMPILER__stitch-lib C$:/MyProjects/glStitch/app/src/main/cpp/esutil/Source/Android/esUtil_Android.c || cmake_order_depends_target_stitch-lib
   DEFINES = -DANDROID -Dstitch_lib_EXPORTS
-  DEP_FILE = CMakeFiles\stitch-lib.dir\src\main\cpp\esutil\Source\Android\esUtil_Android.c.o.d
+  DEP_FILE = CMakeFiles\stitch-lib.dir\esutil\Source\Android\esUtil_Android.c.o.d
   FLAGS = -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security  -Wall -O0 -fno-limit-debug-info -O0 -fno-limit-debug-info  -fPIC
-  INCLUDES = -I../../../../src/main/cpp/esutil/Include -I../../../../src/main/cpp/tinyxml2 -I../../../../src/main/cpp/tinyxml2/.
+  INCLUDES = -IC:/MyProjects/glStitch/app/src/main/cpp/esutil/Include -IC:/MyProjects/glStitch/app/src/main/cpp/tinyxml2 -IC:/MyProjects/glStitch/app/src/main/cpp/tinyxml2/.
   IN_ABS = C:\MyProjects\glStitch\app\src\main\cpp\esutil\Source\Android\esUtil_Android.c
   OBJECT_DIR = CMakeFiles\stitch-lib.dir
-  OBJECT_FILE_DIR = CMakeFiles\stitch-lib.dir\src\main\cpp\esutil\Source\Android
-build CMakeFiles/stitch-lib.dir/src/main/cpp/stitcher/StitchJNIWrapper.cpp.o: CXX_COMPILER__stitch-lib ../../../../src/main/cpp/stitcher/StitchJNIWrapper.cpp || cmake_order_depends_target_stitch-lib
+  OBJECT_FILE_DIR = CMakeFiles\stitch-lib.dir\esutil\Source\Android
+build CMakeFiles/stitch-lib.dir/stitcher/StitchJNIWrapper.cpp.o: CXX_COMPILER__stitch-lib C$:/MyProjects/glStitch/app/src/main/cpp/stitcher/StitchJNIWrapper.cpp || cmake_order_depends_target_stitch-lib
   DEFINES = -DANDROID -Dstitch_lib_EXPORTS
-  DEP_FILE = CMakeFiles\stitch-lib.dir\src\main\cpp\stitcher\StitchJNIWrapper.cpp.o.d
+  DEP_FILE = CMakeFiles\stitch-lib.dir\stitcher\StitchJNIWrapper.cpp.o.d
   FLAGS = -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -std=c++11 -frtti -fexceptions -std=c++11 -fno-rtti -Wall -O0 -fno-limit-debug-info -O0 -fno-limit-debug-info  -fPIC
-  INCLUDES = -I../../../../src/main/cpp/esutil/Include -I../../../../src/main/cpp/tinyxml2 -I../../../../src/main/cpp/tinyxml2/. -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/libs/x86_64/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/backward
+  INCLUDES = -IC:/MyProjects/glStitch/app/src/main/cpp/esutil/Include -IC:/MyProjects/glStitch/app/src/main/cpp/tinyxml2 -IC:/MyProjects/glStitch/app/src/main/cpp/tinyxml2/. -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/libs/x86_64/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/backward
   IN_ABS = C:\MyProjects\glStitch\app\src\main\cpp\stitcher\StitchJNIWrapper.cpp
   OBJECT_DIR = CMakeFiles\stitch-lib.dir
-  OBJECT_FILE_DIR = CMakeFiles\stitch-lib.dir\src\main\cpp\stitcher
+  OBJECT_FILE_DIR = CMakeFiles\stitch-lib.dir\stitcher
 
 # =============================================================================
 # Link build statements for SHARED_LIBRARY target stitch-lib
 
 
 #############################################
-# Link the shared library ..\..\..\..\build\intermediates\cmake\debug\obj\x86_64\libstitch-lib.so
+# Link the shared library C:\MyProjects\glStitch\app\build\intermediates\cmake\debug\obj\x86_64\libstitch-lib.so
 
-build ../../../../build/intermediates/cmake/debug/obj/x86_64/libstitch-lib.so: CXX_SHARED_LIBRARY_LINKER__stitch-lib CMakeFiles/stitch-lib.dir/src/main/cpp/stitcher/ColorCorrector.cpp.o CMakeFiles/stitch-lib.dir/src/main/cpp/stitcher/MapPointsBuilder.cpp.o CMakeFiles/stitch-lib.dir/src/main/cpp/stitcher/MaskMaker.cpp.o CMakeFiles/stitch-lib.dir/src/main/cpp/stitcher/TexMapBuilder.cpp.o CMakeFiles/stitch-lib.dir/src/main/cpp/stitcher/VertexBuilder.cpp.o CMakeFiles/stitch-lib.dir/src/main/cpp/stitcher/ImageStitcher.cpp.o CMakeFiles/stitch-lib.dir/src/main/cpp/stitcher/GLStitcher.cpp.o CMakeFiles/stitch-lib.dir/src/main/cpp/stitcher/ParamReader.cpp.o CMakeFiles/stitch-lib.dir/src/main/cpp/stitcher/MemTransfer.cpp.o CMakeFiles/stitch-lib.dir/src/main/cpp/stitcher/MemTransferAndroid.cpp.o CMakeFiles/stitch-lib.dir/src/main/cpp/stitcher/MemTransferFactory.cpp.o CMakeFiles/stitch-lib.dir/src/main/cpp/stitcher/GraphicBuffer.cpp.o CMakeFiles/stitch-lib.dir/src/main/cpp/stitcher/DynamicLibrary.cpp.o CMakeFiles/stitch-lib.dir/src/main/cpp/stitcher/FormatConverter.cpp.o CMakeFiles/stitch-lib.dir/src/main/cpp/stitcher/PackedCopyConverter.cpp.o CMakeFiles/stitch-lib.dir/src/main/cpp/stitcher/FormatConverterFactory.cpp.o CMakeFiles/stitch-lib.dir/src/main/cpp/platform/android/egl.cpp.o CMakeFiles/stitch-lib.dir/src/main/cpp/esutil/Source/esShader.c.o CMakeFiles/stitch-lib.dir/src/main/cpp/esutil/Source/esUtil.c.o CMakeFiles/stitch-lib.dir/src/main/cpp/esutil/Source/Android/esUtil_Android.c.o CMakeFiles/stitch-lib.dir/src/main/cpp/stitcher/StitchJNIWrapper.cpp.o | ../../../../build/intermediates/cmake/debug/obj/x86_64/libtinyxml2.so C$:/android-sdk/ndk-bundle/platforms/android-23/arch-x86_64/usr/lib64/liblog.so || ../../../../build/intermediates/cmake/debug/obj/x86_64/libtinyxml2.so
+build C$:/MyProjects/glStitch/app/build/intermediates/cmake/debug/obj/x86_64/libstitch-lib.so: CXX_SHARED_LIBRARY_LINKER__stitch-lib CMakeFiles/stitch-lib.dir/stitcher/ColorCorrector.cpp.o CMakeFiles/stitch-lib.dir/stitcher/MapPointsBuilder.cpp.o CMakeFiles/stitch-lib.dir/stitcher/MaskMaker.cpp.o CMakeFiles/stitch-lib.dir/stitcher/TexMapBuilder.cpp.o CMakeFiles/stitch-lib.dir/stitcher/VertexBuilder.cpp.o CMakeFiles/stitch-lib.dir/stitcher/ImageStitcher.cpp.o CMakeFiles/stitch-lib.dir/stitcher/GLStitcher.cpp.o CMakeFiles/stitch-lib.dir/stitcher/ParamReader.cpp.o CMakeFiles/stitch-lib.dir/stitcher/MemTransfer.cpp.o CMakeFiles/stitch-lib.dir/stitcher/MemTransferAndroid.cpp.o CMakeFiles/stitch-lib.dir/stitcher/MemTransferFactory.cpp.o CMakeFiles/stitch-lib.dir/stitcher/GraphicBuffer.cpp.o CMakeFiles/stitch-lib.dir/stitcher/DynamicLibrary.cpp.o CMakeFiles/stitch-lib.dir/stitcher/FormatConverter.cpp.o CMakeFiles/stitch-lib.dir/stitcher/PackedCopyConverter.cpp.o CMakeFiles/stitch-lib.dir/stitcher/FormatConverterFactory.cpp.o CMakeFiles/stitch-lib.dir/platform/android/egl.cpp.o CMakeFiles/stitch-lib.dir/esutil/Source/esShader.c.o CMakeFiles/stitch-lib.dir/esutil/Source/esUtil.c.o CMakeFiles/stitch-lib.dir/esutil/Source/Android/esUtil_Android.c.o CMakeFiles/stitch-lib.dir/stitcher/StitchJNIWrapper.cpp.o | C$:/MyProjects/glStitch/app/build/intermediates/cmake/debug/obj/x86_64/libtinyxml2.so C$:/android-sdk/ndk-bundle/platforms/android-23/arch-x86_64/usr/lib64/liblog.so || C$:/MyProjects/glStitch/app/build/intermediates/cmake/debug/obj/x86_64/libtinyxml2.so
   LANGUAGE_COMPILE_FLAGS = -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -std=c++11 -frtti -fexceptions -std=c++11 -fno-rtti -Wall -O0 -fno-limit-debug-info -O0 -fno-limit-debug-info
   LINK_FLAGS = -Wl,--build-id -Wl,--warn-shared-textrel -Wl,--fatal-warnings -Wl,--no-undefined -Wl,-z,noexecstack -Qunused-arguments -Wl,-z,relro -Wl,-z,now -Wl,--build-id -Wl,--warn-shared-textrel -Wl,--fatal-warnings -Wl,--no-undefined -Wl,-z,noexecstack -Qunused-arguments -Wl,-z,relro -Wl,-z,now
-  LINK_LIBRARIES = ../../../../build/intermediates/cmake/debug/obj/x86_64/libtinyxml2.so -lGLESv2 -landroid -lEGL -lm -llog -lm "C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/libs/x86_64/libgnustl_static.a"
+  LINK_LIBRARIES = C:/MyProjects/glStitch/app/build/intermediates/cmake/debug/obj/x86_64/libtinyxml2.so -lGLESv3 -landroid -lEGL -lm -llog -lm "C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/libs/x86_64/libgnustl_static.a"
   OBJECT_DIR = CMakeFiles\stitch-lib.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
   SONAME = libstitch-lib.so
   SONAME_FLAG = -Wl,-soname,
-  TARGET_FILE = ..\..\..\..\build\intermediates\cmake\debug\obj\x86_64\libstitch-lib.so
+  TARGET_FILE = C:\MyProjects\glStitch\app\build\intermediates\cmake\debug\obj\x86_64\libstitch-lib.so
   TARGET_PDB = stitch-lib.so.dbg
 
 #############################################
@@ -258,7 +258,7 @@ build install/local: phony CMakeFiles/install/local.util
 # Utility command for rebuild_cache
 
 build CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D C:\MyProjects\glStitch\app\.externalNativeBuild\cmake\debug\x86_64 && C:\android-sdk\cmake\3.6.3155560\bin\cmake.exe -HC:\MyProjects\glStitch\app -BC:\MyProjects\glStitch\app\.externalNativeBuild\cmake\debug\x86_64"
+  COMMAND = cmd.exe /C "cd /D C:\MyProjects\glStitch\app\.externalNativeBuild\cmake\debug\x86_64 && C:\android-sdk\cmake\3.6.3155560\bin\cmake.exe -HC:\MyProjects\glStitch\app\src\main\cpp -BC:\MyProjects\glStitch\app\.externalNativeBuild\cmake\debug\x86_64"
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
@@ -280,14 +280,14 @@ build CMakeFiles/install/strip.util: CUSTOM_COMMAND all
 build install/strip: phony CMakeFiles/install/strip.util
 # =============================================================================
 # Write statements declared in CMakeLists.txt:
-# C:/MyProjects/glStitch/app/CMakeLists.txt
+# C:/MyProjects/glStitch/app/src/main/cpp/CMakeLists.txt
 # =============================================================================
 
 
 #############################################
 # Utility command for DATA_COPY
 
-build src/main/cpp/tinyxml2/DATA_COPY: phony src/main/cpp/tinyxml2/CMakeFiles/DATA_COPY src/main/cpp/tinyxml2/resources/dream.xml src/main/cpp/tinyxml2/resources/empty.xml src/main/cpp/tinyxml2/resources/utf8test.xml src/main/cpp/tinyxml2/resources/utf8testverify.xml
+build tinyxml2/DATA_COPY: phony tinyxml2/CMakeFiles/DATA_COPY tinyxml2/resources/dream.xml tinyxml2/resources/empty.xml tinyxml2/resources/utf8test.xml tinyxml2/resources/utf8testverify.xml
 # =============================================================================
 # Object build statements for EXECUTABLE target xmltest
 
@@ -295,120 +295,120 @@ build src/main/cpp/tinyxml2/DATA_COPY: phony src/main/cpp/tinyxml2/CMakeFiles/DA
 #############################################
 # Order-only phony target for xmltest
 
-build cmake_order_depends_target_xmltest: phony || ../../../../build/intermediates/cmake/debug/obj/x86_64/libtinyxml2.so src/main/cpp/tinyxml2/DATA_COPY
-build src/main/cpp/tinyxml2/CMakeFiles/xmltest.dir/xmltest.cpp.o: CXX_COMPILER__xmltest ../../../../src/main/cpp/tinyxml2/xmltest.cpp || cmake_order_depends_target_xmltest
+build cmake_order_depends_target_xmltest: phony || C$:/MyProjects/glStitch/app/build/intermediates/cmake/debug/obj/x86_64/libtinyxml2.so tinyxml2/DATA_COPY
+build tinyxml2/CMakeFiles/xmltest.dir/xmltest.cpp.o: CXX_COMPILER__xmltest C$:/MyProjects/glStitch/app/src/main/cpp/tinyxml2/xmltest.cpp || cmake_order_depends_target_xmltest
   DEFINES = -DANDROID
-  DEP_FILE = src\main\cpp\tinyxml2\CMakeFiles\xmltest.dir\xmltest.cpp.o.d
+  DEP_FILE = tinyxml2\CMakeFiles\xmltest.dir\xmltest.cpp.o.d
   FLAGS = -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -std=c++11 -frtti -fexceptions -std=c++11 -fno-rtti -Wall -O0 -fno-limit-debug-info -O0 -fno-limit-debug-info  -DDEBUG -fPIE
-  INCLUDES = -I../../../../src/main/cpp/tinyxml2/. -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/libs/x86_64/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/backward
+  INCLUDES = -IC:/MyProjects/glStitch/app/src/main/cpp/tinyxml2/. -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/libs/x86_64/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/backward
   IN_ABS = C:\MyProjects\glStitch\app\src\main\cpp\tinyxml2\xmltest.cpp
-  OBJECT_DIR = src\main\cpp\tinyxml2\CMakeFiles\xmltest.dir
-  OBJECT_FILE_DIR = src\main\cpp\tinyxml2\CMakeFiles\xmltest.dir
+  OBJECT_DIR = tinyxml2\CMakeFiles\xmltest.dir
+  OBJECT_FILE_DIR = tinyxml2\CMakeFiles\xmltest.dir
 
 # =============================================================================
 # Link build statements for EXECUTABLE target xmltest
 
 
 #############################################
-# Link the executable src\main\cpp\tinyxml2\xmltest
+# Link the executable tinyxml2\xmltest
 
-build src/main/cpp/tinyxml2/xmltest: CXX_EXECUTABLE_LINKER__xmltest src/main/cpp/tinyxml2/CMakeFiles/xmltest.dir/xmltest.cpp.o | ../../../../build/intermediates/cmake/debug/obj/x86_64/libtinyxml2.so || ../../../../build/intermediates/cmake/debug/obj/x86_64/libtinyxml2.so src/main/cpp/tinyxml2/DATA_COPY
+build tinyxml2/xmltest: CXX_EXECUTABLE_LINKER__xmltest tinyxml2/CMakeFiles/xmltest.dir/xmltest.cpp.o | C$:/MyProjects/glStitch/app/build/intermediates/cmake/debug/obj/x86_64/libtinyxml2.so || C$:/MyProjects/glStitch/app/build/intermediates/cmake/debug/obj/x86_64/libtinyxml2.so tinyxml2/DATA_COPY
   FLAGS = -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -std=c++11 -frtti -fexceptions -std=c++11 -fno-rtti -Wall -O0 -fno-limit-debug-info -O0 -fno-limit-debug-info  -DDEBUG
   LINK_FLAGS = -Wl,--build-id -Wl,--warn-shared-textrel -Wl,--fatal-warnings -Wl,--no-undefined -Wl,-z,noexecstack -Qunused-arguments -Wl,-z,relro -Wl,-z,now -Wl,--gc-sections -Wl,-z,nocopyreloc -pie -fPIE -Wl,--build-id -Wl,--warn-shared-textrel -Wl,--fatal-warnings -Wl,--no-undefined -Wl,-z,noexecstack -Qunused-arguments -Wl,-z,relro -Wl,-z,now -Wl,--gc-sections -Wl,-z,nocopyreloc -pie -fPIE
-  LINK_LIBRARIES = ../../../../build/intermediates/cmake/debug/obj/x86_64/libtinyxml2.so -lm "C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/libs/x86_64/libgnustl_static.a"
-  OBJECT_DIR = src\main\cpp\tinyxml2\CMakeFiles\xmltest.dir
+  LINK_LIBRARIES = C:/MyProjects/glStitch/app/build/intermediates/cmake/debug/obj/x86_64/libtinyxml2.so -lm "C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/libs/x86_64/libgnustl_static.a"
+  OBJECT_DIR = tinyxml2\CMakeFiles\xmltest.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
-  TARGET_FILE = src\main\cpp\tinyxml2\xmltest
+  TARGET_FILE = tinyxml2\xmltest
   TARGET_PDB = xmltest.dbg
 # =============================================================================
 # Object build statements for SHARED_LIBRARY target tinyxml2
 
-build src/main/cpp/tinyxml2/CMakeFiles/tinyxml2.dir/tinyxml2.cpp.o: CXX_COMPILER__tinyxml2 ../../../../src/main/cpp/tinyxml2/tinyxml2.cpp
+build tinyxml2/CMakeFiles/tinyxml2.dir/tinyxml2.cpp.o: CXX_COMPILER__tinyxml2 C$:/MyProjects/glStitch/app/src/main/cpp/tinyxml2/tinyxml2.cpp
   DEFINES = -DANDROID -DTINYXML2_EXPORT -Dtinyxml2_EXPORTS
-  DEP_FILE = src\main\cpp\tinyxml2\CMakeFiles\tinyxml2.dir\tinyxml2.cpp.o.d
+  DEP_FILE = tinyxml2\CMakeFiles\tinyxml2.dir\tinyxml2.cpp.o.d
   FLAGS = -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -std=c++11 -frtti -fexceptions -std=c++11 -fno-rtti -Wall -O0 -fno-limit-debug-info -O0 -fno-limit-debug-info  -DDEBUG -fPIC -fvisibility=hidden -fvisibility-inlines-hidden
-  INCLUDES = -I../../../../src/main/cpp/tinyxml2/. -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/libs/x86_64/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/backward
+  INCLUDES = -IC:/MyProjects/glStitch/app/src/main/cpp/tinyxml2/. -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/libs/x86_64/include -isystem C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/backward
   IN_ABS = C:\MyProjects\glStitch\app\src\main\cpp\tinyxml2\tinyxml2.cpp
-  OBJECT_DIR = src\main\cpp\tinyxml2\CMakeFiles\tinyxml2.dir
-  OBJECT_FILE_DIR = src\main\cpp\tinyxml2\CMakeFiles\tinyxml2.dir
+  OBJECT_DIR = tinyxml2\CMakeFiles\tinyxml2.dir
+  OBJECT_FILE_DIR = tinyxml2\CMakeFiles\tinyxml2.dir
 
 # =============================================================================
 # Link build statements for SHARED_LIBRARY target tinyxml2
 
 
 #############################################
-# Link the shared library ..\..\..\..\build\intermediates\cmake\debug\obj\x86_64\libtinyxml2.so
+# Link the shared library C:\MyProjects\glStitch\app\build\intermediates\cmake\debug\obj\x86_64\libtinyxml2.so
 
-build ../../../../build/intermediates/cmake/debug/obj/x86_64/libtinyxml2.so: CXX_SHARED_LIBRARY_LINKER__tinyxml2 src/main/cpp/tinyxml2/CMakeFiles/tinyxml2.dir/tinyxml2.cpp.o
+build C$:/MyProjects/glStitch/app/build/intermediates/cmake/debug/obj/x86_64/libtinyxml2.so: CXX_SHARED_LIBRARY_LINKER__tinyxml2 tinyxml2/CMakeFiles/tinyxml2.dir/tinyxml2.cpp.o
   LANGUAGE_COMPILE_FLAGS = -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -std=c++11 -frtti -fexceptions -std=c++11 -fno-rtti -Wall -O0 -fno-limit-debug-info -O0 -fno-limit-debug-info  -DDEBUG
   LINK_FLAGS = -Wl,--build-id -Wl,--warn-shared-textrel -Wl,--fatal-warnings -Wl,--no-undefined -Wl,-z,noexecstack -Qunused-arguments -Wl,-z,relro -Wl,-z,now -Wl,--build-id -Wl,--warn-shared-textrel -Wl,--fatal-warnings -Wl,--no-undefined -Wl,-z,noexecstack -Qunused-arguments -Wl,-z,relro -Wl,-z,now
   LINK_LIBRARIES = -lm "C:/android-sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/libs/x86_64/libgnustl_static.a"
-  OBJECT_DIR = src\main\cpp\tinyxml2\CMakeFiles\tinyxml2.dir
+  OBJECT_DIR = tinyxml2\CMakeFiles\tinyxml2.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
   SONAME = libtinyxml2.so
   SONAME_FLAG = -Wl,-soname,
-  TARGET_FILE = ..\..\..\..\build\intermediates\cmake\debug\obj\x86_64\libtinyxml2.so
+  TARGET_FILE = C:\MyProjects\glStitch\app\build\intermediates\cmake\debug\obj\x86_64\libtinyxml2.so
   TARGET_PDB = tinyxml2.so.dbg
 
 #############################################
 # Utility command for uninstall
 
-build src/main/cpp/tinyxml2/uninstall: phony src/main/cpp/tinyxml2/CMakeFiles/uninstall
+build tinyxml2/uninstall: phony tinyxml2/CMakeFiles/uninstall
 
 #############################################
-# Phony custom command for src\main\cpp\tinyxml2\CMakeFiles\DATA_COPY
+# Phony custom command for tinyxml2\CMakeFiles\DATA_COPY
 
-build src/main/cpp/tinyxml2/CMakeFiles/DATA_COPY: phony src/main/cpp/tinyxml2/resources/dream.xml src/main/cpp/tinyxml2/resources/empty.xml src/main/cpp/tinyxml2/resources/utf8test.xml src/main/cpp/tinyxml2/resources/utf8testverify.xml
+build tinyxml2/CMakeFiles/DATA_COPY: phony tinyxml2/resources/dream.xml tinyxml2/resources/empty.xml tinyxml2/resources/utf8test.xml tinyxml2/resources/utf8testverify.xml
 
 #############################################
-# Custom command for src\main\cpp\tinyxml2\resources\dream.xml
+# Custom command for tinyxml2\resources\dream.xml
 
-build src/main/cpp/tinyxml2/resources/dream.xml: CUSTOM_COMMAND ../../../../src/main/cpp/tinyxml2/resources/dream.xml
-  COMMAND = cmd.exe /C "cd /D C:\MyProjects\glStitch\app\.externalNativeBuild\cmake\debug\x86_64\src\main\cpp\tinyxml2 && C:\android-sdk\cmake\3.6.3155560\bin\cmake.exe -E copy C:/MyProjects/glStitch/app/src/main/cpp/tinyxml2/resources/dream.xml C:/MyProjects/glStitch/app/.externalNativeBuild/cmake/debug/x86_64/src/main/cpp/tinyxml2/resources/dream.xml"
+build tinyxml2/resources/dream.xml: CUSTOM_COMMAND C$:/MyProjects/glStitch/app/src/main/cpp/tinyxml2/resources/dream.xml
+  COMMAND = cmd.exe /C "cd /D C:\MyProjects\glStitch\app\.externalNativeBuild\cmake\debug\x86_64\tinyxml2 && C:\android-sdk\cmake\3.6.3155560\bin\cmake.exe -E copy C:/MyProjects/glStitch/app/src/main/cpp/tinyxml2/resources/dream.xml C:/MyProjects/glStitch/app/.externalNativeBuild/cmake/debug/x86_64/tinyxml2/resources/dream.xml"
   DESC = Generating resources/dream.xml
   restat = 1
 
 #############################################
-# Custom command for src\main\cpp\tinyxml2\resources\empty.xml
+# Custom command for tinyxml2\resources\empty.xml
 
-build src/main/cpp/tinyxml2/resources/empty.xml: CUSTOM_COMMAND ../../../../src/main/cpp/tinyxml2/resources/empty.xml
-  COMMAND = cmd.exe /C "cd /D C:\MyProjects\glStitch\app\.externalNativeBuild\cmake\debug\x86_64\src\main\cpp\tinyxml2 && C:\android-sdk\cmake\3.6.3155560\bin\cmake.exe -E copy C:/MyProjects/glStitch/app/src/main/cpp/tinyxml2/resources/empty.xml C:/MyProjects/glStitch/app/.externalNativeBuild/cmake/debug/x86_64/src/main/cpp/tinyxml2/resources/empty.xml"
+build tinyxml2/resources/empty.xml: CUSTOM_COMMAND C$:/MyProjects/glStitch/app/src/main/cpp/tinyxml2/resources/empty.xml
+  COMMAND = cmd.exe /C "cd /D C:\MyProjects\glStitch\app\.externalNativeBuild\cmake\debug\x86_64\tinyxml2 && C:\android-sdk\cmake\3.6.3155560\bin\cmake.exe -E copy C:/MyProjects/glStitch/app/src/main/cpp/tinyxml2/resources/empty.xml C:/MyProjects/glStitch/app/.externalNativeBuild/cmake/debug/x86_64/tinyxml2/resources/empty.xml"
   DESC = Generating resources/empty.xml
   restat = 1
 
 #############################################
-# Custom command for src\main\cpp\tinyxml2\resources\utf8test.xml
+# Custom command for tinyxml2\resources\utf8test.xml
 
-build src/main/cpp/tinyxml2/resources/utf8test.xml: CUSTOM_COMMAND ../../../../src/main/cpp/tinyxml2/resources/utf8test.xml
-  COMMAND = cmd.exe /C "cd /D C:\MyProjects\glStitch\app\.externalNativeBuild\cmake\debug\x86_64\src\main\cpp\tinyxml2 && C:\android-sdk\cmake\3.6.3155560\bin\cmake.exe -E copy C:/MyProjects/glStitch/app/src/main/cpp/tinyxml2/resources/utf8test.xml C:/MyProjects/glStitch/app/.externalNativeBuild/cmake/debug/x86_64/src/main/cpp/tinyxml2/resources/utf8test.xml"
+build tinyxml2/resources/utf8test.xml: CUSTOM_COMMAND C$:/MyProjects/glStitch/app/src/main/cpp/tinyxml2/resources/utf8test.xml
+  COMMAND = cmd.exe /C "cd /D C:\MyProjects\glStitch\app\.externalNativeBuild\cmake\debug\x86_64\tinyxml2 && C:\android-sdk\cmake\3.6.3155560\bin\cmake.exe -E copy C:/MyProjects/glStitch/app/src/main/cpp/tinyxml2/resources/utf8test.xml C:/MyProjects/glStitch/app/.externalNativeBuild/cmake/debug/x86_64/tinyxml2/resources/utf8test.xml"
   DESC = Generating resources/utf8test.xml
   restat = 1
 
 #############################################
-# Custom command for src\main\cpp\tinyxml2\resources\utf8testverify.xml
+# Custom command for tinyxml2\resources\utf8testverify.xml
 
-build src/main/cpp/tinyxml2/resources/utf8testverify.xml: CUSTOM_COMMAND ../../../../src/main/cpp/tinyxml2/resources/utf8testverify.xml
-  COMMAND = cmd.exe /C "cd /D C:\MyProjects\glStitch\app\.externalNativeBuild\cmake\debug\x86_64\src\main\cpp\tinyxml2 && C:\android-sdk\cmake\3.6.3155560\bin\cmake.exe -E copy C:/MyProjects/glStitch/app/src/main/cpp/tinyxml2/resources/utf8testverify.xml C:/MyProjects/glStitch/app/.externalNativeBuild/cmake/debug/x86_64/src/main/cpp/tinyxml2/resources/utf8testverify.xml"
+build tinyxml2/resources/utf8testverify.xml: CUSTOM_COMMAND C$:/MyProjects/glStitch/app/src/main/cpp/tinyxml2/resources/utf8testverify.xml
+  COMMAND = cmd.exe /C "cd /D C:\MyProjects\glStitch\app\.externalNativeBuild\cmake\debug\x86_64\tinyxml2 && C:\android-sdk\cmake\3.6.3155560\bin\cmake.exe -E copy C:/MyProjects/glStitch/app/src/main/cpp/tinyxml2/resources/utf8testverify.xml C:/MyProjects/glStitch/app/.externalNativeBuild/cmake/debug/x86_64/tinyxml2/resources/utf8testverify.xml"
   DESC = Generating resources/utf8testverify.xml
   restat = 1
 
 #############################################
-# Custom command for src\main\cpp\tinyxml2\CMakeFiles\uninstall
+# Custom command for tinyxml2\CMakeFiles\uninstall
 
-build src/main/cpp/tinyxml2/CMakeFiles/uninstall: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D C:\MyProjects\glStitch\app\.externalNativeBuild\cmake\debug\x86_64\src\main\cpp\tinyxml2 && C:\android-sdk\cmake\3.6.3155560\bin\cmake.exe -P C:/MyProjects/glStitch/app/.externalNativeBuild/cmake/debug/x86_64/src/main/cpp/tinyxml2/cmake_uninstall.cmake"
+build tinyxml2/CMakeFiles/uninstall: CUSTOM_COMMAND
+  COMMAND = cmd.exe /C "cd /D C:\MyProjects\glStitch\app\.externalNativeBuild\cmake\debug\x86_64\tinyxml2 && C:\android-sdk\cmake\3.6.3155560\bin\cmake.exe -P C:/MyProjects/glStitch/app/.externalNativeBuild/cmake/debug/x86_64/tinyxml2/cmake_uninstall.cmake"
 # =============================================================================
 # Target aliases.
 
-build DATA_COPY: phony src/main/cpp/tinyxml2/DATA_COPY
-build libstitch-lib.so: phony ../../../../build/intermediates/cmake/debug/obj/x86_64/libstitch-lib.so
-build libtinyxml2.so: phony ../../../../build/intermediates/cmake/debug/obj/x86_64/libtinyxml2.so
-build stitch-lib: phony ../../../../build/intermediates/cmake/debug/obj/x86_64/libstitch-lib.so
-build tinyxml2: phony ../../../../build/intermediates/cmake/debug/obj/x86_64/libtinyxml2.so
-build uninstall: phony src/main/cpp/tinyxml2/uninstall
-build xmltest: phony src/main/cpp/tinyxml2/xmltest
+build DATA_COPY: phony tinyxml2/DATA_COPY
+build libstitch-lib.so: phony C$:/MyProjects/glStitch/app/build/intermediates/cmake/debug/obj/x86_64/libstitch-lib.so
+build libtinyxml2.so: phony C$:/MyProjects/glStitch/app/build/intermediates/cmake/debug/obj/x86_64/libtinyxml2.so
+build stitch-lib: phony C$:/MyProjects/glStitch/app/build/intermediates/cmake/debug/obj/x86_64/libstitch-lib.so
+build tinyxml2: phony C$:/MyProjects/glStitch/app/build/intermediates/cmake/debug/obj/x86_64/libtinyxml2.so
+build uninstall: phony tinyxml2/uninstall
+build xmltest: phony tinyxml2/xmltest
 # =============================================================================
 # Folder targets.
 
@@ -418,7 +418,7 @@ build xmltest: phony src/main/cpp/tinyxml2/xmltest
 #############################################
 # Folder: C:/MyProjects/glStitch/app/src/main/cpp/tinyxml2
 
-build  src/main/cpp/tinyxml2/all: phony xmltest tinyxml2
+build  tinyxml2/all: phony xmltest tinyxml2
 # =============================================================================
 # Built-in targets
 
@@ -426,7 +426,7 @@ build  src/main/cpp/tinyxml2/all: phony xmltest tinyxml2
 #############################################
 # The main all target.
 
-build all: phony ../../../../build/intermediates/cmake/debug/obj/x86_64/libstitch-lib.so src/main/cpp/tinyxml2/xmltest ../../../../build/intermediates/cmake/debug/obj/x86_64/libtinyxml2.so
+build all: phony C$:/MyProjects/glStitch/app/build/intermediates/cmake/debug/obj/x86_64/libstitch-lib.so tinyxml2/xmltest C$:/MyProjects/glStitch/app/build/intermediates/cmake/debug/obj/x86_64/libtinyxml2.so
 
 #############################################
 # Make the all target the default.
@@ -436,13 +436,13 @@ default all
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | ../../../../CMakeLists.txt ../../../../src/main/cpp/tinyxml2/CMakeLists.txt ../../../../src/main/cpp/tinyxml2/cmake_uninstall.cmake.in ../../../../src/main/cpp/tinyxml2/tinyxml2.pc.in C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeCCompiler.cmake.in C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeCCompilerABI.c C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeCInformation.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeCXXCompiler.cmake.in C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeCXXCompilerABI.cpp C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeCXXInformation.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeCommonLanguageInclude.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeDetermineCCompiler.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeDetermineCXXCompiler.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeDetermineCompileFeatures.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeDetermineCompiler.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeDetermineCompilerABI.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeDetermineSystem.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeFindBinUtils.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeGenericSystem.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeLanguageInformation.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeParseImplicitLinkInfo.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeSystem.cmake.in C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeSystemSpecificInformation.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeSystemSpecificInitialize.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeTestCCompiler.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeTestCXXCompiler.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeTestCompilerCommon.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/Compiler/Clang-C.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/Compiler/Clang-CXX.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/Compiler/Clang.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/Compiler/GNU.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/GNUInstallDirs.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/Internal/FeatureTesting.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/Platform/Android.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/Platform/Linux.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/Platform/UnixPaths.cmake C$:/android-sdk/ndk-bundle/build/cmake/android.toolchain.cmake CMakeCache.txt CMakeFiles/3.6.0-rc2/CMakeCCompiler.cmake CMakeFiles/3.6.0-rc2/CMakeCXXCompiler.cmake CMakeFiles/3.6.0-rc2/CMakeSystem.cmake
+build build.ninja: RERUN_CMAKE | C$:/MyProjects/glStitch/app/src/main/cpp/CMakeLists.txt C$:/MyProjects/glStitch/app/src/main/cpp/tinyxml2/CMakeLists.txt C$:/MyProjects/glStitch/app/src/main/cpp/tinyxml2/cmake_uninstall.cmake.in C$:/MyProjects/glStitch/app/src/main/cpp/tinyxml2/tinyxml2.pc.in C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeCCompiler.cmake.in C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeCCompilerABI.c C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeCInformation.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeCXXCompiler.cmake.in C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeCXXCompilerABI.cpp C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeCXXInformation.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeCommonLanguageInclude.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeDetermineCCompiler.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeDetermineCXXCompiler.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeDetermineCompileFeatures.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeDetermineCompiler.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeDetermineCompilerABI.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeDetermineSystem.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeFindBinUtils.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeGenericSystem.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeLanguageInformation.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeParseImplicitLinkInfo.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeSystem.cmake.in C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeSystemSpecificInformation.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeSystemSpecificInitialize.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeTestCCompiler.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeTestCXXCompiler.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeTestCompilerCommon.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/Compiler/Clang-C.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/Compiler/Clang-CXX.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/Compiler/Clang.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/Compiler/GNU.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/GNUInstallDirs.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/Internal/FeatureTesting.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/Platform/Android.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/Platform/Linux.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/Platform/UnixPaths.cmake C$:/android-sdk/ndk-bundle/build/cmake/android.toolchain.cmake CMakeCache.txt CMakeFiles/3.6.0-rc2/CMakeCCompiler.cmake CMakeFiles/3.6.0-rc2/CMakeCXXCompiler.cmake CMakeFiles/3.6.0-rc2/CMakeSystem.cmake
   pool = console
 
 #############################################
 # A missing CMake input file is not an error.
 
-build ../../../../CMakeLists.txt ../../../../src/main/cpp/tinyxml2/CMakeLists.txt ../../../../src/main/cpp/tinyxml2/cmake_uninstall.cmake.in ../../../../src/main/cpp/tinyxml2/tinyxml2.pc.in C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeCCompiler.cmake.in C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeCCompilerABI.c C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeCInformation.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeCXXCompiler.cmake.in C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeCXXCompilerABI.cpp C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeCXXInformation.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeCommonLanguageInclude.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeDetermineCCompiler.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeDetermineCXXCompiler.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeDetermineCompileFeatures.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeDetermineCompiler.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeDetermineCompilerABI.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeDetermineSystem.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeFindBinUtils.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeGenericSystem.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeLanguageInformation.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeParseImplicitLinkInfo.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeSystem.cmake.in C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeSystemSpecificInformation.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeSystemSpecificInitialize.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeTestCCompiler.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeTestCXXCompiler.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeTestCompilerCommon.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/Compiler/Clang-C.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/Compiler/Clang-CXX.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/Compiler/Clang.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/Compiler/GNU.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/GNUInstallDirs.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/Internal/FeatureTesting.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/Platform/Android.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/Platform/Linux.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/Platform/UnixPaths.cmake C$:/android-sdk/ndk-bundle/build/cmake/android.toolchain.cmake CMakeCache.txt CMakeFiles/3.6.0-rc2/CMakeCCompiler.cmake CMakeFiles/3.6.0-rc2/CMakeCXXCompiler.cmake CMakeFiles/3.6.0-rc2/CMakeSystem.cmake: phony
+build C$:/MyProjects/glStitch/app/src/main/cpp/CMakeLists.txt C$:/MyProjects/glStitch/app/src/main/cpp/tinyxml2/CMakeLists.txt C$:/MyProjects/glStitch/app/src/main/cpp/tinyxml2/cmake_uninstall.cmake.in C$:/MyProjects/glStitch/app/src/main/cpp/tinyxml2/tinyxml2.pc.in C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeCCompiler.cmake.in C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeCCompilerABI.c C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeCInformation.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeCXXCompiler.cmake.in C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeCXXCompilerABI.cpp C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeCXXInformation.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeCommonLanguageInclude.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeDetermineCCompiler.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeDetermineCXXCompiler.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeDetermineCompileFeatures.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeDetermineCompiler.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeDetermineCompilerABI.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeDetermineSystem.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeFindBinUtils.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeGenericSystem.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeLanguageInformation.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeParseImplicitLinkInfo.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeSystem.cmake.in C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeSystemSpecificInformation.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeSystemSpecificInitialize.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeTestCCompiler.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeTestCXXCompiler.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/CMakeTestCompilerCommon.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/Compiler/Clang-C.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/Compiler/Clang-CXX.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/Compiler/Clang.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/Compiler/GNU.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/GNUInstallDirs.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/Internal/FeatureTesting.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/Platform/Android.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/Platform/Linux.cmake C$:/android-sdk/cmake/3.6.3155560/share/cmake-3.6/Modules/Platform/UnixPaths.cmake C$:/android-sdk/ndk-bundle/build/cmake/android.toolchain.cmake CMakeCache.txt CMakeFiles/3.6.0-rc2/CMakeCCompiler.cmake CMakeFiles/3.6.0-rc2/CMakeCXXCompiler.cmake CMakeFiles/3.6.0-rc2/CMakeSystem.cmake: phony
 
 #############################################
 # Clean all the built files.

@@ -232,16 +232,16 @@ CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 Project_BINARY_DIR:STATIC=C:/MyProjects/glStitch/app/.externalNativeBuild/cmake/release/armeabi-v7a
 
 //Value Computed by CMake
-Project_SOURCE_DIR:STATIC=C:/MyProjects/glStitch/app
+Project_SOURCE_DIR:STATIC=C:/MyProjects/glStitch/app/src/main/cpp
 
 //Path to a library.
 log-lib:FILEPATH=C:/android-sdk/ndk-bundle/platforms/android-23/arch-arm/usr/lib/liblog.so
 
 //Dependencies for the target
-stitch-lib_LIB_DEPENDS:STATIC=general;tinyxml2;general;GLESv2;general;android;general;EGL;general;m;general;C:/android-sdk/ndk-bundle/platforms/android-23/arch-arm/usr/lib/liblog.so;
+stitch-lib_LIB_DEPENDS:STATIC=general;tinyxml2;general;GLESv3;general;android;general;EGL;general;m;general;C:/android-sdk/ndk-bundle/platforms/android-23/arch-arm/usr/lib/liblog.so;
 
 //Value Computed by CMake
-tinyxml2_BINARY_DIR:STATIC=C:/MyProjects/glStitch/app/.externalNativeBuild/cmake/release/armeabi-v7a/src/main/cpp/tinyxml2
+tinyxml2_BINARY_DIR:STATIC=C:/MyProjects/glStitch/app/.externalNativeBuild/cmake/release/armeabi-v7a/tinyxml2
 
 //Dependencies for target
 tinyxml2_LIB_DEPENDS:STATIC=
@@ -316,7 +316,7 @@ CMAKE_GENERATOR_PLATFORM:INTERNAL=
 CMAKE_GENERATOR_TOOLSET:INTERNAL=
 //Source directory with the top level CMakeLists.txt file for this
 // project
-CMAKE_HOME_DIRECTORY:INTERNAL=C:/MyProjects/glStitch/app
+CMAKE_HOME_DIRECTORY:INTERNAL=C:/MyProjects/glStitch/app/src/main/cpp
 //ADVANCED property for variable: CMAKE_INSTALL_BINDIR
 CMAKE_INSTALL_BINDIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_INSTALL_DATADIR

@@ -10,7 +10,7 @@ bool MemTransferFactory::usePlatformOptimizations = false;
 
 std::shared_ptr<MemTransfer> MemTransferFactory::createInstance() {
 
-//    return std::make_shared<MemTransfer>();
+    //return std::make_shared<MemTransfer>();
     tryEnablePlatformOptimizations();
 
    std::shared_ptr<MemTransfer> instance = NULL;

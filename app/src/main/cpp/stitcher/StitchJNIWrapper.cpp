@@ -102,7 +102,7 @@ JNIEXPORT void JNICALL Java_com_xiaoyi_sujin_glstitch_StitchJNIWrapper_prepareOu
 }
 
 
-static const int TEST_TIME  = 200;
+static const int TEST_TIME  = 1;
 
 JNIEXPORT jobject JNICALL Java_com_xiaoyi_sujin_glstitch_StitchJNIWrapper_process
         (JNIEnv *env, jobject, jintArray frontPixels, jintArray backPixels)

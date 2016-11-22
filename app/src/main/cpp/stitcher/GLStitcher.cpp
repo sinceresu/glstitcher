@@ -148,9 +148,6 @@ bool GLStitcher::InitMembers()
 	m_pBackMapPointsBuilder->SetMapFile(map_file_path.c_str());
 	m_pBackMapPointsBuilder->BuildMatchPoints();
 
-
-
-
 	m_pMaskMaker->SetDstImageFormat(m_dstImageFormat);
 
 	MaskMakerParameters mask_maker_param = {

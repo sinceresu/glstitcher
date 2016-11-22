@@ -1,4 +1,4 @@
-# Install script for directory: C:/MyProjects/glStitch/app
+# Install script for directory: C:/MyProjects/glStitch/app/src/main/cpp
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -34,7 +34,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("C:/MyProjects/glStitch/app/.externalNativeBuild/cmake/debug/armeabi-v7a/src/main/cpp/tinyxml2/cmake_install.cmake")
+  include("C:/MyProjects/glStitch/app/.externalNativeBuild/cmake/debug/armeabi-v7a/tinyxml2/cmake_install.cmake")
 
 endif()
 

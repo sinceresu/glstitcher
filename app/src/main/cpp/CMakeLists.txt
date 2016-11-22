@@ -8,7 +8,7 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -fno-rtti -Wall")
 
 add_definitions(-DANDROID)
-add_subdirectory("src/main/cpp/tinyxml2/")
+add_subdirectory("tinyxml2/")
 
 if (${ANDROID_PLATFORM_LEVEL} LESS 11)
   message(FATAL_ERROR "OpenGL 2 is not supported before API level 11 (currently using ${ANDROID_PLATFORM_LEVEL}).")
@@ -18,7 +18,7 @@ elseif (${ANDROID_PLATFORM_LEVEL} LESS 18)
   set(OPENGL_LIB GLESv2)
 else ()
  #  add_definitions("-DDYNAMIC_ES3")
-  set(OPENGL_LIB GLESv2)
+  set(OPENGL_LIB GLESv3)
 endif (${ANDROID_PLATFORM_LEVEL} LESS 11)
 
 
@@ -36,31 +36,31 @@ add_library( # Sets the name of the library.
              # Provides a relative path to your source file(s).
              # Associated headers in the same location as their source
              # file are automatically included.
-             src/main/cpp/stitcher/ColorCorrector.cpp
-             src/main/cpp/stitcher/MapPointsBuilder.cpp
-             src/main/cpp/stitcher/MaskMaker.cpp
-             src/main/cpp/stitcher/TexMapBuilder.cpp
-             src/main/cpp/stitcher/VertexBuilder.cpp
-             src/main/cpp/stitcher/ImageStitcher.cpp
-             src/main/cpp/stitcher/GLStitcher.cpp
-             src/main/cpp/stitcher/ParamReader.cpp
-             src/main/cpp/stitcher/MemTransfer.cpp
-             src/main/cpp/stitcher/MemTransferAndroid.cpp
-             src/main/cpp/stitcher/MemTransferFactory.cpp
-             src/main/cpp/stitcher/GraphicBuffer.cpp
-             src/main/cpp/stitcher/DynamicLibrary.cpp
-             src/main/cpp/stitcher/FormatConverter.cpp
-             src/main/cpp/stitcher/PackedCopyConverter.cpp
-             src/main/cpp/stitcher/FormatConverterFactory.cpp
-             src/main/cpp/platform/android/egl.cpp
-             src/main/cpp/esutil/Source/esShader.c
-             src/main/cpp/esutil/Source/esUtil.c
-             src/main/cpp/esutil/Source/Android/esUtil_Android.c
-             src/main/cpp/stitcher/StitchJNIWrapper.cpp
+             stitcher/ColorCorrector.cpp
+             stitcher/MapPointsBuilder.cpp
+             stitcher/MaskMaker.cpp
+             stitcher/TexMapBuilder.cpp
+             stitcher/VertexBuilder.cpp
+             stitcher/ImageStitcher.cpp
+             stitcher/GLStitcher.cpp
+             stitcher/ParamReader.cpp
+             stitcher/MemTransfer.cpp
+             stitcher/MemTransferAndroid.cpp
+             stitcher/MemTransferFactory.cpp
+             stitcher/GraphicBuffer.cpp
+             stitcher/DynamicLibrary.cpp
+             stitcher/FormatConverter.cpp
+             stitcher/PackedCopyConverter.cpp
+             stitcher/FormatConverterFactory.cpp
+             platform/android/egl.cpp
+             esutil/Source/esShader.c
+             esutil/Source/esUtil.c
+             esutil/Source/Android/esUtil_Android.c
+             stitcher/StitchJNIWrapper.cpp
 
             )
-target_include_directories(stitch-lib PUBLIC "src/main/cpp/esutil/Include"
-                "src/main/cpp/tinyxml2/"
+target_include_directories(stitch-lib PUBLIC "esutil/Include"
+                "tinyxml2/"
             )
 
 
@@ -87,7 +87,7 @@ target_link_libraries( # Specifies the target library.
                        # Links the target library to the log library
                        # included in the NDK.
                          tinyxml2
-                         GLESv2
+                         ${OPENGL_LIB}
                          android
                          EGL
                          m

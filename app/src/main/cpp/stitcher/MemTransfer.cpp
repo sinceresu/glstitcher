@@ -146,7 +146,7 @@ void MemTransfer::toGPU(const VideoFrame_t *frontFrm, const VideoFrame_t *backFr
 
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, front_tex);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, inputW, inputH, 0, GL_RGB, GL_UNSIGNED_BYTE, frontFrm->planes[0]);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, inputW, inputH, 0, GL_RGBA, GL_UNSIGNED_BYTE, frontFrm->planes[0]);
 /*
     glTexSubImage2D(GL_TEXTURE_2D,
                     0,
@@ -158,7 +158,7 @@ void MemTransfer::toGPU(const VideoFrame_t *frontFrm, const VideoFrame_t *backFr
 
     glActiveTexture(GL_TEXTURE1);
     glBindTexture(GL_TEXTURE_2D, back_tex);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, inputW, inputH, 0, GL_RGB, GL_UNSIGNED_BYTE, backFrm->planes[0]);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, inputW, inputH, 0, GL_RGBA, GL_UNSIGNED_BYTE, backFrm->planes[0]);
 //    glTexSubImage2D(GL_TEXTURE_2D,
 //                    0,
 //                    0, 0,
