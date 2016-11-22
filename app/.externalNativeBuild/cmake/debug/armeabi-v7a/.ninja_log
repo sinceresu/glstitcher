@@ -25,3 +25,12 @@
 3442	3808	0	C:/MyProjects/glStitch/app/build/intermediates/cmake/debug/obj/armeabi-v7a/libstitch-lib.so	574cbed7e8e6c95d
 3	493	0	CMakeFiles/stitch-lib.dir/stitcher/MemTransferFactory.cpp.o	5efd445c9408a089
 493	834	0	C:/MyProjects/glStitch/app/build/intermediates/cmake/debug/obj/armeabi-v7a/libstitch-lib.so	574cbed7e8e6c95d
+4	996	0	CMakeFiles/stitch-lib.dir/stitcher/GLStitcher.cpp.o	433013c656f3a615
+996	1320	0	C:/MyProjects/glStitch/app/build/intermediates/cmake/debug/obj/armeabi-v7a/libstitch-lib.so	574cbed7e8e6c95d
+3	945	0	CMakeFiles/stitch-lib.dir/stitcher/GLStitcher.cpp.o	433013c656f3a615
+945	1272	0	C:/MyProjects/glStitch/app/build/intermediates/cmake/debug/obj/armeabi-v7a/libstitch-lib.so	574cbed7e8e6c95d
+11	715	0	CMakeFiles/stitch-lib.dir/stitcher/StitchJNIWrapper.cpp.o	cdd1c783bdbcc477
+3	1124	0	CMakeFiles/stitch-lib.dir/stitcher/GLStitcher.cpp.o	433013c656f3a615
+1124	1471	0	C:/MyProjects/glStitch/app/build/intermediates/cmake/debug/obj/armeabi-v7a/libstitch-lib.so	574cbed7e8e6c95d
+3	961	0	CMakeFiles/stitch-lib.dir/stitcher/GLStitcher.cpp.o	433013c656f3a615
+962	1322	0	C:/MyProjects/glStitch/app/build/intermediates/cmake/debug/obj/armeabi-v7a/libstitch-lib.so	574cbed7e8e6c95d
