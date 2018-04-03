@@ -86,6 +86,7 @@ void GLStitcher::InitGlut(const char * title)
 {
 		// glutInitContextProfile(GLUT_CORE_PROFILE);
 		// glutInitContextVersion(4, 3);
+
 		memset(&esContext, 0, sizeof(ESContext));
 
 //		esCreateWindow(&esContext, "Simple Texture 2D", 320, 160, ES_WINDOW_RGB);
@@ -394,7 +395,7 @@ void GLStitcher::Release()
 //	glDeleteTextures(1, &front_tex);
 //	glDeleteTextures(1, &back_tex);
 //	glDeleteVertexArrays(1, &vao);
-	
+	EGL::shutdown();
 	m_bInitialized = false;
 }
 
