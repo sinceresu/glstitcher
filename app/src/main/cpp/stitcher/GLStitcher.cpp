@@ -97,8 +97,8 @@ void GLStitcher::InitGlut(const char * title)
 		esContext.userData = this;
 }
 
-const static char *szFrontCameraMapFile = "/maps/projectionTableSphereA_mapTable.dat";
-const static char *szBehindCameraMapFile = "/maps/projectionTableSphereB_mapTable.dat";
+const static char *szFrontCameraMapFile = "/maps/map_front.dat";
+const static char *szBehindCameraMapFile = "/maps/map_behind.dat";
 
 bool GLStitcher::InitMembers()
 {
