@@ -86,6 +86,7 @@ void GLStitcher::InitGlut(const char * title)
 {
 		// glutInitContextProfile(GLUT_CORE_PROFILE);
 		// glutInitContextVersion(4, 3);
+
 		memset(&esContext, 0, sizeof(ESContext));
 
 //		esCreateWindow(&esContext, "Simple Texture 2D", 320, 160, ES_WINDOW_RGB);
@@ -96,8 +97,8 @@ void GLStitcher::InitGlut(const char * title)
 		esContext.userData = this;
 }
 
-const static char *szFrontCameraMapFile = "/maps/projectionTableSphereA_mapTable.dat";
-const static char *szBehindCameraMapFile = "/maps/projectionTableSphereB_mapTable.dat";
+const static char *szFrontCameraMapFile = "/maps/map_front.dat";
+const static char *szBehindCameraMapFile = "/maps/map_behind.dat";
 
 bool GLStitcher::InitMembers()
 {
@@ -147,9 +148,6 @@ bool GLStitcher::InitMembers()
     map_file_path = m_strWorkDirectory + std::string(szBehindCameraMapFile);
 	m_pBackMapPointsBuilder->SetMapFile(map_file_path.c_str());
 	m_pBackMapPointsBuilder->BuildMatchPoints();
-
-
-
 
 	m_pMaskMaker->SetDstImageFormat(m_dstImageFormat);
 
@@ -223,70 +221,56 @@ bool GLStitcher::InitMembers()
 
 	void GLStitcher::InitShader()
 	{
-	char vShaderStr[] =
-		"#version 300 es                            \n"
-		"#extension GL_OES_EGL_image_external : require\n"
-		"\n"
-		"layout (location = 0) in vec2 in_position;\n"
-		"layout (location = 1) in vec4 in_tex_coord1;\n"
-		"layout (location = 2) in vec4 in_tex_coord2;\n"
-		//"layout (location = 2) in float in_tex_coeff;\n"
-		"\n"
-		"out vec2 tex_coord1;\n"
-		"out float tex_coeff1;\n"
-		"out float tex_alpha1;\n"
-		"out vec2 tex_coord2;\n"
-		"out float tex_coeff2;\n"
-		"out float tex_alpha2;\n"
-		"\n"
-		"void main(void)\n"
-		"{\n"
-		"    gl_Position = vec4(in_position, 0.5, 1.0);\n"
-		"    tex_coord1 = vec2(in_tex_coord1.x, in_tex_coord1.y);\n"
-		"    tex_coeff1 = in_tex_coord1.z;\n"
-		"    tex_alpha1 = in_tex_coord1.w;\n"
-		"    tex_coord2 = vec2(in_tex_coord2.x, in_tex_coord2.y);\n"
-		"    tex_coeff2 = in_tex_coord2.z;\n"
-		"    tex_alpha2 = in_tex_coord2.w;\n"
-		"}\n"
+		char vShaderStr[] =
+				"#version 300 es                            \n"
+						"\n"
+						"layout (location = 0) in vec2 in_position;\n"
+						"layout (location = 1) in vec4 in_tex_coord1;\n"
+						"layout (location = 2) in vec4 in_tex_coord2;\n"
+						//"layout (location = 2) in float in_tex_coeff;\n"
+						"\n"
+						"out vec2 tex_coord1;\n"
+						"out float tex_coeff1;\n"
+						"out vec2 tex_coord2;\n"
+						"out float tex_coeff2;\n"
+						"out float tex_alpha;\n"
+						"\n"
+						"void main(void)\n"
+						"{\n"
+						"    gl_Position = vec4(in_position, 0.5, 1.0);\n"
+						"    tex_coord1 = vec2(in_tex_coord1.x, in_tex_coord1.y);\n"
+						"    tex_coeff1 = in_tex_coord1.z;\n"
+						"    tex_coord2 = vec2(in_tex_coord2.x, in_tex_coord2.y);\n"
+						"    tex_coeff2 = in_tex_coord2.z;\n"
+						"    tex_alpha = in_tex_coord2.w;\n"
+						"}\n"
 		;
 
-	char fShaderStr[] =
-		"#version 300 es                                     \n"
-		"#extension GL_OES_EGL_image_external : require\n"
-		"precision mediump float;                            \n"
-		"\n"
-		"in vec2 tex_coord1;\n"
-		"\n"
-		"in float tex_coeff1;\n"
-		"\n"
-		"in float tex_alpha1;\n"
-		"\n"
-		"in vec2 tex_coord2;\n"
-		"\n"
-		"in float tex_coeff2;\n"
-		"\n"
-		"in float tex_alpha2;\n"
-		"\n"
-		"layout (location = 0) out vec4 color;\n"
-		"\n"
-		"uniform sampler2D tex1;\n"
-		"\n"
-		"uniform sampler2D tex2;\n"
-		"\n"
-		"uniform float adjust;\n"
-		"\n"
-		"void main(void)\n"
-		"{\n"
-		"    vec4 output1 = texture(tex1, tex_coord1);\n"
-		"\n"
-		"    vec4 output2 = texture(tex2, tex_coord2);\n"
-		"\n"
-		//"    color = output1 * tex_alpha1 * tex_coeff1 * adjust + output2 * tex_alpha2;\n"
-		"    color = output1 * tex_coeff1 * adjust * tex_alpha1 + \
-				output2 * tex_coeff2 * tex_alpha2;\n"
-		"}\n"
+		char fShaderStr[] =
+				"#version 300 es                                     \n"
+						"precision mediump float;                            \n"
+						"in vec2 tex_coord1;\n"
+						"in float tex_coeff1;\n"
+						"in vec2 tex_coord2;\n"
+						"in float tex_coeff2;\n"
+						"in float tex_alpha;\n"
+						"\n"
+						"layout (location = 0) out vec4 color;\n"
+						"\n"
+						"uniform sampler2D tex1;\n"
+						"uniform sampler2D tex2;\n"
+						"uniform float adjust;\n"
+						"\n"
+						"void main(void)\n"
+						"{\n"
+						"    vec4 output1 = texture(tex1, tex_coord1);\n"
+						"\n"
+						"    vec4 output2 = texture(tex2, tex_coord2);\n"
+						"\n"
+						"    color = mix(output1 * tex_coeff1 * adjust,	output2 * tex_coeff2,  tex_alpha);\n"
+						"}\n"
 		;
+
 
 
 	//vglAttachShaderSource(base_prog, GL_VERTEX_SHADER, quad_shader_vs);
@@ -411,7 +395,7 @@ void GLStitcher::Release()
 //	glDeleteTextures(1, &front_tex);
 //	glDeleteTextures(1, &back_tex);
 //	glDeleteVertexArrays(1, &vao);
-	
+	EGL::shutdown();
 	m_bInitialized = false;
 }
 

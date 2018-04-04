@@ -33,7 +33,7 @@ bool EGL::setup(int rSize, int gSize, int bSize, int aSize, int depthSize) {
     
 	// EGL context attributes
 	const EGLint ctxAttr[] = {
-        EGL_CONTEXT_CLIENT_VERSION, 2,				// use OpenGL ES 2.0, very important!
+        EGL_CONTEXT_CLIENT_VERSION, 3,
         EGL_NONE
 	};
     

@@ -11,8 +11,8 @@
  * OpenGL ES 2.0 includes for Android.
  */
  
-#include <GLES2/gl2.h>
+#include <GLES3/gl3.h>
 #ifndef GL_GLEXT_PROTOTYPES
 #define GL_GLEXT_PROTOTYPES
 #endif
-#include <GLES2/gl2ext.h>
+#include <GLES3/gl3ext.h>
